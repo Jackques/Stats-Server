@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "12471e44-4632-4e21-9e67-de8c7576a3c9",
+		"name": "StatsServer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getProjects",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getProfileNamesFromProject/T-Helper",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getProfileNamesFromProject",
+						"T-Helper"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProfileNamesFromProject",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getProfileNamesFromProject/T-Helper",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getProfileNamesFromProject",
+						"T-Helper"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getKeysFromProject",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getKeysFromProject/T-Helper",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getKeysFromProject",
+						"T-Helper"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllListValuesFromKey",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getAllListValuesFromKeyInProject/T-Helper/Vibe-tags",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getAllListValuesFromKeyInProject",
+						"T-Helper",
+						"Vibe-tags"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postQuery",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"GET\",\r\n    \"period\": \"ALL\",\r\n    \"fromDate\": \"ALL\",\r\n    \"toDate\": \"14-04-2022\",\r\n    \"fromProfiles\": [\r\n        \"Profile-x\",\r\n        \"Profile-y\"\r\n    ],\r\n    \"queries\": [\r\n        {\r\n            \"whereKey\": \"age\",\r\n            \"operator\": \"EQUALS\",\r\n            \"values\": [\r\n                \"30\"\r\n            ]\r\n        },\r\n        {\r\n            \"whereKey\": \"age\",\r\n            \"operator\": \"GREATER_THAN_OR_EQUAL_TO\",\r\n            \"values\": [\r\n                \"35\"\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/postQuery/T-Helper",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"postQuery",
+						"T-Helper"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getQuery",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getQuery/T-Helper/123abcDEF",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getQuery",
+						"T-Helper",
+						"123abcDEF"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteQuery",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/deleteQuery/T-Helper/123abcDEF",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"deleteQuery",
+						"T-Helper",
+						"123abcDEF"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
