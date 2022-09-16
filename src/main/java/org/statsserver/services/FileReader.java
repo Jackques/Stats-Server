@@ -45,8 +45,7 @@ public class FileReader {
     private static LinkedHashMap<Integer, HashMap<String, Object>> mapFileContentsForJson(File json){
         ObjectMapper mapper = new ObjectMapper();
         LinkedHashMap<Integer, HashMap<String, Object>> results = new LinkedHashMap<>();
-        //TODO: Make sure to enforce that provided file is in a desired structure; Array containing objects. Throw error is this is not the case!
-//                List<LinkedHashMap<String, Object>> listOfMaps = null;
+
         try {
             List<LinkedHashMap<String, Object>> fileContents = mapper.readValue(json, new TypeReference<List<LinkedHashMap<String, Object>>>() {});
             System.out.println("DEBUG");
@@ -57,13 +56,23 @@ public class FileReader {
 
             AtomicInteger no = new AtomicInteger();
             fileContents.forEach((fileContentObject) -> {
-                HashMap data = new HashMap();
+                HashMap keyValuesContentObject = new HashMap();
+                Set<String> keysContentObject = fileContentObject.keySet();
 
-                for(String keyName : fileContentObject.keySet()){
-                    data.put(keyName, fileContentObject.get(keyName));
+                if(keysContentObject.size() == 0){
+                    //todo: throw error
+                    throw new RuntimeException("object may not be emtpy");
                 }
 
-                results.put(no.get(), data);
+                for(String keyName : keysContentObject){
+                    if(!hasSubValuesAllowedStructure(fileContentObject.get(keyName))){
+                        //todo: throw error
+                        throw new RuntimeException("subobject does not have approved structure");
+                    }
+                    keyValuesContentObject.put(keyName, fileContentObject.get(keyName));
+                }
+
+                results.put(no.get(), keyValuesContentObject);
                 no.getAndIncrement();
             });
 
@@ -84,13 +93,14 @@ public class FileReader {
             csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());
 
             List<String> headerNames = csvParser.getHeaderNames();
-            if(headerNames.size() == 0){
+            List<CSVRecord> records = csvParser.getRecords();
+            if(headerNames.size() == 0 || records.size() == 0){
                 //todo: throw error
             }
 
             int no = 0;
 
-            for (CSVRecord record : csvParser) {
+            for (CSVRecord record : records) {
 
                 HashMap data = new HashMap();
                 for(String headerName : headerNames){
@@ -104,5 +114,77 @@ public class FileReader {
         }
 
         return results;
+    }
+
+    private static Boolean hasSubValuesAllowedStructure(Object subValue){
+        //TODO [COMPLETED, NEEDS TO BE TESTED] 4. ensure object values (see 3) have no underlying objects OR array's
+
+        //TODO: What if an array/list has different types of contents store in it? e.g; [Object, Object, Object, String].
+        // Allow this or no? How would I even check what the 'valid structure of this would be?'
+
+        if(isValueMap(subValue)){
+
+            Map<?,?> aMapValue = ((Map<?,?>) subValue);
+
+//            System.out.println("this is an object/map");
+            if(aMapValue.size() == 0){
+                return true;
+            }
+
+            for(Map.Entry<?, ?> aMapEntry : aMapValue.entrySet()){
+//                System.out.println("mapped subsubvalue: "+aMapEntry.getValue());
+
+                if(isValueMap(aMapEntry.getValue()) || isValueList(aMapEntry.getValue())){
+                    // object value may not be of type list or object
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        if(isValueList(subValue)){
+//            System.out.println("this is an array/list");
+            Object[] listValue = ((List<?>) subValue).toArray();
+            if(listValue.length == 0){
+                return true;
+            }
+
+            for(Object listElementValue : listValue){
+//                System.out.println("This value of the array is: "+listElementValue);
+
+                if(isValueList(listElementValue)){
+                    return false;
+                }
+                if(isValueMap(listElementValue)){
+                    Map<?,?> listElementChildValue = (Map<?, ?>) listElementValue;
+                    if(listElementChildValue.size() == 0){
+                        return true;
+                    }
+                    for(Map.Entry<?, ?> listElementChildValueValue : listElementChildValue.entrySet()){
+                        if(isValueMap(listElementChildValueValue.getValue()) || isValueList(listElementChildValueValue.getValue())){
+                            // list element child may not be of type object or list
+                            return false;
+                        }
+                    }
+
+
+                }
+            }
+        }
+        //TODO [COMPLETED, NEEDS TESTING & REFACTOR] 5. ensure array values cannot have underlying array's,
+        // ensure array object values have no underlying objects OR underlying array's
+
+        return true;
+    }
+
+
+
+    private static Boolean isValueMap(Object subValue){
+        return subValue instanceof Map<?,?>;
+    }
+
+    private static Boolean isValueList(Object subValue){
+        return subValue instanceof List;
     }
 }

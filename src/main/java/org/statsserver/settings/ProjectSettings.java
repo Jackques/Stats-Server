@@ -41,7 +41,7 @@ public class ProjectSettings {
 
         //TODO: MAYBE CHECKING LATESTFILES MAY NOT EVEN BE NECESSARY ANYMORE, SINCE IF I CAN LOAD THEM.. THEYVE BEEN CHECKED?
             // * properties; contains valid data (not empty) & structure
-        if(!this.fileContainsValidData() && !this.fileContainsValidStructure()){
+        if(!this.fileContainsValidStructure()){
             //todo: throw exception?
             return false;
         }
@@ -107,11 +107,6 @@ public class ProjectSettings {
             }
         }
         return latestFilesInDirectories;
-    }
-
-    private boolean fileContainsValidData() {
-        //todo: ensure file contains at least some data
-        return true;
     }
 
     private boolean fileContainsValidStructure() {
