@@ -10,12 +10,8 @@ import org.statsserver.domain.FileInDirectory;
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-
-
 public class FileReader {
 
     public static void readFile(FileInDirectory fileInDirectory){
@@ -23,21 +19,19 @@ public class FileReader {
         File file = new File(fileInDirectory.fullFilePath);
         LinkedHashMap<Integer, HashMap<String, Object>> fileContents = null;
 
-        switch(fileInDirectory.fileExtension){
-            case JSON: {
+        switch (fileInDirectory.fileExtension) {
+            case JSON -> {
                 fileContents = mapFileContentsForJson(file);
                 System.out.println("DEBUG");
             }
-            case CSV: {
+            case CSV -> {
                 fileContents = mapFileContentsForCsv(file);
                 System.out.println("DEBUG");
             }
-            case OTHER: {
+            case OTHER -> {
+                System.out.println("DEBUG: OTHER");
                 //todo: throw error
-//                return null; //TODO: NEEDS WORK; DO I NOT RETURN ANYTHING HERE?
             }
-
-            System.out.println("DEBUG");
         }
 
     }

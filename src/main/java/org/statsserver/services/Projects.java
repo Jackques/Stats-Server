@@ -6,11 +6,6 @@ import org.statsserver.records.Profile;
 import org.statsserver.settings.ProjectSettings;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-import static java.util.Map.entry;
-
 @Service
 public class Projects {
 
