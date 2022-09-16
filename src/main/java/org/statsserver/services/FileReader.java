@@ -14,7 +14,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 public class FileReader {
 
-    public static void readFile(FileInDirectory fileInDirectory){
+    public static LinkedHashMap<Integer, HashMap<String, Object>> readFile(FileInDirectory fileInDirectory){
 
         File file = new File(fileInDirectory.fullFilePath);
         LinkedHashMap<Integer, HashMap<String, Object>> fileContents = null;
@@ -34,6 +34,7 @@ public class FileReader {
             }
         }
 
+        return fileContents;
     }
 
     private static LinkedHashMap<Integer, HashMap<String, Object>> mapFileContentsForJson(File json){

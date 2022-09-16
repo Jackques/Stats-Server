@@ -1,9 +1,11 @@
 package org.statsserver.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.statsserver.domain.KeyData;
+import org.statsserver.services.ProjectService;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -14,29 +16,27 @@ import java.util.Objects;
 @RestController
 public class StatsController {
 
+    private final ProjectService projectService;
+
+    @Autowired
+    public StatsController(ProjectService projectService) {
+        this.projectService = projectService;
+    }
+
 //todo: advies Siebe; pas dezelfde path toe op meerdere annotations, maar dan wel van andere types; delete, get, post? Vraag nogmaals naar meer uitleg
 
     @RequestMapping(path = "api/v1/getProjects")
     public List<String> getProjects(){
-        System.out.println("GET MAPPING AANGESPROKEN getProjects: ");
-        //todo: remove mockvalues on return
-        ArrayList<String> projectsArrayList = new ArrayList<>();
-        projectsArrayList.add("Project-X");
-        projectsArrayList.add("Project-Y");
-        return projectsArrayList;
+        System.out.println("GET MAPPING AANGESPROKEN getProjects: "+this.projectService.getLoadedProjectNames());
+        return this.projectService.getLoadedProjectNames();
     }
-
     @RequestMapping(path = "api/v1/getProfileNamesFromProject/{projectName}")
     public List<String> getProfileNamesFromProject(@PathVariable("projectName") String projectName){
-        System.out.println("GET MAPPING AANGESPROKEN getProfileNamesFromProject: , and the projectName provided is: "+projectName);
-        //todo: remove mockvalues on return
-        ArrayList<String> projectsArrayList = new ArrayList<>();
-        if(Objects.equals(projectName, "T-Helper")){ // apparantly this is how you do string comparison in Java?
-            projectsArrayList.add("Profile-Jack");
-            projectsArrayList.add("Profile-Maarten");
+        System.out.println("GET MAPPING AANGESPROKEN getProfileNamesFromProject: "+this.projectService.getProfileNamesByProject(projectName)+", and the projectName provided is: "+projectName);
+        if(projectName.isEmpty()){
+            //TODO: throw error OR return 404
         }
-
-        return projectsArrayList;
+        return this.projectService.getProfileNamesByProject(projectName);
     }
 
     @RequestMapping(path = "api/v1/getKeysFromProject/{projectName}")

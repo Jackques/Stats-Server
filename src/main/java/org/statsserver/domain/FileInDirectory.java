@@ -1,6 +1,7 @@
 package org.statsserver.domain;
 
 import org.statsserver.enums.FileExtension;
+import org.statsserver.records.Profile;
 import org.statsserver.util.FileNameChecker;
 
 import java.text.ParseException;
@@ -9,9 +10,7 @@ import java.util.Date;
 
 public class FileInDirectory implements Comparable<FileInDirectory> {
     public final String fullFileName;
-
     public final String fullFilePath;
-
     public Date formattedDateTime;
     public Long differenceInMSFromCurrentDateTime = null;
     public Long getDifferenceInMSFromCurrentDateTime() {
@@ -19,15 +18,18 @@ public class FileInDirectory implements Comparable<FileInDirectory> {
     }
 
     //todo: refactor to private properties and use lombok to get these properties?
-    public Boolean isNotEmpty = false;
-    public Boolean hasValidDataStructure = false;
+    public Boolean isNotEmpty = false;//todo: remove this if not used?
+    public Boolean hasValidDataStructure = false;//todo: remove this if not used?
     public FileExtension fileExtension;
 
-    public FileInDirectory(String fullFileName, String directoryPath, String dateStringFromFileName) {
+    private final Profile associatedProfile;
+
+    public FileInDirectory(String fullFileName, String directoryPath, Profile profile, String dateStringFromFileName) {
         this.fullFileName = fullFileName;
         this.fullFilePath = directoryPath+"\\"+fullFileName;
 
         this.fileExtension = FileNameChecker.getFileExtension(fullFileName);
+        this.associatedProfile = profile;
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy--HH-mm-ss");
         try {

@@ -4,7 +4,6 @@ import org.statsserver.domain.FileInDirectory;
 import org.statsserver.domain.ProjectSetting;
 import org.statsserver.records.Profile;
 import org.statsserver.services.FileReader;
-import org.statsserver.util.FileNameChecker;
 import org.statsserver.util.FormattedDateMatcher;
 
 import java.io.IOException;
@@ -16,8 +15,7 @@ import java.util.*;
 
 public class ProjectSettings {
     //todo: This class should probably be refactored & moved into a seperate resource-like file (i.e. a .yaml, .xml or .json file in the resources folder)
-
-    public ArrayList<ProjectSetting> projectSettings = new ArrayList<ProjectSetting>();
+    private ArrayList<ProjectSetting> projectSettings = new ArrayList<ProjectSetting>();
 
     public ProjectSettings() {
 
@@ -34,17 +32,10 @@ public class ProjectSettings {
             //todo: throw error; could not retrieve latest file from directory path
             return false;
         }
+        System.out.println("what is the name of the file?");
         latestFiles.forEach((key, value) -> {
-            FileReader.readFile(value);
+            projectSetting.addLatestFileContents(value, FileReader.readFile(value));
         });
-
-
-        //TODO: MAYBE CHECKING LATESTFILES MAY NOT EVEN BE NECESSARY ANYMORE, SINCE IF I CAN LOAD THEM.. THEYVE BEEN CHECKED?
-            // * properties; contains valid data (not empty) & structure
-        if(!this.fileContainsValidStructure()){
-            //todo: throw exception?
-            return false;
-        }
 
         // inplement other logic for importing projects
 
@@ -88,7 +79,7 @@ public class ProjectSettings {
                 //todo: refactor sometime to only create SINGLE FileInDirectory classobject AFTER fileName is valid, got dateTimeStringFromFileName AND is sorted
                 List<FileInDirectory> filteredFilesInDirectory = filesInDirectory.stream()
                         .filter(fileName -> !FormattedDateMatcher.getDateTimeStringFromFileName(fileName).equals(""))
-                        .map(fileName -> new FileInDirectory(fileName, directoryPath, FormattedDateMatcher.getDateTimeStringFromFileName(fileName)))
+                        .map(fileName -> new FileInDirectory(fileName, directoryPath, profile, FormattedDateMatcher.getDateTimeStringFromFileName(fileName)))
                         .filter(FileInDirectory::hasValidFileExtension)
                         .sorted()
                         .toList();
@@ -108,15 +99,6 @@ public class ProjectSettings {
         }
         return latestFilesInDirectories;
     }
-
-    private boolean fileContainsValidStructure() {
-        //todo: ensure file loaded contains a valid structure;
-            // array with objects, each object contsists of properties with a key-value pair of which the value can be of any type.
-            // array with objects and subobjects of root objects are allowed, objects of subobjects are not allowed.
-
-        return true;
-    }
-
     private Set<String> listFilesUsingDirectoryStream(String dir) throws IOException {
         Set<String> fileList = new HashSet<>();
         try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(dir))) {
@@ -128,6 +110,14 @@ public class ProjectSettings {
             }
         }
         return fileList;
+    }
+
+    public List<ProjectSetting> getProjectSettings(Optional<String> projectName) {
+        if(projectName.isPresent()){
+            return projectSettings.stream()
+                    .filter(projectSetting -> Objects.equals(projectSetting.getProjectName(), projectName.get())).toList();
+        }
+        return projectSettings;
     }
 
 }
