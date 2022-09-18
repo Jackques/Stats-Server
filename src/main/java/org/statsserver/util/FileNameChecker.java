@@ -15,12 +15,10 @@ public class FileNameChecker {
         switch (getExtensionByApacheCommonLib(fileName)) {
             case "json" -> {
 //                System.out.println("The file is a JSON file!");
-//                return true;
                 return FileExtension.JSON;
             }
             case "csv" -> {
 //                System.out.println("The file is a CSV file!");
-//                return true;
                 return FileExtension.CSV;
             }
             default -> {
