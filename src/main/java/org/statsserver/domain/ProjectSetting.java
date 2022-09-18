@@ -14,8 +14,8 @@ public class ProjectSetting {
     public final String keyNameForNo;
     public final Boolean useAutoNumberingRecords;
     public final String keyNameForDate;
-
     private final HashMap<FileInDirectory, LinkedHashMap> latestFilePaths = new HashMap<>();
+    private KeyDataList dataTypesList = new KeyDataList();
     public ProjectSetting(String projectName, ArrayList<Profile> projectFilesPaths, String keyNameForNo, Boolean useAutoNumberingRecords, String keyNameForDate) {
         this.projectName = projectName;
         this.projectFilesPaths = projectFilesPaths;
@@ -36,5 +36,9 @@ public class ProjectSetting {
         return projectFilesPaths.stream()
                 .map(projectFilesPath -> projectFilesPath.name())
                 .collect(Collectors.toList());
+    }
+
+    public KeyDataList getDataTypesList() {
+        return dataTypesList;
     }
 }

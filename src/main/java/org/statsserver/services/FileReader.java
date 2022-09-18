@@ -5,28 +5,32 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import org.springframework.util.NumberUtils;
 import org.statsserver.domain.FileInDirectory;
+import org.statsserver.domain.KeyDataList;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-public class FileReader {
 
-    public static LinkedHashMap<Integer, HashMap<String, Object>> readFile(FileInDirectory fileInDirectory){
+import static org.statsserver.services.NumberConverterFromString.getConvertedNumberFromString;
+
+public class FileReader {
+    public static LinkedHashMap<Integer, HashMap<String, Object>> readFile(FileInDirectory fileInDirectory, KeyDataList dataTypesList){
 
         File file = new File(fileInDirectory.fullFilePath);
         LinkedHashMap<Integer, HashMap<String, Object>> fileContents = null;
 
         switch (fileInDirectory.fileExtension) {
             case JSON -> {
-                fileContents = mapFileContentsForJson(file);
-                System.out.println("DEBUG");
+                fileContents = mapFileContentsForJson(file, dataTypesList);
+                //System.out.println("DEBUG");
             }
             case CSV -> {
-                fileContents = mapFileContentsForCsv(file);
-                System.out.println("DEBUG");
+                fileContents = mapFileContentsForCsv(file, dataTypesList);
+                //System.out.println("DEBUG");
             }
             case OTHER -> {
                 System.out.println("DEBUG: OTHER");
@@ -37,7 +41,7 @@ public class FileReader {
         return fileContents;
     }
 
-    private static LinkedHashMap<Integer, HashMap<String, Object>> mapFileContentsForJson(File json){
+    private static LinkedHashMap<Integer, HashMap<String, Object>> mapFileContentsForJson(File json, KeyDataList dataTypesList){
         ObjectMapper mapper = new ObjectMapper();
         LinkedHashMap<Integer, HashMap<String, Object>> results = new LinkedHashMap<>();
 
@@ -64,6 +68,11 @@ public class FileReader {
                         //todo: throw error
                         throw new RuntimeException("subobject does not have approved structure");
                     }
+                    try {
+                        dataTypesList.addKeyAndDataType(keyName, fileContentObject.get(keyName));
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                     keyValuesContentObject.put(keyName, fileContentObject.get(keyName));
                 }
 
@@ -79,7 +88,7 @@ public class FileReader {
         return results;
     }
 
-    private static LinkedHashMap<Integer, HashMap<String, Object>> mapFileContentsForCsv(File csv){
+    private static LinkedHashMap<Integer, HashMap<String, Object>> mapFileContentsForCsv(File csv, KeyDataList dataTypesList){
         CSVParser csvParser;
         LinkedHashMap<Integer, HashMap<String, Object>> results = new LinkedHashMap<>();
 
@@ -100,11 +109,12 @@ public class FileReader {
                 HashMap data = new HashMap();
                 for(String headerName : headerNames){
                     data.put(headerName, record.get(headerName));
+                    dataTypesList.addKeyAndDataType(headerName, getConvertedNumberFromString(record.get(headerName)));
                 }
                 results.put(no, data);
                 no++;
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
@@ -172,9 +182,6 @@ public class FileReader {
 
         return true;
     }
-
-
-
     private static Boolean isValueMap(Object subValue){
         return subValue instanceof Map<?,?>;
     }

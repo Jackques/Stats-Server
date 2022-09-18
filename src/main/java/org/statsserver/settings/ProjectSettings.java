@@ -15,12 +15,8 @@ import java.util.*;
 
 public class ProjectSettings {
     //todo: This class should probably be refactored & moved into a seperate resource-like file (i.e. a .yaml, .xml or .json file in the resources folder)
-    private ArrayList<ProjectSetting> projectSettings = new ArrayList<ProjectSetting>();
-
-    public ProjectSettings() {
-
-    }
-
+    private final ArrayList<ProjectSetting> projectSettings = new ArrayList<ProjectSetting>();
+    public ProjectSettings() {}
     public boolean addProject(ProjectSetting projectSetting){
         if(!this.isFilePathsValid(projectSetting)){
             //todo: throw exception?
@@ -32,9 +28,10 @@ public class ProjectSettings {
             //todo: throw error; could not retrieve latest file from directory path
             return false;
         }
-        System.out.println("what is the name of the file?");
+        //System.out.println("what is the name of the file?");
+
         latestFiles.forEach((key, value) -> {
-            projectSetting.addLatestFileContents(value, FileReader.readFile(value));
+            projectSetting.addLatestFileContents(value, FileReader.readFile(value, projectSetting.getDataTypesList()));
         });
 
         // inplement other logic for importing projects
