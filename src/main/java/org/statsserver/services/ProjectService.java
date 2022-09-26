@@ -27,10 +27,9 @@ public class ProjectService {
                         "T-Helper",
                         new ArrayList<Profile>() {
                             {
+//                                add(new Profile("Jack-original", "D:\\Projects\\Prive\\Stats-Server\\examples\\profile-jsons"));
                                 add(new Profile("Jack-original", "F:\\\\Dropbox\\\\Profile-jsons"));
                                 add(new Profile("Jack-updated", "F:\\\\Dropbox\\\\Profile-jsons-new")); //todo: only created this folder with copied stats for testing purposes, remove when no longer needed
-//                                add(new Profile("Jack-new", "F:\\Dropbox\\Administratie"));
-//                                add(new Profile("Jack-old", "F:\\Dropbox\\Administratie\\Aut"));
                             }
                         },
                         "No",
@@ -40,9 +39,10 @@ public class ProjectService {
         );
         this.loadedProjects.addProject(
                 new ProjectSetting(
-                        "Fitnis-stats",
+                        "Fitness-stats",
                         new ArrayList<Profile>() {
                             {
+//                                add(new Profile("Jack-fitnes", "D:\\Projects\\Prive\\Stats-Server\\examples\\fitness-stats"));
                                 add(new Profile("Jack-fitnes", "F:\\Dropbox\\Sport\\Fitnis\\Fitnisstats"));
                             }
                         },
