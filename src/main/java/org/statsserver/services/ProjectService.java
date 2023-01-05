@@ -6,6 +6,7 @@ import org.statsserver.records.Profile;
 import org.statsserver.settings.ProjectSettings;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -66,6 +67,23 @@ public class ProjectService {
                 .stream()
                 .map(ProjectSetting::getProfileNames)
                 .findFirst().orElse(null);
+    }
+
+    public boolean getProjectNameExist(String projectName){
+        if(projectName.isEmpty()){
+            //TODO: throw error OR return 404
+            return false;
+        }
+        return this.getLoadedProjectNames().contains(projectName);
+    }
+
+    public ArrayList<HashMap<String, String>> getAllKeysFromProject(String projectName){
+        List<ProjectSetting> projectSettingList = this.loadedProjects.getProjectSettings(Optional.of(projectName));
+        if(projectSettingList.size() > 1){
+            //todo: throw error multiple projectSettings with same name should not be allowed
+            return new ArrayList<>();
+        }
+        return projectSettingList.get(0).getDataTypesList().getAllKeysAndDataTypes();
     }
 
 }

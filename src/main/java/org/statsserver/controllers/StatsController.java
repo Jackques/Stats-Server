@@ -33,28 +33,24 @@ public class StatsController {
     @RequestMapping(path = "api/v1/getProfileNamesFromProject/{projectName}")
     public List<String> getProfileNamesFromProject(@PathVariable("projectName") String projectName){
         System.out.println("GET MAPPING AANGESPROKEN getProfileNamesFromProject: "+this.projectService.getProfileNamesByProject(projectName)+", and the projectName provided is: "+projectName);
-        if(projectName.isEmpty()){
+
+        if(!this.projectService.getProjectNameExist(projectName)){
             //TODO: throw error OR return 404
         }
         return this.projectService.getProfileNamesByProject(projectName);
     }
 
     @RequestMapping(path = "api/v1/getKeysFromProject/{projectName}")
-    public List<HashMap<String, String>> getKeysFromProject(@PathVariable("projectName") String projectName){
+    public ResponseEntity<ArrayList<HashMap<String, String>>> getKeysFromProject(@PathVariable("projectName") String projectName){
         System.out.println("GET MAPPING AANGESPROKEN getKeysFromProject: ");
-        //todo: remove mockvalues on return
-        ArrayList<HashMap<String, String>> keysArrayList = new ArrayList<>();
-        if(!this.projectExists(projectName)){
-            //todo: refactor to return not allowed or not found?
-            return keysArrayList;
-        }
-        keysArrayList.add(new KeyData("No", "Number").getKeyDataAsHashMap());
-        keysArrayList.add(new KeyData("Date", "DateString").getKeyDataAsHashMap());
-        keysArrayList.add(new KeyData("Name", "String").getKeyDataAsHashMap());
-        keysArrayList.add(new KeyData("Interests", "List").getKeyDataAsHashMap());
-        keysArrayList.add(new KeyData("Vibe-tags", "Object-List").getKeyDataAsHashMap());
 
-        return keysArrayList;
+        if(!this.projectService.getProjectNameExist(projectName)){
+            //TODO: throw error OR return 404
+        }
+
+        return ResponseEntity
+                .ok()
+                .body(this.projectService.getAllKeysFromProject(projectName));
     }
 
     @GetMapping(path = "api/v1/getAllListValuesFromKeyInProject/{projectName}/{keyName}")

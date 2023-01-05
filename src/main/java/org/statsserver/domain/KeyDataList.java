@@ -29,6 +29,14 @@ public class KeyDataList {
         }
     }
 
+    public ArrayList<HashMap<String, String>> getAllKeysAndDataTypes(){
+        ArrayList<HashMap<String, String>> keyAndDataTypeList = new ArrayList<>();
+        this.keyDataList.forEach((key, value) -> {
+            keyAndDataTypeList.add(value.getKeyDataAsHashMap());
+        });
+        return keyAndDataTypeList;
+    }
+
     private boolean isValueSameKeyEqualDataType(String keyName, Object dataTypeOfValue) {
         //get current entry type
         // is equal to new entry value type, return true
