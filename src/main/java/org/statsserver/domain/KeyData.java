@@ -44,20 +44,11 @@ public class KeyData {
         // e.g. int a[]=new int[5];
     }
 
-    public HashMap<String, String> getKeyDataAsHashMap(){
-        HashMap<String, String> hashmap = new HashMap<String, String>();
-        if(!Objects.equals(this.name, "") && !Objects.equals(this.value, "")){
-            hashmap.put(this.name, this.valueType);
-            return hashmap;
+    public ResponseKeyData getKeyDataAsResponseKeyData(){
+        if(Objects.equals(this.name, "")){
+            return null;
         }
-
-        return hashmap;
-
-        // LEARNED: do not return Java object instances of my own created classes (an error is returned if you do).
-        // Instead ALWAYS return a known Java object ie.e. hashmap, map, array, etc.
-//        These are automatically converted into JSON when returning these values to a client (hashmap becomes JSON object, ArrayList becomes JSON array etc.)
-
-        // When returning objects to a REST endpoint that is
+        return new ResponseKeyData(this.name, this.valueType);
     }
 
     private ArrayList<KeyData> setInnerValuesList(Object value){

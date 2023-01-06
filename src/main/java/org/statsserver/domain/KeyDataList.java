@@ -24,7 +24,7 @@ public class KeyDataList {
             }
             if(!this.isValueSameKeyEqualDataType(keyName, getValueDataType(value))){
                 //todo: throw exception
-                throw new Exception("Key: "+keyName+" already exists in dataList with type: "+this.keyDataList.get(keyName).getKeyDataAsHashMap().get(keyName)+" but new entry type: "+value+" creates conflict");
+                throw new Exception("Key: "+keyName+" already exists in dataList with type: "+this.keyDataList.get(keyName).getKeyDataAsResponseKeyData().getDataType()+" but new entry type: "+value+" creates conflict");
             }
         }
     }
@@ -32,7 +32,7 @@ public class KeyDataList {
     public ArrayList<HashMap<String, String>> getAllKeysAndDataTypes(){
         ArrayList<HashMap<String, String>> keyAndDataTypeList = new ArrayList<>();
         this.keyDataList.forEach((key, value) -> {
-            keyAndDataTypeList.add(value.getKeyDataAsHashMap());
+            keyAndDataTypeList.add(value.getKeyDataAsResponseKeyData().getResponseKeyDataAsHashMap());
         });
         return keyAndDataTypeList;
     }
@@ -41,7 +41,7 @@ public class KeyDataList {
         //get current entry type
         // is equal to new entry value type, return true
         // if not, return false
-        boolean result = this.keyDataList.get(keyName).getKeyDataAsHashMap().get(keyName).equals(dataTypeOfValue);
+        boolean result = this.keyDataList.get(keyName).getKeyDataAsResponseKeyData().getDataType().equals(dataTypeOfValue);
         return result;
     }
 }
