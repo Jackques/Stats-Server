@@ -82,6 +82,16 @@ public class StatsController {
         return allValuesArrayList;
     }
 
+    @GetMapping(path = "api/v1/getAllQueriesFromProject/{projectName}")
+    public ResponseEntity<List<String>> getAllQueriesFromProject(@PathVariable String projectName){
+
+        //todo: replace mocked values with actual values
+        //todo: return queryId's
+        return ResponseEntity
+                .ok()
+                .body(List.of("abc123", "def456"));
+    }
+
     @PostMapping(path = "api/v1/postQuery/{projectName}",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
