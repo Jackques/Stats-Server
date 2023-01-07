@@ -80,9 +80,20 @@ public class KeyData {
     }
 
     private boolean isValueSameTypeOfExistingValuesInList(Object listValue, ArrayList<Object> listValues) {
-        //todo: needs inplementation
+        // todo todo todo: needs inplementation
         return true;
     }
 
 
+    public ArrayList<String> getValues() {
+//        if(this.hasInnerValues && this.typeInnervalues == "String"){ //todo: this line is just here to test if it works
+        if(this.hasInnerValues && this.typeInnervalues == "DateString"){
+            //todo todo todo: logic requested below needs to be set when looping over data
+
+            // set 10 as variabele number
+            // if values are greater than 10, return [null], otherwise return [value1, value2, value3 etc.]
+            return (ArrayList<String>) this.value;
+        }
+        return null;
+    }
 }

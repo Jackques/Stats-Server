@@ -41,4 +41,8 @@ public class ProjectSetting {
     public KeyDataList getDataTypesList() {
         return dataTypesList;
     }
+
+    public ArrayList<String> getValuesFromKey(String keyName) {
+        return this.getDataTypesList().getKey(keyName).getValues();
+    }
 }

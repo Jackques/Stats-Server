@@ -37,11 +37,20 @@ public class KeyDataList {
         return keyAndDataTypeList;
     }
 
+
+
+    public boolean getKeyExists(String keyName) {
+        return this.keysList.contains(keyName);
+    }
     private boolean isValueSameKeyEqualDataType(String keyName, Object dataTypeOfValue) {
         //get current entry type
         // is equal to new entry value type, return true
         // if not, return false
         boolean result = this.keyDataList.get(keyName).getKeyDataAsResponseKeyData().getDataType().equals(dataTypeOfValue);
         return result;
+    }
+
+    public KeyData getKey(String keyName) {
+        return this.keyDataList.get(keyName);
     }
 }

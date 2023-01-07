@@ -86,4 +86,25 @@ public class ProjectService {
         return projectSettingList.get(0).getDataTypesList().getAllKeysAndDataTypes();
     }
 
+
+
+
+
+    public Boolean getKeyExistsInProject(String projectName, String keyName){
+        List<ProjectSetting> projectSettingList = this.loadedProjects.getProjectSettings(Optional.of(projectName));
+        if(projectSettingList.size() > 1){
+            return false;
+        }
+        return projectSettingList.get(0).getDataTypesList().getKeyExists(keyName);
+    }
+
+    public ArrayList<String> getValuesFromKey(String projectName, String keyName){
+        List<ProjectSetting> projectSettingList = this.loadedProjects.getProjectSettings(Optional.of(projectName));
+        if(projectSettingList.size() > 1){
+            //todo: throw error multiple projectSettings with same name should not be allowed
+            return new ArrayList<>();
+        }
+        return projectSettingList.get(0).getValuesFromKey(keyName);
+    }
+
 }

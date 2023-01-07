@@ -63,23 +63,14 @@ public class StatsController {
     public List<String> getAllListValuesFromKeyInProject(@PathVariable String projectName, @PathVariable String keyName){
         System.out.println("GET MAPPING AANGESPROKEN getAllListValuesFromKey: ");
 
-        //todo: do something with project name
-
-        //todo: remove mockvalues on return
-
-        ArrayList<String> allValuesArrayList = new ArrayList<>();
-        if(!this.keyExistsInProject()){
-            //todo: refactor to return not allowed or not found?
-            return allValuesArrayList;
+        if(!this.projectService.getProjectNameExist(projectName)){
+            //TODO: throw error OR return 404
         }
-        if(!this.keyHasListValues(keyName)){
-            //todo: refactor to return not allowed
-            return allValuesArrayList;
+        if(!this.projectService.getKeyExistsInProject(projectName, keyName)){
+            //TODO: throw error OR return 404
         }
-        allValuesArrayList.add("Netflix");
-        allValuesArrayList.add("Games");
-        allValuesArrayList.add("Boardgames");
-        return allValuesArrayList;
+
+        return this.projectService.getValuesFromKey(projectName, keyName);
     }
 
     @GetMapping(path = "api/v1/getAllQueriesFromProject/{projectName}")
