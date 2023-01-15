@@ -102,6 +102,7 @@ public class StatsController {
         ArrayList<String> deconstructedQueryList = this.mockQueryToQueryClass(queryString);
 
         //todo: replace mocked values with actual values
+        //todo: return queryId
         return ResponseEntity
                 .created(
                         URI.create(String.format("/persons/%s", 32.33434))

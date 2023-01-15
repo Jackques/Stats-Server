@@ -56,6 +56,8 @@ public class FileReader {
 
             AtomicInteger no = new AtomicInteger();
             fileContents.forEach((fileContentObject) -> {
+                // fileContentObject is an individual record e.g. system-no, name, messages, age etc.
+
                 HashMap keyValuesContentObject = new HashMap();
                 Set<String> keysContentObject = fileContentObject.keySet();
 
