@@ -51,6 +51,7 @@ public class FileReader {
 
             if(fileContents.size() == 0){
                 //todo: throw error
+                throw new RuntimeException("File contents may not be emtpy");
             }
 
             AtomicInteger no = new AtomicInteger();
