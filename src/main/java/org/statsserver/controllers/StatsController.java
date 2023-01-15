@@ -60,7 +60,7 @@ public class StatsController {
     }
 
     @GetMapping(path = "api/v1/getAllListValuesFromKeyInProject/{projectName}/{keyName}")
-    public List<String> getAllListValuesFromKeyInProject(@PathVariable String projectName, @PathVariable String keyName){
+    public List<?> getAllListValuesFromKeyInProject(@PathVariable String projectName, @PathVariable String keyName){
         System.out.println("GET MAPPING AANGESPROKEN getAllListValuesFromKey: ");
 
         if(!this.projectService.getProjectNameExist(projectName)){
@@ -70,7 +70,7 @@ public class StatsController {
             //TODO: throw error OR return 404
         }
 
-        return this.projectService.getValuesFromKey(projectName, keyName);
+        return this.projectService.getValuesFromKey(projectName, keyName).stream().toList();
     }
 
     @GetMapping(path = "api/v1/getAllQueriesFromProject/{projectName}")
