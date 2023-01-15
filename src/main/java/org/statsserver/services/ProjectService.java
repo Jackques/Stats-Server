@@ -5,10 +5,7 @@ import org.statsserver.domain.ProjectSetting;
 import org.statsserver.records.Profile;
 import org.statsserver.settings.ProjectSettings;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -98,11 +95,11 @@ public class ProjectService {
         return projectSettingList.get(0).getDataTypesList().getKeyExists(keyName);
     }
 
-    public ArrayList<String> getValuesFromKey(String projectName, String keyName){
+    public Set<?> getValuesFromKey(String projectName, String keyName){
         List<ProjectSetting> projectSettingList = this.loadedProjects.getProjectSettings(Optional.of(projectName));
         if(projectSettingList.size() > 1){
             //todo: throw error multiple projectSettings with same name should not be allowed
-            return new ArrayList<>();
+            return Set.of();
         }
         return projectSettingList.get(0).getValuesFromKey(keyName);
     }

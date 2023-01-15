@@ -2,10 +2,7 @@ package org.statsserver.domain;
 
 import org.statsserver.records.Profile;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ProjectSetting {
@@ -39,10 +36,11 @@ public class ProjectSetting {
     }
 
     public KeyDataList getDataTypesList() {
+        //todo: can be replaced by simple Lombok getter?
         return dataTypesList;
     }
 
-    public ArrayList<String> getValuesFromKey(String keyName) {
+    public Set<?> getValuesFromKey(String keyName) {
         return this.getDataTypesList().getKey(keyName).getValues();
     }
 }

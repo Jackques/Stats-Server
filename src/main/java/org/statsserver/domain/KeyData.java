@@ -2,48 +2,24 @@ package org.statsserver.domain;
 
 import static org.statsserver.util.ValueDataTypeService.getValueDataType;
 
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class KeyData {
-    private String name = "";
-    private Object value = "";
+    private String name;
+    private Set<Object> value = new HashSet<> ();
     private String valueType; //todo: refactor to enum
-    private Boolean hasInnerValues;
-    private String typeInnervalues = "DateString";
+    private Boolean hasInnerValues = null;
+    private String typeInnervalues = null;
     // todo 1; vervangen door enum?
     // todo 2; bij hoofdobject type object is deze waarde null?
     // todo 3; is dit wel nodig? want als er een inner object is (object in string OF key-value pairs in object) dan is er toch een aparte property om dit mee uit te lezen?
 
-    private ArrayList<KeyData> innerValuesList = null;
-
-
+    private Boolean dataComplete = false;
+    private ArrayList<KeyData> innerValuesList = null; // currently functions as the list where value of Maps are stored as Keydata objects (e.g. System-no, Response-speed etc.)
     public KeyData(String name, Object value) {
-        this.name = name;
-        this.value = value;
 
-        this.valueType = getValueDataType(value);
-        this.hasInnerValues = Objects.equals(this.valueType, "Map") || Objects.equals(this.valueType, "List");
-
-        if(this.hasInnerValues){
-            innerValuesList = this.setInnerValuesList(value);
-
-            if(Objects.equals(this.valueType, "Map")){
-                this.typeInnervalues = "MapKeyValues";
-            }
-        }
-        //todo; use normal array since i already know the amount of values and type of value this array will get?
-        // e.g. int a[]=new int[5];
+        this.updateKeyData(name, value);
     }
-
     public ResponseKeyData getKeyDataAsResponseKeyData(){
         if(Objects.equals(this.name, "")){
             return null;
@@ -85,15 +61,69 @@ public class KeyData {
     }
 
 
-    public ArrayList<String> getValues() {
-//        if(this.hasInnerValues && this.typeInnervalues == "String"){ //todo: this line is just here to test if it works
-        if(this.hasInnerValues && this.typeInnervalues == "DateString"){
+    public Set<?> getValues() {
+        if(this.hasInnerValues && this.typeInnervalues == "String"){ //todo: this line is just here to test if it works, but now actual strings should be countred as strings.. not date strings!
+//        if(this.hasInnerValues && this.typeInnervalues == "DateString"){
             //todo todo todo: logic requested below needs to be set when looping over data
 
             // set 10 as variabele number
             // if values are greater than 10, return [null], otherwise return [value1, value2, value3 etc.]
-            return (ArrayList<String>) this.value;
+            return this.value;
         }
         return null;
     }
+
+    public void updateInnerValuesList(ArrayList<Object> valuesList) {
+        if(valuesList.size() > 0 && !getValueDataType(valuesList.get(0)).equals("Map")){
+            this.value.addAll(valuesList);
+        }
+    }
+
+    public void updateKeyData(String name, Object value) {
+
+        if(value instanceof ArrayList<?>){
+            this.updateInnerValuesList((ArrayList<Object>)value);
+        }
+
+        if(this.dataComplete){
+            return;
+        }
+
+        this.name = (this.name == null || this.name.isEmpty()) ? name : this.name;
+
+        this.valueType = this.valueType == null || this.valueType.equals("OTHER") ? getValueDataType(value) : this.valueType;
+        this.hasInnerValues = this.hasInnerValues == null ? Objects.equals(this.valueType, "Map") || Objects.equals(this.valueType, "List") : this.hasInnerValues;
+
+        if(this.hasInnerValues){
+            innerValuesList = this.setInnerValuesList(value);
+
+            if(Objects.equals(this.valueType, "Map")){
+                this.typeInnervalues = "MapKeyValues";
+            }else{
+                List<?> myValue = (List<?>)value;
+                this.typeInnervalues = myValue.size() > 0 ? getValueDataType(myValue.get(0)) : null;
+            }
+        }else{
+            this.typeInnervalues = "NA"; // Not Applicable
+        }
+
+        this.dataComplete = this.setIsDataComplete();
+    }
+
+    private boolean setIsDataComplete() {
+        if(this.name.isEmpty()){
+            return false;
+        }
+        if(this.valueType == null){
+            return false;
+        }
+        if(this.hasInnerValues == null){
+            return false;
+        }
+        if(this.typeInnervalues == null){
+            return false;
+        }
+        return true;
+    }
+
 }

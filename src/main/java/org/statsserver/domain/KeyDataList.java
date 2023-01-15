@@ -17,11 +17,15 @@ public class KeyDataList {
 
     }
     public void addKeyAndDataType(String keyName, Object value) throws Exception {
+
         if(!keyName.isEmpty() && value != null){
             if(!this.keysList.contains(keyName)){
                 this.keysList.add(keyName);
                 this.keyDataList.put(keyName, new KeyData(keyName, value));
+            }else{
+                this.keyDataList.get(keyName).updateKeyData(keyName, value);
             }
+
             if(!this.isValueSameKeyEqualDataType(keyName, getValueDataType(value))){
                 //todo: throw exception
                 throw new Exception("Key: "+keyName+" already exists in dataList with type: "+this.keyDataList.get(keyName).getKeyDataAsResponseKeyData().getDataType()+" but new entry type: "+value+" creates conflict");
