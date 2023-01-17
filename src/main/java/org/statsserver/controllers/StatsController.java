@@ -8,10 +8,7 @@ import org.statsserver.domain.KeyData;
 import org.statsserver.services.ProjectService;
 
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @RestController
 public class StatsController {
@@ -70,7 +67,13 @@ public class StatsController {
             //TODO: throw error OR return 404
         }
 
-        return this.projectService.getValuesFromKey(projectName, keyName).stream().toList();
+        Set<?> listValues = this.projectService.getValuesFromKey(projectName, keyName);
+        if(listValues == null){
+            return null;
+            //todo: throw 400 bad request if provided field does not exist or field does not contain a list to return (wrong data type)
+        }
+
+        return listValues.stream().toList();
     }
 
     @GetMapping(path = "api/v1/getAllQueriesFromProject/{projectName}")

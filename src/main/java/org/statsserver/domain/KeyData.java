@@ -61,8 +61,8 @@ public class KeyData {
     }
 
 
-    public Set<?> getValues() {
-        if(this.hasInnerValues && this.typeInnervalues == "String"){
+    public Set<?> getListValues() {
+        if(this.hasInnerValues && this.valueType == "List" && this.typeInnervalues != "Map"){
             //todo: this line is just here to test if it works, but what if a request is done for a map? or the list would ever contain numbers?
             return this.innerValuesList;
         }

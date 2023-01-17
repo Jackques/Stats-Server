@@ -1,6 +1,7 @@
 package org.statsserver.services;
 
 import org.springframework.stereotype.Service;
+import org.statsserver.domain.KeyData;
 import org.statsserver.domain.ProjectSetting;
 import org.statsserver.records.Profile;
 import org.statsserver.settings.ProjectSettings;
@@ -99,9 +100,21 @@ public class ProjectService {
         List<ProjectSetting> projectSettingList = this.loadedProjects.getProjectSettings(Optional.of(projectName));
         if(projectSettingList.size() > 1){
             //todo: throw error multiple projectSettings with same name should not be allowed
-            return Set.of();
+            return null;
         }
-        return projectSettingList.get(0).getValuesFromKey(keyName);
+
+        KeyData keyDataField = projectSettingList.get(0).getDataTypesList().getKey(keyName);
+        if(keyDataField == null){
+            return null;
+            //todo: throw 400 bad request if provided field does not exist or field does not contain a list to return (wrong data type)
+        }
+
+        Set<?> listValues = keyDataField.getListValues();
+        if(listValues == null){
+            return null;
+            //todo: throw 400 bad request if provided field does not exist or field does not contain a list to return (wrong data type)
+        }
+        return listValues;
     }
 
 }
