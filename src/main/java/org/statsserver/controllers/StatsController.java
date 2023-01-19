@@ -4,20 +4,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.statsserver.domain.KeyData;
 import org.statsserver.services.ProjectService;
+import org.statsserver.services.QueryService;
 
 import java.net.URI;
 import java.util.*;
 
 @RestController
 public class StatsController {
-
-    private final ProjectService projectService;
+    private final ProjectService projectService; // todo todo todo: shouldn't this service be annotated thus automatically instantiated & provided?
+    private final QueryService queryService; // todo todo todo: shouldn't this service be annotated thus automatically instantiated & provided?
 
     @Autowired
-    public StatsController(ProjectService projectService) {
+    public StatsController(ProjectService projectService, QueryService queryService) {
         this.projectService = projectService;
+        this.queryService = queryService;
     }
 
     //todo: advies Siebe; pas dezelfde path toe op meerdere annotations, maar dan wel van andere types; delete, get, post? Vraag nogmaals naar meer uitleg
@@ -89,29 +90,46 @@ public class StatsController {
     @PostMapping(path = "api/v1/postQuery/{projectName}",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<ArrayList<String>> postQuery(@PathVariable String projectName, @RequestBody HashMap<String, ?> queryString){
-        System.out.println("POST MAPPING AANGESPROKEN queryString: , received queryString: " + queryString);
+    public ResponseEntity<Boolean> postQuery(@PathVariable String projectName, @RequestBody HashMap<String, String> query){
+        System.out.println("POST MAPPING AANGESPROKEN query: , received query: " + query);
 
-        //todo: do something with project name
-
-        if(!this.queryIsValid(queryString)){
-            //todo: is this the correct way to return an invalid query?
-            ArrayList<String> someArray = new ArrayList<String>();
-            someArray.add("");
-            return ResponseEntity.unprocessableEntity().body(someArray);
+        if(!this.projectService.getProjectNameExist(projectName)){
+            //TODO: throw error OR return 404
         }
 
-        //todo: IDEA; why have queryString when client can also build a JSON object which can be converted into a Java object; Query class? AND easily return as such! E.g;
-        ArrayList<String> deconstructedQueryList = this.mockQueryToQueryClass(queryString);
+
+
+//        if(!this.queryIsValid(query)){
+//            //todo: is this the correct way to return an invalid query?
+//            ArrayList<String> someArray = new ArrayList<String>();
+//            someArray.add("");
+//            return ResponseEntity.unprocessableEntity().body(someArray);
+//        }
+
+        //todo: IDEA; why have query when client can also build a JSON object which can be converted into a Java object; Query class? AND easily return as such! E.g;
+//        ArrayList<String> deconstructedQueryList = this.mockQueryToQueryClass(query);
 
         //todo: replace mocked values with actual values
         //todo: return queryId
-        return ResponseEntity
-                .created(
-                        URI.create(String.format("/persons/%s", 32.33434))
-//                        URI.create("test")
-                )
-                .body(deconstructedQueryList);
+
+        if(!this.isPostQueryParametersValid()){
+            //TODO: throw error OR return 404
+        }
+
+        if(this.queryService.createQuery(projectName, query)){
+            return ResponseEntity
+                    .created(
+                            URI.create(String.format("/persons/%s", 32.33434))
+                    )
+                    .body(true);
+        }else{
+            return ResponseEntity.badRequest().body(false);
+        }
+    }
+
+    private boolean isPostQueryParametersValid() {
+        //todo todo todo: needs inplementation
+        return true;
     }
 
     @GetMapping(path = "api/v1/getQuery/{projectName}/{queryId}")
@@ -157,13 +175,13 @@ public class StatsController {
         return true;
     }
 
-    private ArrayList<String> mockQueryToQueryClass(HashMap<String, ?> queryReceived) {
-        ArrayList<String> newArray = new ArrayList<String>();
-        newArray.add("Jack");
-        newArray.add("Jack2");
-        newArray.add("Jack3");
-
-        return newArray;
-    }
+//    private ArrayList<String> mockQueryToQueryClass(HashMap<String, ?> queryReceived) {
+//        ArrayList<String> newArray = new ArrayList<String>();
+//        newArray.add("Jack");
+//        newArray.add("Jack2");
+//        newArray.add("Jack3");
+//
+//        return newArray;
+//    }
 
 }
