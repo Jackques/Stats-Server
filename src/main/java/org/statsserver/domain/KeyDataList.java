@@ -33,8 +33,8 @@ public class KeyDataList {
         }
     }
 
-    public ArrayList<HashMap<String, String>> getAllKeysAndDataTypes(){
-        ArrayList<HashMap<String, String>> keyAndDataTypeList = new ArrayList<>();
+    public ArrayList<HashMap<String, Object>> getAllKeysAndDataTypes(){
+        ArrayList<HashMap<String, Object>> keyAndDataTypeList = new ArrayList<>();
         this.keyDataList.forEach((key, value) -> {
             keyAndDataTypeList.add(value.getKeyDataAsResponseKeyData().getResponseKeyDataAsHashMap());
         });

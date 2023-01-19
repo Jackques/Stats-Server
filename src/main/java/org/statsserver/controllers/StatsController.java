@@ -44,7 +44,7 @@ public class StatsController {
     }
 
     @RequestMapping(path = "api/v1/getKeysFromProject/{projectName}")
-    public ResponseEntity<ArrayList<HashMap<String, String>>> getKeysFromProject(@PathVariable("projectName") String projectName){
+    public ResponseEntity<ArrayList<HashMap<String, Object>>> getKeysFromProject(@PathVariable("projectName") String projectName){
         System.out.println("GET MAPPING AANGESPROKEN getKeysFromProject: ");
 
         if(!this.projectService.getProjectNameExist(projectName)){

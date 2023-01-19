@@ -75,7 +75,7 @@ public class ProjectService {
         return this.getLoadedProjectNames().contains(projectName);
     }
 
-    public ArrayList<HashMap<String, String>> getAllKeysFromProject(String projectName){
+    public ArrayList<HashMap<String, Object>> getAllKeysFromProject(String projectName){
         List<ProjectSetting> projectSettingList = this.loadedProjects.getProjectSettings(Optional.of(projectName));
         if(projectSettingList.size() > 1){
             //todo: throw error multiple projectSettings with same name should not be allowed
@@ -83,11 +83,6 @@ public class ProjectService {
         }
         return projectSettingList.get(0).getDataTypesList().getAllKeysAndDataTypes();
     }
-
-
-
-
-
     public Boolean getKeyExistsInProject(String projectName, String keyName){
         List<ProjectSetting> projectSettingList = this.loadedProjects.getProjectSettings(Optional.of(projectName));
         if(projectSettingList.size() > 1){
