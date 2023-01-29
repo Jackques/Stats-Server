@@ -59,24 +59,27 @@ public class StatsController {
     }
 
     @GetMapping(path = "api/v1/getAllListValuesFromKeyInProject/{projectName}/{keyName}")
-    public List<?> getAllListValuesFromKeyInProject(@PathVariable String projectName, @PathVariable String keyName){
+    public ResponseEntity<List<?>> getAllListValuesFromKeyInProject(@PathVariable String projectName, @PathVariable String keyName){
         System.out.println("GET MAPPING AANGESPROKEN getAllListValuesFromKey: ");
 
         if(!this.projectService.getProjectNameExist(projectName)){
             //TODO: throw error OR return 404
+            return ResponseEntity.badRequest().body(null);
         }
 
         if(!KeyDataListStatic.doesKeyExist(keyName, projectName)){
             //TODO: throw error OR return 404
+            return ResponseEntity.badRequest().body(null);
         }
 
-        Set<?> listValues = this.projectService.getValuesFromKey(projectName, keyName);
+        Set<?> listValues = KeyDataListStatic.getKeyDataListValues(keyName, projectName);
+
         if(listValues == null){
-            return null;
             //todo: throw 400 bad request if provided field does not exist or field does not contain a list to return (wrong data type)
+            return ResponseEntity.noContent().build();
         }
 
-        return listValues.stream().toList();
+        return ResponseEntity.ok(listValues.stream().toList());
     }
 
     @GetMapping(path = "api/v1/getAllQueriesFromProject/{projectName}")

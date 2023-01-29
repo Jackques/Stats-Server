@@ -84,20 +84,6 @@ public class ProjectService {
             KeyDataListStatic.addKeyDataMap(projectSetting.getProjectName(), projectSetting.getDataTypesList().getKeyDataList());
         });
     }
-//    public HashMap<String, KeyData> getKeyDataMapFromProject(String projectName){
-//        if(!this.keyDataList.containsKey(projectName)){
-//            throw new RuntimeException("Projectname: '"+projectName+"' was not found. A valid projectname is required");
-//        }
-//        return this.keyDataList.get(projectName);
-//    }
-//    public KeyData getKeyFromProject(String projectName, String keyName){
-//        List<ProjectSetting> projectSettingList = this.loadedProjects.getProjectSettings(Optional.of(projectName));
-//        if(projectSettingList.size() > 1){
-//            //todo: throw error multiple projectSettings with same name should not be allowed
-//            return null;
-//        }
-//        return projectSettingList.get(0).getDataTypesList().getKey(keyName);
-//    }
 
     public ArrayList<HashMap<String, Object>> getAllKeysFromProject(String projectName){
         // todo todo todo: turn into private method which returns the list once, stores it and makes it available?
@@ -108,27 +94,6 @@ public class ProjectService {
         }
         return projectSettingList.get(0).getDataTypesList().getAllKeysAndDataTypes();
         //todo: isn't this something i should do once and store it somewhere in memory for preformance?
-    }
-    public Set<?> getValuesFromKey(String projectName, String keyName){
-        // todo todo todo: will i need this?
-        List<ProjectSetting> projectSettingList = this.loadedProjects.getProjectSettings(Optional.of(projectName));
-        if(projectSettingList.size() > 1){
-            //todo: throw error multiple projectSettings with same name should not be allowed
-            return null;
-        }
-
-        KeyData keyDataField = projectSettingList.get(0).getDataTypesList().getKey(keyName);
-        if(keyDataField == null){
-            return null;
-            //todo: throw 400 bad request if provided field does not exist or field does not contain a list to return (wrong data type)
-        }
-
-        Set<?> listValues = keyDataField.getListValues();
-        if(listValues == null){
-            return null;
-            //todo: throw 400 bad request if provided field does not exist or field does not contain a list to return (wrong data type)
-        }
-        return listValues;
     }
 
 }
