@@ -8,36 +8,21 @@ import java.util.HashMap;
 
 public class QueryParameter {
     private String key;
+    private String subKey;
     private String operator;
     private Object value;
     private String projectName;
     private KeyData keyData;
+    private KeyData keySubData;
 
     private ProjectService projectService;
     public QueryParameter(ProjectService projectService, HashMap<String, Object> queryParameterMap, String projectName) {
         this.projectService = projectService;
         this.key = (String) queryParameterMap.get("whereKey");
+        this.subKey = (String) queryParameterMap.get("whereSubKey");
         this.operator = (String) queryParameterMap.get("operator");
         this.value = (Object) queryParameterMap.get("value");
-
-        //todo todo todo: what about keys received i.e. response-speed?
-        // e.g.:
-        /*
-        * {
-        *   key: Response-speed
-        *   innerMapValue: "Wholenumber"
-        *   operator: "GREATER_THAN"
-        *   value: 5000
-        * }
-        * */
-        // solution: these values will have a dot in the name
-        // TODO TODO TODO: Also filter & throw error of any non alphanumeric character in name EXCEPT dashes AND dots (dashes are allowed, dots are to indicate a map)
-        // TODO TODO TODO:
-        // Put key in this.key, and put subkey in this.subkey (create subKey)
-        // WAIT.. why do all this? why not just put an extra field called 'whereSubKey' inside the request?
-        // it PREVENTS some extra logic; i.e. having to do a regex on the key,
-        // add logic; if received subkey, check for exitence of normal key first. If subkey is present also check for correct operator & value of subkey
-
+        
         // TODO TODO TODO:
         // check if numbers, decimalnumbers, lists, boolean etc are NOT converted to strings when received! Otherwise everythingggg will be considered string!
 
@@ -47,14 +32,16 @@ public class QueryParameter {
         if(!this.isKeyValid()){
             throw new RuntimeException("Data provided in: '"+this.key+"' is invalid");
         }
-
         this.keyData = KeyDataListStatic.getKeyData(this.key, this.projectName);
+        this.keySubData = getSubKeyData();
 
-        if(!this.isOperatorValid()){
+        KeyData providedkeyData = this.keySubData != null ? this.keySubData : this.keyData;
+
+        if(!this.isOperatorValid(providedkeyData)){
             throw new RuntimeException("Operator: '"+this.operator+"' provided in: '"+this.key+"' is invalid");
         }
 
-        if(!this.valueMatchesKeyValue()){
+        if(!this.valueMatchesKeyValue(providedkeyData)){
             throw new RuntimeException("Value: '"+this.operator+"' provided in: '"+this.key+"' is invalid. Expected value of type: "+this.keyData.getValueType());
         }
 
@@ -63,8 +50,8 @@ public class QueryParameter {
         return KeyDataListStatic.doesKeyExist(this.key, this.projectName);
     }
 
-    private boolean isOperatorValid() {
-        switch (this.keyData.getValueType()) {
+    private boolean isOperatorValid(KeyData providedkeyData) {
+        switch (providedkeyData.getValueType()) {
             case "String" -> {
                 return this.operator.equals("EQUALS") || this.operator.equals("CONTAINS") || this.operator.equals("EXCLUDES");
             }
@@ -80,15 +67,29 @@ public class QueryParameter {
             case "List" -> {
                 return this.operator.equals("CONTAINS") || this.operator.equals("EXCLUDES");
             }
+            case "Map" -> {
+                return false; // todo: don't know what to do with this yet
+            }
             default -> {
                 return false;
             }
         }
     }
 
-    private boolean valueMatchesKeyValue() {
+    private boolean valueMatchesKeyValue(KeyData providedkeyData) {
         String valueTypeReceivedData = ValueDataTypeService.getValueDataType(this.value);
-        return this.keyData.getValueType().equals(valueTypeReceivedData);
+        return providedkeyData.getValueType().equals(valueTypeReceivedData);
+    }
+
+    private KeyData getSubKeyData() {
+        if(this.subKey == null){
+            return null;
+        }
+        try{
+            return this.keyData.getKeyDataFromInnerMap(this.subKey).orElseThrow();
+        }catch(Exception e){
+            throw new RuntimeException("No KeyData with name: '"+this.subKey+"' found inside KeyData '"+this+"', check error: "+e.getMessage());
+        }
     }
 
 }

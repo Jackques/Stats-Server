@@ -75,6 +75,12 @@ public class KeyData {
         }
         return null;
     }
+    public Optional<KeyData> getKeyDataFromInnerMap(String keyName){
+        if(this.innerValuesMap == null || this.innerValuesMap.size() == 0){
+            return Optional.empty();
+        }
+        return this.innerValuesMap.stream().filter(keyData -> keyData.name.equals(keyName)).findFirst();
+    }
 
     public void updateInnerValuesList(ArrayList<Object> valuesList) {
         if (valuesList.size() > 0 && !ValueDataTypeService.getValueDataType(valuesList.get(0)).equals("Map")) {
