@@ -50,7 +50,6 @@ public class FileReader {
             System.out.println("DEBUG");
 
             if(fileContents.size() == 0){
-                //todo: throw error
                 throw new RuntimeException("File contents may not be emtpy");
             }
 
@@ -63,13 +62,13 @@ public class FileReader {
 
                 if(keysContentObject.size() == 0){
                     //todo: throw error
-                    throw new RuntimeException("object may not be emtpy");
+                    throw new RuntimeException("Object may not be emtpy");
                 }
 
                 for(String keyName : keysContentObject){
                     if(!hasSubValuesAllowedStructure(fileContentObject.get(keyName))){
                         //todo: throw error
-                        throw new RuntimeException("subobject does not have approved structure");
+                        throw new RuntimeException("Subobject does not have approved structure");
                     }
                     try {
                         dataTypesList.addKeyAndDataType(keyName, fileContentObject.get(keyName));
@@ -103,6 +102,7 @@ public class FileReader {
             List<CSVRecord> records = csvParser.getRecords();
             if(headerNames.size() == 0 || records.size() == 0){
                 //todo: throw error
+                throw new RuntimeException("Headers nor records in imported .csv may be empty");
             }
 
             int no = 0;

@@ -14,7 +14,6 @@ public class KeyDataList {
 
     }
     public void addKeyAndDataType(String keyName, Object value) throws Exception {
-
         if(!keyName.isEmpty() && value != null){
             if(!this.keysList.contains(keyName)){
                 this.keysList.add(keyName);
@@ -36,9 +35,6 @@ public class KeyDataList {
         });
         return keyAndDataTypeList;
     }
-
-
-
     public boolean getKeyExists(String keyName) {
         return this.keysList.contains(keyName);
     }
