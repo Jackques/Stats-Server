@@ -1,16 +1,13 @@
 package org.statsserver.domain;
 
-import static org.statsserver.util.ValueDataTypeService.getValueDataType;
+import lombok.Getter;
+import org.statsserver.util.ValueDataTypeService;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.*;
 
 public class KeyDataList {
     private Set<String> keysList = new LinkedHashSet<String>();
+    @Getter
     private HashMap<String, KeyData> keyDataList = new HashMap<String, KeyData>();
 
     public KeyDataList() {
@@ -26,8 +23,7 @@ public class KeyDataList {
                 this.keyDataList.get(keyName).updateKeyData(keyName, value);
             }
 
-            if(!this.isValueSameKeyEqualDataType(keyName, getValueDataType(value))){
-                //todo: throw exception
+            if(!this.isValueSameKeyEqualDataType(keyName, ValueDataTypeService.getValueDataType(value))){
                 throw new Exception("Key: "+keyName+" already exists in dataList with type: "+this.keyDataList.get(keyName).getKeyDataAsResponseKeyData().getDataType()+" but new entry type: "+value+" creates conflict");
             }
         }

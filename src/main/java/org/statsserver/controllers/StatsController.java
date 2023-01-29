@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.statsserver.services.KeyDataListStatic;
 import org.statsserver.services.ProjectService;
 import org.statsserver.services.QueryService;
 
@@ -12,10 +13,10 @@ import java.util.*;
 
 @RestController
 public class StatsController {
-    private final ProjectService projectService; // todo todo todo: shouldn't this service be annotated thus automatically instantiated & provided?
+    @Autowired private final ProjectService projectService; // todo todo todo: shouldn't this service be annotated thus automatically instantiated & provided?
     private final QueryService queryService; // todo todo todo: shouldn't this service be annotated thus automatically instantiated & provided?
 
-    @Autowired
+
     public StatsController(ProjectService projectService, QueryService queryService) {
         this.projectService = projectService;
         this.queryService = queryService;
@@ -64,7 +65,8 @@ public class StatsController {
         if(!this.projectService.getProjectNameExist(projectName)){
             //TODO: throw error OR return 404
         }
-        if(!this.projectService.getKeyExistsInProject(projectName, keyName)){
+
+        if(!KeyDataListStatic.doesKeyExist(keyName, projectName)){
             //TODO: throw error OR return 404
         }
 
@@ -88,48 +90,27 @@ public class StatsController {
     }
 
     @PostMapping(path = "api/v1/postQuery/{projectName}",
-            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<Boolean> postQuery(@PathVariable String projectName, @RequestBody HashMap<String, String> query){
+            consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<Boolean> postQuery(@PathVariable String projectName, @RequestBody HashMap<String, ?> query){
         System.out.println("POST MAPPING AANGESPROKEN query: , received query: " + query);
 
         if(!this.projectService.getProjectNameExist(projectName)){
             //TODO: throw error OR return 404
         }
 
+        //todo: add response error advice, because if something goes wrong inside the code then how will i know what went wrong?
+        // because the creation of the query is done inside of a throw catch block
 
-
-//        if(!this.queryIsValid(query)){
-//            //todo: is this the correct way to return an invalid query?
-//            ArrayList<String> someArray = new ArrayList<String>();
-//            someArray.add("");
-//            return ResponseEntity.unprocessableEntity().body(someArray);
-//        }
-
-        //todo: IDEA; why have query when client can also build a JSON object which can be converted into a Java object; Query class? AND easily return as such! E.g;
-//        ArrayList<String> deconstructedQueryList = this.mockQueryToQueryClass(query);
-
-        //todo: replace mocked values with actual values
-        //todo: return queryId
-
-        if(!this.isPostQueryParametersValid()){
-            //TODO: throw error OR return 404
-        }
-
-        if(this.queryService.createQuery(projectName, query)){
+        UUID createdQuery = this.queryService.createQuery(projectName, query);
+        if(createdQuery != null){
             return ResponseEntity
                     .created(
-                            URI.create(String.format("/persons/%s", 32.33434))
+                            URI.create(String.format("/queryId/%s", createdQuery))
                     )
                     .body(true);
         }else{
-            return ResponseEntity.badRequest().body(false);
+            return ResponseEntity.unprocessableEntity().body(false);
         }
-    }
-
-    private boolean isPostQueryParametersValid() {
-        //todo todo todo: needs inplementation
-        return true;
     }
 
     @GetMapping(path = "api/v1/getQuery/{projectName}/{queryId}")
@@ -150,38 +131,5 @@ public class StatsController {
         //todo: needs work
         return true;
     }
-
-    private boolean queryIsValid(HashMap<String, ?> queryString) {
-        //todo: update this method to actually check query or move this logic to query service class?
-        return true;
-    }
-    private boolean keyHasListValues(String keyName) {
-        if(Objects.equals(keyName, "Interests") || Objects.equals(keyName, "Vibe-tags")){
-            return true;
-        }
-        return false;
-    }
-
-    private boolean projectExists(String projectName) {
-        //todo: needs work
-        if(!Objects.equals(projectName, "T-Helper")){
-            return false;
-        }
-        return true;
-    }
-
-    private boolean keyExistsInProject() {
-        // todo: needs work
-        return true;
-    }
-
-//    private ArrayList<String> mockQueryToQueryClass(HashMap<String, ?> queryReceived) {
-//        ArrayList<String> newArray = new ArrayList<String>();
-//        newArray.add("Jack");
-//        newArray.add("Jack2");
-//        newArray.add("Jack3");
-//
-//        return newArray;
-//    }
 
 }

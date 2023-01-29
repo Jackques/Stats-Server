@@ -1,6 +1,7 @@
 package org.statsserver.domain;
 
 import lombok.Getter;
+import org.statsserver.util.ValueDataTypeService;
 
 import static org.statsserver.util.ValueDataTypeService.getValueDataType;
 
@@ -76,7 +77,7 @@ public class KeyData {
     }
 
     public void updateInnerValuesList(ArrayList<Object> valuesList) {
-        if (valuesList.size() > 0 && !getValueDataType(valuesList.get(0)).equals("Map")) {
+        if (valuesList.size() > 0 && !ValueDataTypeService.getValueDataType(valuesList.get(0)).equals("Map")) {
             if (this.isValueSameTypeOfExistingValuesInList(this.innerValuesList, valuesList)) {
                 this.innerValuesList.addAll(valuesList);
             }

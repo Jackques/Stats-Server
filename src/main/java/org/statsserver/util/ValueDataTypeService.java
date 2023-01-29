@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static org.statsserver.util.DateChecker.isValidDate;
+
 public class ValueDataTypeService {
   public static String getValueDataType(Object value){
     if(String.class.equals(value.getClass())){
@@ -37,24 +39,5 @@ public class ValueDataTypeService {
     }
     System.out.println("DEBUG: OTHER");
     return "OTHER";
-  }
-
-  private static boolean isValidDate(String inDate) {
-    //todo: prettify this code
-    try {
-      SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-      dateFormat.setLenient(true);
-      dateFormat.parse(inDate);
-      return true;
-    } catch(Exception e){ }
-
-    try {
-      TemporalAccessor ta = DateTimeFormatter.ISO_INSTANT.parse(inDate);
-      Instant i = Instant.from(ta);
-      Date d = Date.from(i);
-      return true;
-    } catch (Exception pe) {
-      return false;
-    }
   }
 }

@@ -1,5 +1,6 @@
 package org.statsserver.settings;
 
+import lombok.Getter;
 import org.statsserver.domain.FileInDirectory;
 import org.statsserver.domain.ProjectSetting;
 import org.statsserver.records.Profile;
@@ -15,6 +16,7 @@ import java.util.*;
 
 public class ProjectSettings {
     //todo: This class should probably be refactored & moved into a seperate resource-like file (i.e. a .yaml, .xml or .json file in the resources folder)
+    @Getter
     private final ArrayList<ProjectSetting> projectSettings = new ArrayList<ProjectSetting>();
     public ProjectSettings() {}
     public boolean addProject(ProjectSetting projectSetting){
