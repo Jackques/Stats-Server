@@ -3,6 +3,7 @@ package org.statsserver.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.statsserver.enums.GraphType;
 import org.statsserver.services.KeyDataListStatic;
 import org.statsserver.util.DateChecker;
 import org.statsserver.services.ProjectService;
@@ -20,6 +21,7 @@ public class Query {
     private String name;
     private String description;
     private String projectName;
+    private Enum<GraphType> graphType = GraphType.COLUMN_CHART;
     private QueryResults queryResults;
     private QueryMetaData queryMetaData;
     private boolean amountIsAll = false;
@@ -132,7 +134,7 @@ public class Query {
     }
 
     private boolean isAmountSet() {
-        // todo todo todo: Maybe DO inplement if everything is set correctly? because there is a chance i.e. date is null and isAllSet is also null while still being a valid request
+        // todo: Maybe DO inplement if everything is set correctly? because there is a chance i.e. date is null and isAllSet is also null while still being a valid request
         return this.amountIsAll || this.amountHasLast && this.amountValue != null || this.amountValue != null;
     }
 
