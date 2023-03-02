@@ -1,19 +1,22 @@
 package org.statsserver.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
-//import javax.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 
+import javax.validation.constraints.NotNull;
+import java.util.Map;
+
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
   @Getter
   @Setter
   private String id; // since this properties exist at root level, this is automatically set
-  @NotNull
+  @NotNull(message = "Name cannot be null")
   @Getter
   @Setter
   private String name; // since this properties exist at root level, this is automatically set

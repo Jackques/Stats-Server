@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
@@ -19,12 +18,12 @@ public class QueryFakeDatabaseRepository {
   private final String pathToDBFile = "src/main/resources/queryDB.json";
   public List<Product> resultsDB;
   private static Validator validator;
-  public QueryFakeDatabaseRepository() throws Exception {
-    this.resultsDB = this.getAllQueries2();
+  public QueryFakeDatabaseRepository() {
+    this.resultsDB = this.getAllQueries();
     this.runValidations();
   }
 
-  private List<Product> getAllQueries2() {
+  private List<Product> getAllQueries() {
     ObjectMapper mapper = new ObjectMapper();
 
     try {
@@ -36,14 +35,16 @@ public class QueryFakeDatabaseRepository {
     }
   }
 
-  private void runValidations() throws Exception {
+  private void runValidations() {
     try(ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory()) {
       validator = validatorFactory.getValidator();
     }
-    Set<ConstraintViolation<List<Product>>> violations = validator.validate(this.resultsDB);
-    if(violations.size() > 0){
-      System.out.println("should run validations");
-      throw new Exception("There are validations!");
-    }
+    this.resultsDB.forEach((result)->{
+      Set<ConstraintViolation<Product>> violations = validator.validate(result);
+      if(violations.size() > 0){
+        System.out.println("Validations found!");
+        throw new RuntimeException("Validations found in imported queries, please resolve these issues; "+violations.toString());
+      }
+    });
   }
 }

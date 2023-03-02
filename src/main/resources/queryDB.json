@@ -1,6 +1,7 @@
 [
   {
     "id": "957c43f2-fa2e-42f9-bf75-6e3d5bb6960a",
+    "name": "The Best Product",
     "brand": {
       "id": "9bcd817d-0141-42e6-8f04-e5aaab0980b6",
       "name": "ACME Products",
