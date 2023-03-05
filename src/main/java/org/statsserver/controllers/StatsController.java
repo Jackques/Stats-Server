@@ -127,6 +127,17 @@ public class StatsController {
         return false;
     }
 
+    @PutMapping(path = "api/v1/getQuery/{projectName}/{queryId}")
+    public boolean updateQuery(@PathVariable String projectName, @PathVariable String queryId){
+        System.out.println("PUT MAPPING AANGESPROKEN updateQuery, projectName is: " + projectName + "queryId is: " + queryId);
+
+        if(Objects.equals(projectName, "T-Helper") && Objects.equals(queryId, "123abcDEF")){
+            return true;
+        }
+        //todo: needs work, return actual result of query or bad request or query not found?
+        return false;
+    }
+
     @DeleteMapping(path = "api/v1/deleteQuery/{projectName}/{queryId}")
     public boolean deleteQuery(@PathVariable String projectName, @PathVariable String queryId){
         System.out.println("DELETE MAPPING AANGESPROKEN deleteQuery, projectName is: " + projectName + "queryId is: " + queryId);
