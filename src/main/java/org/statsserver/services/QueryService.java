@@ -2,29 +2,45 @@ package org.statsserver.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.statsserver.domain.Query;
+import org.statsserver.domain.QueryDto;
+import org.statsserver.util.QueryFakeDatabaseRepository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class QueryService {
-    HashMap<UUID, Query> queries = new HashMap<UUID, Query>();
-    @Autowired private final ProjectService projectService;
-    public QueryService(ProjectService projectService) {
+    @Autowired
+    private final ProjectService projectService;
+    @Autowired
+    private final QueryFakeDatabaseRepository queryFakeDatabaseRepository;
+
+    public QueryService(ProjectService projectService, QueryFakeDatabaseRepository queryFakeDatabaseRepository) {
         this.projectService = projectService;
+        this.queryFakeDatabaseRepository = queryFakeDatabaseRepository;
     }
+
     public UUID createQuery(String projectName, HashMap<String, ?> query) {
-        try{
+        try {
             ArrayList<String> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("fromProfiles"));
 
-            Query newQuery = new Query((String) query.get("name"), (String) query.get("description"), projectName, fromProfiles, (HashMap<String, Object>) query.get("queryContent"));
-            this.queries.put(newQuery.getId(), newQuery);
-            return newQuery.getId();
-        }catch(Exception e){
+            QueryDto newQueryDto = new QueryDto((String) query.get("name"), (String) query.get("description"), projectName, (String) query.get("graphType"), fromProfiles, (HashMap<String, Object>) query.get("queryContent"));
+            this.queryFakeDatabaseRepository.addQuery(newQueryDto);
+            return newQueryDto.getId();
+        } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    public List<QueryDto> getAllQueries() {
+        return this.queryFakeDatabaseRepository.getAllQueries();
+    }
+
+    public Optional<QueryDto> getQueryById(String id){
+        return this.queryFakeDatabaseRepository.getQueryById(id);
+    }
+
+    public Boolean removeQuery(String id){
+        return this.queryFakeDatabaseRepository.deleteQueryById(id);
     }
 
     private ArrayList<String> getFromProfiles(String projectName, ArrayList<String> fromProfilesValue) {
