@@ -83,6 +83,14 @@ public class QueryDto {
         System.out.println("here are my query results:");
         System.out.println(queryContent);
         this.processQueryContent(queryContent);
+
+        //todo todo todo:
+        /*
+           yes, support for multiple 'query-content' or 'queries' within 1 query (queryContent must become a special object inside an array,
+           1 querySet (array) can contain multiple queries) does seem to be the way to answer most if not all of my questions-to-answer-wtih-T-Helper
+           because results can be plotted on the same single chart (i can give every 'line' or 'bar' a name even)
+           this is also a good solution for my fitness stats, sicne these need to be plotted on a line graph
+        */
     }
 
     private QueryMetaData generateQueryMetaData(ArrayList<String> fromProfiles, String graphType) {
