@@ -93,6 +93,12 @@ public class QueryDto {
         */
     }
 
+    //todo todo todo:
+    /*
+    * DON'T FORGET; every project needs it's own database-table (or in current case; queryDBFile).
+    * Thus when processing a request, every request in QueryDto check which project should be used for processing
+    * */
+
     private QueryMetaData generateQueryMetaData(ArrayList<String> fromProfiles, String graphType) {
         return new QueryMetaData(fromProfiles, graphType);
     }
