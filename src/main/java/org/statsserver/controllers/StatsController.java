@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.statsserver.domain.QueryDto;
 import org.statsserver.services.KeyDataListStatic;
 import org.statsserver.services.ProjectService;
 import org.statsserver.services.QueryService;
@@ -83,13 +84,16 @@ public class StatsController {
     }
 
     @GetMapping(path = "api/v1/getAllQueriesFromProject/{projectName}")
-    public ResponseEntity<List<String>> getAllQueriesFromProject(@PathVariable String projectName){
+    public ResponseEntity<List<QueryDto>> getAllQueriesFromProject(@PathVariable String projectName){
 
-        //todo: replace mocked values with actual values
-        //todo: return queryId's
+        if(!this.projectService.getProjectNameExist(projectName)){
+            //TODO: throw error OR return 404
+            return ResponseEntity.badRequest().body(null);
+        }
+
         return ResponseEntity
                 .ok()
-                .body(List.of("abc123", "def456"));
+                .body(this.queryService.getAllQueries());
     }
 
     @PostMapping(path = "api/v1/postQuery/{projectName}",
@@ -117,14 +121,16 @@ public class StatsController {
     }
 
     @GetMapping(path = "api/v1/getQuery/{projectName}/{queryId}")
-    public boolean getQuery(@PathVariable String projectName, @PathVariable String queryId){
+    public ResponseEntity<Optional<QueryDto>> getQuery(@PathVariable String projectName, @PathVariable String queryId){
         System.out.println("GET MAPPING AANGESPROKEN getQuery, projectName is: " + projectName + "queryId is: " + queryId);
 
-        if(Objects.equals(projectName, "T-Helper") && Objects.equals(queryId, "123abcDEF")){
-            return true;
+        if(!this.projectService.getProjectNameExist(projectName)){
+            //TODO: throw error OR return 404
         }
-        //todo: needs work, return actual result of query or bad request or query not found?
-        return false;
+
+        return ResponseEntity
+                .ok()
+                .body(this.queryService.getQueryById(queryId));
     }
 
     @PutMapping(path = "api/v1/getQuery/{projectName}/{queryId}")
@@ -139,11 +145,16 @@ public class StatsController {
     }
 
     @DeleteMapping(path = "api/v1/deleteQuery/{projectName}/{queryId}")
-    public boolean deleteQuery(@PathVariable String projectName, @PathVariable String queryId){
+    public ResponseEntity<Boolean> deleteQuery(@PathVariable String projectName, @PathVariable String queryId){
         System.out.println("DELETE MAPPING AANGESPROKEN deleteQuery, projectName is: " + projectName + "queryId is: " + queryId);
 
-        //todo: needs work
-        return true;
+        if(!this.projectService.getProjectNameExist(projectName)){
+            //TODO: throw error OR return 404
+        }
+
+        return ResponseEntity
+                .ok()
+                .body(this.queryService.removeQuery(queryId));
     }
 
 }
