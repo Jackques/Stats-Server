@@ -1,20 +1,27 @@
 package org.statsserver.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.statsserver.services.KeyDataListStatic;
 import org.statsserver.services.ProjectService;
 import org.statsserver.util.ValueDataTypeService;
 
 import java.util.HashMap;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class QueryParameter {
     private String key;
     private String subKey;
     private String operator;
     private Object value;
-    private String projectName;
-    private KeyData keyData;
-    private KeyData keySubData;
-
+    @JsonIgnore private String projectName;
+    @JsonIgnore private KeyData keyData;
+    @JsonIgnore private KeyData keySubData;
+    @JsonIgnore
     private ProjectService projectService;
     public QueryParameter(ProjectService projectService, HashMap<String, Object> queryParameterMap, String projectName) {
         this.projectService = projectService;
