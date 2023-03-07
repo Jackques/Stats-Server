@@ -1,0 +1,63 @@
+[
+  {
+    "id": "957c43f2-fa2e-42f9-bf75-6e3d5bb6960a",
+    "name": "Verloop fitnesresultaten 100 dagen",
+    "description": "Het verloop van de fitnesresultaten van de afgelopen 100 dagen",
+    "projectName": "Fitness-stats",
+    "queryResults": {},
+    "queryMetaData": {
+      "affected-profile-names": ["Jack-fitnes"],
+      "affected-keys": ["Gewicht in kg", "Vetpercentage in %", "Spiermassa in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Lichaamsvocht in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)"],
+      "graphType": "LINE_GRAPH"
+    },
+    "queryContent": {
+      "amount": "LAST_100",
+      "fromDate": "ALL",
+      "toDate": "ALL",
+      "labelForThisQuery": "myFirstQuery",
+      "colorForThisQuery": "#ff3333",
+      "visibilityQuery": true,
+      "returnFields": ["Gewicht in kg", "Vetpercentage in %", "Spiermassa in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Lichaamsvocht in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)"],
+      "queryParameters": [
+        {
+          "whereKey": "Gewicht in kg",
+          "operator": "GREATER_THAN_OR_EQUAL_TO",
+          "value": 10.0
+        },
+        {
+          "whereKey": "Meting door:",
+          "operator": "CONTAINS",
+          "value": "Better Bodies apparaat"
+        }
+      ]
+    }
+  },
+  {
+    "id": "567c43f2-fa2e-42f9-bf75-6e3d5bb3450b",
+    "name": "Do superlikes work at all?",
+    "description": "Do superlikes work at all? Does using a superlike provide me with a match more often than If i were to use a normal like?",
+    "projectName": "T-Helper",
+    "queryResults": {},
+    "queryMetaData": {
+      "affected-profile-names": ["Jack-original", "Jack-updated"],
+      "affected-keys": [],
+      "graphType": "COLUMN_CHART"
+    },
+    "queryContent": {
+      "amount": "ALL",
+      "fromDate": "2021-01-27T14:26:11.339Z",
+      "toDate": "ALL",
+      "labelForThisQuery": "myThirdQuery",
+      "colorForThisQuery": "#ff3366",
+      "visibilityQuery": true,
+      "returnFields": ["Type-of-match-or-like"],
+      "queryParameters": [
+        {
+          "whereKey": "Type-of-match-or-like",
+          "operator": "CONTAINS",
+          "value": ["super_like_match"]
+        }
+      ]
+    }
+  }
+]

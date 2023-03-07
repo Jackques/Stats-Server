@@ -1,27 +1,161 @@
-[
-  {
-    "id": "957c43f2-fa2e-42f9-bf75-6e3d5bb6960a",
-    "name": "The Best Product",
-    "brand": {
-      "id": "9bcd817d-0141-42e6-8f04-e5aaab0980b6",
-      "name": "ACME Products",
-      "owner": {
-        "id": "b21a80b1-0c09-4be3-9ebd-ea3653511c13",
-        "name": "Ultimate Corp, Inc."
-      }
-    }
+[ {
+  "id" : "957c43f2-fa2e-42f9-bf75-6e3d5bb6960a",
+  "name" : "Verloop fitnesresultaten 100 dagen",
+  "description" : "Het verloop van de fitnesresultaten van de afgelopen 100 dagen",
+  "projectName" : "Fitness-stats",
+  "queryResults" : null,
+  "queryMetaData" : {
+    "affectedProfileNames" : [ "Jack-fitnes" ],
+    "graphType" : "LINE_GRAPH"
   },
-  {
-    "id": "567c43f2-fa2e-42f9-bf75-6e3d5bb3450b",
-    "name": "The Second Best Product",
-    "brand": {
-      "id": "6jkt817d-0141-42e6-8f04-e5aaab0981b6",
-      "name": "ACME Products",
-      "owner": {
-        "id": "b21a80b1-0c09-4be3-9ebd-ea3653511c13",
-        "name": "Ultimate Corp, Inc."
-      }
-    }
-  }
-
-]
+  "labelForThisQuery" : "#ff3333",
+  "visibilityQuery" : true,
+  "returnFields" : [ "Gewicht in kg", "Vetpercentage in %", "Spiermassa in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Lichaamsvocht in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)" ],
+  "queryParameters" : [ {
+    "key" : "Gewicht in kg",
+    "subKey" : null,
+    "operator" : "GREATER_THAN_OR_EQUAL_TO",
+    "value" : 10.0
+  }, {
+    "key" : "Meting door:",
+    "subKey" : null,
+    "operator" : "CONTAINS",
+    "value" : "Better Bodies apparaat"
+  } ]
+}, {
+  "id" : "567c43f2-fa2e-42f9-bf75-6e3d5bb3450b",
+  "name" : "Do superlikes work at all?",
+  "description" : "Do superlikes work at all? Does using a superlike provide me with a match more often than If i were to use a normal like?",
+  "projectName" : "T-Helper",
+  "queryResults" : null,
+  "queryMetaData" : {
+    "affectedProfileNames" : [ "Jack-original", "Jack-updated" ],
+    "graphType" : "COLUMN_CHART"
+  },
+  "labelForThisQuery" : "#ff3366",
+  "visibilityQuery" : true,
+  "returnFields" : [ "Type-of-match-or-like" ],
+  "queryParameters" : [ {
+    "key" : "Type-of-match-or-like",
+    "subKey" : null,
+    "operator" : "CONTAINS",
+    "value" : [ "super_like_match" ]
+  } ]
+}, {
+  "id" : "aba5e808-1d33-4142-bb09-32f73a4014cc",
+  "name" : "myFirstQuery",
+  "description" : "My first query where I want to see per profile, how many persons are 30, greater than or equal to 35, have as interest 'reizen' & have ghosted me once or less",
+  "projectName" : "T-Helper",
+  "queryResults" : null,
+  "queryMetaData" : {
+    "affectedProfileNames" : [ "Jack-original", "Jack-updated" ],
+    "graphType" : "COLUMN_CHART"
+  },
+  "labelForThisQuery" : "#ff3333",
+  "visibilityQuery" : true,
+  "returnFields" : [ "Name", "Age" ],
+  "queryParameters" : [ {
+    "key" : "Age",
+    "subKey" : null,
+    "operator" : "EQUALS",
+    "value" : 30.0
+  }, {
+    "key" : "Age",
+    "subKey" : null,
+    "operator" : "GREATER_THAN_OR_EQUAL_TO",
+    "value" : 35.0
+  }, {
+    "key" : "Interests",
+    "subKey" : null,
+    "operator" : "CONTAINS",
+    "value" : [ "Reizen" ]
+  }, {
+    "key" : "How-many-ghosts",
+    "subKey" : "number",
+    "operator" : "LESS_THAN_OR_EQUAL_TO",
+    "value" : 1
+  }, {
+    "key" : "System-no",
+    "subKey" : "tempId",
+    "operator" : "EQUALS",
+    "value" : "hi"
+  } ]
+}, {
+  "id" : "278fdb8f-979e-462b-82ba-97675a8c068a",
+  "name" : "my second query i posted",
+  "description" : "My second query just ofr testing",
+  "projectName" : "T-Helper",
+  "queryResults" : null,
+  "queryMetaData" : {
+    "affectedProfileNames" : [ "Jack-original", "Jack-updated" ],
+    "graphType" : "COLUMN_CHART"
+  },
+  "labelForThisQuery" : "#ff3333",
+  "visibilityQuery" : true,
+  "returnFields" : [ "Name", "Age" ],
+  "queryParameters" : [ {
+    "key" : "Age",
+    "subKey" : null,
+    "operator" : "EQUALS",
+    "value" : 30.0
+  }, {
+    "key" : "Age",
+    "subKey" : null,
+    "operator" : "GREATER_THAN_OR_EQUAL_TO",
+    "value" : 35.0
+  }, {
+    "key" : "Interests",
+    "subKey" : null,
+    "operator" : "CONTAINS",
+    "value" : [ "Reizen" ]
+  }, {
+    "key" : "How-many-ghosts",
+    "subKey" : "number",
+    "operator" : "LESS_THAN_OR_EQUAL_TO",
+    "value" : 1
+  }, {
+    "key" : "System-no",
+    "subKey" : "tempId",
+    "operator" : "EQUALS",
+    "value" : "hi"
+  } ]
+}, {
+  "id" : "7d3368da-9100-439c-a57a-77196ebc93d6",
+  "name" : "my third query i posted",
+  "description" : "My third query just ofr testing",
+  "projectName" : "T-Helper",
+  "queryResults" : null,
+  "queryMetaData" : {
+    "affectedProfileNames" : [ "Jack-updated" ],
+    "graphType" : "COLUMN_CHART"
+  },
+  "labelForThisQuery" : "#ff3333",
+  "visibilityQuery" : true,
+  "returnFields" : [ "Name", "Age" ],
+  "queryParameters" : [ {
+    "key" : "Age",
+    "subKey" : null,
+    "operator" : "EQUALS",
+    "value" : 30.0
+  }, {
+    "key" : "Age",
+    "subKey" : null,
+    "operator" : "GREATER_THAN_OR_EQUAL_TO",
+    "value" : 35.0
+  }, {
+    "key" : "Interests",
+    "subKey" : null,
+    "operator" : "CONTAINS",
+    "value" : [ "Reizen" ]
+  }, {
+    "key" : "How-many-ghosts",
+    "subKey" : "number",
+    "operator" : "LESS_THAN_OR_EQUAL_TO",
+    "value" : 1
+  }, {
+    "key" : "System-no",
+    "subKey" : "tempId",
+    "operator" : "EQUALS",
+    "value" : "hi"
+  } ]
+} ]
