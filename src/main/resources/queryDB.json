@@ -1,129 +1,209 @@
 [ {
-  "id" : "957c43f2-fa2e-42f9-bf75-6e3d5bb6960a",
-  "name" : "Verloop fitnesresultaten 100 dagen",
-  "description" : "Het verloop van de fitnesresultaten van de afgelopen 100 dagen",
-  "projectName" : "Fitness-stats",
-  "queryResults" : null,
-  "queryMetaData" : {
-    "affectedProfileNames" : [ "Jack-fitnes" ],
-    "graphType" : "LINE_GRAPH"
-  },
-  "queries" : [ {
-    "amountValue" : "ALL",
-    "fromDate" : "2021-01-27T14:26:11.339Z",
-    "toDate" : "ALL",
-    "colorQuery" : "#ff3333",
-    "labelForThisQuery" : "prachtige label",
-    "visibilityQuery" : true,
-    "returnFields" : [ "Gewicht in kg", "Vetpercentage in %", "Spiermassa in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Lichaamsvocht in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)" ],
-    "queryParameters" : [ {
-      "key" : "Gewicht in kg",
-      "subKey" : null,
-      "operator" : "GREATER_THAN_OR_EQUAL_TO",
-      "value" : 10.0
+  "projectName" : "T-Helper",
+  "querySets" : [ {
+    "id" : "c398d497-9631-4be0-958b-577569902028",
+    "name" : "my third query i posted",
+    "description" : "My third query just ofr testing",
+    "projectName" : "T-Helper",
+    "queryResults" : null,
+    "queryMetaData" : {
+      "affectedProfileNames" : [ "Jack-updated" ],
+      "graphType" : "COLUMN_CHART"
+    },
+    "queries" : [ {
+      "amountValue" : "ALL",
+      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "toDate" : "ALL",
+      "colorQuery" : "#ff3333",
+      "labelForThisQuery" : "firstQuery",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Name", "Age" ],
+      "queryParameters" : [ {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : 30.0
+      }, {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "GREATER_THAN_OR_EQUAL_TO",
+        "value" : 35.0
+      }, {
+        "key" : "Interests",
+        "subKey" : null,
+        "operator" : "CONTAINS",
+        "value" : [ "Reizen" ]
+      }, {
+        "key" : "How-many-ghosts",
+        "subKey" : "number",
+        "operator" : "LESS_THAN_OR_EQUAL_TO",
+        "value" : 1
+      }, {
+        "key" : "System-no",
+        "subKey" : "tempId",
+        "operator" : "EQUALS",
+        "value" : "hi"
+      } ]
     }, {
-      "key" : "Meting door:",
-      "subKey" : null,
-      "operator" : "CONTAINS",
-      "value" : "Better Bodies apparaat"
+      "amountValue" : "ALL",
+      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "toDate" : "2022-02-03T14:26:11.339Z",
+      "colorQuery" : "#ff3311",
+      "labelForThisQuery" : "secondQuery",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Name", "Age", "City" ],
+      "queryParameters" : [ {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : 30.0
+      }, {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "GREATER_THAN_OR_EQUAL_TO",
+        "value" : 35.0
+      }, {
+        "key" : "Interests",
+        "subKey" : null,
+        "operator" : "CONTAINS",
+        "value" : [ "Reizen" ]
+      }, {
+        "key" : "How-many-ghosts",
+        "subKey" : "number",
+        "operator" : "LESS_THAN_OR_EQUAL_TO",
+        "value" : 1
+      }, {
+        "key" : "System-no",
+        "subKey" : "tempId",
+        "operator" : "EQUALS",
+        "value" : "hi"
+      } ]
     } ]
   }, {
-    "amountValue" : "100",
-    "fromDate" : "2021-01-27T14:26:11.339Z",
-    "toDate" : "2021-04-09T14:26:11.339Z",
-    "colorQuery" : "#ff8833",
-    "labelForThisQuery" : "prachtige andere label",
-    "visibilityQuery" : true,
-    "returnFields" : [ "Gewicht in kg", "Vetpercentage in %", "Spiermassa in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Lichaamsvocht in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)" ],
-    "queryParameters" : [ {
-      "key" : "Gewicht in kg",
-      "subKey" : null,
-      "operator" : "GREATER_THAN_OR_EQUAL_TO",
-      "value" : 10.0
+    "id" : "b1cf5223-cf2b-4e3e-8a11-b89dff1547d5",
+    "name" : "my fourth query i posted",
+    "description" : "My fourth query just for testing",
+    "projectName" : "T-Helper",
+    "queryResults" : null,
+    "queryMetaData" : {
+      "affectedProfileNames" : [ "Jack-updated" ],
+      "graphType" : "COLUMN_CHART"
+    },
+    "queries" : [ {
+      "amountValue" : "ALL",
+      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "toDate" : "ALL",
+      "colorQuery" : "#ff3333",
+      "labelForThisQuery" : "firstQuery",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Name", "Age" ],
+      "queryParameters" : [ {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : 30.0
+      }, {
+        "key" : "Interests",
+        "subKey" : null,
+        "operator" : "CONTAINS",
+        "value" : [ "Reizen" ]
+      }, {
+        "key" : "How-many-ghosts",
+        "subKey" : "number",
+        "operator" : "LESS_THAN_OR_EQUAL_TO",
+        "value" : 1
+      }, {
+        "key" : "System-no",
+        "subKey" : "tempId",
+        "operator" : "EQUALS",
+        "value" : "hi"
+      } ]
     }, {
-      "key" : "Meting door:",
-      "subKey" : null,
-      "operator" : "CONTAINS",
-      "value" : "Better Bodies apparaat"
+      "amountValue" : "ALL",
+      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "toDate" : "2022-02-03T14:26:11.339Z",
+      "colorQuery" : "#ff3311",
+      "labelForThisQuery" : "secondQuery",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Name", "Age", "City" ],
+      "queryParameters" : [ {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : 30.0
+      }, {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "GREATER_THAN_OR_EQUAL_TO",
+        "value" : 35.0
+      }, {
+        "key" : "Interests",
+        "subKey" : null,
+        "operator" : "CONTAINS",
+        "value" : [ "Reizen" ]
+      }, {
+        "key" : "How-many-ghosts",
+        "subKey" : "number",
+        "operator" : "LESS_THAN_OR_EQUAL_TO",
+        "value" : 1
+      }, {
+        "key" : "System-no",
+        "subKey" : "tempId",
+        "operator" : "EQUALS",
+        "value" : "hi"
+      } ]
     } ]
   } ]
 }, {
-  "id" : "c398d497-9631-4be0-958b-577569902028",
-  "name" : "my third query i posted",
-  "description" : "My third query just ofr testing",
-  "projectName" : "T-Helper",
-  "queryResults" : null,
-  "queryMetaData" : {
-    "affectedProfileNames" : [ "Jack-updated" ],
-    "graphType" : "COLUMN_CHART"
-  },
-  "queries" : [ {
-    "amountValue" : "ALL",
-    "fromDate" : "2021-01-27T14:26:11.339Z",
-    "toDate" : "ALL",
-    "colorQuery" : "#ff3333",
-    "labelForThisQuery" : "firstQuery",
-    "visibilityQuery" : true,
-    "returnFields" : [ "Name", "Age" ],
-    "queryParameters" : [ {
-      "key" : "Age",
-      "subKey" : null,
-      "operator" : "EQUALS",
-      "value" : 30.0
+  "projectName" : "Fitness-stats",
+  "querySets" : [ {
+    "id" : "957c43f2-fa2e-42f9-bf75-6e3d5bb6960a",
+    "name" : "Verloop fitnesresultaten 100 dagen",
+    "description" : "Het verloop van de fitnesresultaten van de afgelopen 100 dagen",
+    "projectName" : "Fitness-stats",
+    "queryResults" : null,
+    "queryMetaData" : {
+      "affectedProfileNames" : [ "Jack-fitnes" ],
+      "graphType" : "LINE_GRAPH"
+    },
+    "queries" : [ {
+      "amountValue" : "ALL",
+      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "toDate" : "ALL",
+      "colorQuery" : "#ff3333",
+      "labelForThisQuery" : "prachtige label",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Gewicht in kg", "Vetpercentage in %", "Spiermassa in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Lichaamsvocht in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)" ],
+      "queryParameters" : [ {
+        "key" : "Gewicht in kg",
+        "subKey" : null,
+        "operator" : "GREATER_THAN_OR_EQUAL_TO",
+        "value" : 10.0
+      }, {
+        "key" : "Meting door:",
+        "subKey" : null,
+        "operator" : "CONTAINS",
+        "value" : "Better Bodies apparaat"
+      } ]
     }, {
-      "key" : "Age",
-      "subKey" : null,
-      "operator" : "GREATER_THAN_OR_EQUAL_TO",
-      "value" : 35.0
-    }, {
-      "key" : "Interests",
-      "subKey" : null,
-      "operator" : "CONTAINS",
-      "value" : [ "Reizen" ]
-    }, {
-      "key" : "How-many-ghosts",
-      "subKey" : "number",
-      "operator" : "LESS_THAN_OR_EQUAL_TO",
-      "value" : 1
-    }, {
-      "key" : "System-no",
-      "subKey" : "tempId",
-      "operator" : "EQUALS",
-      "value" : "hi"
-    } ]
-  }, {
-    "amountValue" : "ALL",
-    "fromDate" : "2021-01-27T14:26:11.339Z",
-    "toDate" : "2022-02-03T14:26:11.339Z",
-    "colorQuery" : "#ff3311",
-    "labelForThisQuery" : "secondQuery",
-    "visibilityQuery" : true,
-    "returnFields" : [ "Name", "Age", "City" ],
-    "queryParameters" : [ {
-      "key" : "Age",
-      "subKey" : null,
-      "operator" : "EQUALS",
-      "value" : 30.0
-    }, {
-      "key" : "Age",
-      "subKey" : null,
-      "operator" : "GREATER_THAN_OR_EQUAL_TO",
-      "value" : 35.0
-    }, {
-      "key" : "Interests",
-      "subKey" : null,
-      "operator" : "CONTAINS",
-      "value" : [ "Reizen" ]
-    }, {
-      "key" : "How-many-ghosts",
-      "subKey" : "number",
-      "operator" : "LESS_THAN_OR_EQUAL_TO",
-      "value" : 1
-    }, {
-      "key" : "System-no",
-      "subKey" : "tempId",
-      "operator" : "EQUALS",
-      "value" : "hi"
+      "amountValue" : "100",
+      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "toDate" : "2021-04-09T14:26:11.339Z",
+      "colorQuery" : "#ff8833",
+      "labelForThisQuery" : "prachtige andere label",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Gewicht in kg", "Vetpercentage in %", "Spiermassa in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Lichaamsvocht in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)" ],
+      "queryParameters" : [ {
+        "key" : "Gewicht in kg",
+        "subKey" : null,
+        "operator" : "GREATER_THAN_OR_EQUAL_TO",
+        "value" : 10.0
+      }, {
+        "key" : "Meting door:",
+        "subKey" : null,
+        "operator" : "CONTAINS",
+        "value" : "Better Bodies apparaat"
+      } ]
     } ]
   } ]
 } ]

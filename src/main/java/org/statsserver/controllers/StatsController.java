@@ -93,7 +93,7 @@ public class StatsController {
 
         return ResponseEntity
                 .ok()
-                .body(this.queryService.getAllQueries());
+                .body(this.queryService.getAllQueries(projectName));
     }
 
     @PostMapping(path = "api/v1/postQuery/{projectName}",
@@ -127,7 +127,7 @@ public class StatsController {
         if(!this.projectService.getProjectNameExist(projectName)){
             //TODO: throw error OR return 404
         }
-        Optional<QuerySet> result = this.queryService.getQueryById(queryId);
+        Optional<QuerySet> result = this.queryService.getQueryById(queryId, projectName);
 
         if(result.isPresent()){
             return ResponseEntity
@@ -158,7 +158,7 @@ public class StatsController {
             //TODO: throw error OR return 404
         }
 
-        Boolean result = this.queryService.removeQuery(queryId);
+        Boolean result = this.queryService.removeQuery(queryId, projectName);
 
         if(result){
             return ResponseEntity

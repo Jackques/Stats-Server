@@ -2,8 +2,8 @@ package org.statsserver.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.statsserver.domain.ProjectsFakeDB;
 import org.statsserver.domain.QuerySet;
-import org.statsserver.util.QueryFakeDatabaseRepository;
 
 import java.util.*;
 
@@ -12,11 +12,11 @@ public class QueryService {
     @Autowired
     private final ProjectService projectService;
     @Autowired
-    private final QueryFakeDatabaseRepository queryFakeDatabaseRepository;
+    private final ProjectsFakeDB projectsFakeDB;
 
-    public QueryService(ProjectService projectService, QueryFakeDatabaseRepository queryFakeDatabaseRepository) {
+    public QueryService(ProjectService projectService, ProjectsFakeDB projectsFakeDB) {
         this.projectService = projectService;
-        this.queryFakeDatabaseRepository = queryFakeDatabaseRepository;
+        this.projectsFakeDB = projectsFakeDB;
     }
 
     public UUID createQuery(String projectName, HashMap<String, ?> query) {
@@ -24,23 +24,23 @@ public class QueryService {
             ArrayList<String> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("fromProfiles"));
 
             QuerySet newQuerySet = new QuerySet((String) query.get("name"), (String) query.get("description"), projectName, (String) query.get("graphType"), fromProfiles, (List<HashMap<String, Object>>) query.get("queryList"));
-            this.queryFakeDatabaseRepository.addQuery(newQuerySet);
+            this.projectsFakeDB.addQuerySet(newQuerySet, projectName);
             return newQuerySet.getId();
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
     }
 
-    public List<QuerySet> getAllQueries() {
-        return this.queryFakeDatabaseRepository.getAllQueries();
+    public List<QuerySet> getAllQueries(String projectName) {
+        return this.projectsFakeDB.getAllQueries(projectName);
     }
 
-    public Optional<QuerySet> getQueryById(String id){
-        return this.queryFakeDatabaseRepository.getQueryById(id);
+    public Optional<QuerySet> getQueryById(String id, String projectName){
+        return this.projectsFakeDB.getQueryById(id, projectName);
     }
 
-    public Boolean removeQuery(String id){
-        return this.queryFakeDatabaseRepository.deleteQueryById(id);
+    public Boolean removeQuery(String id, String projectName){
+        return this.projectsFakeDB.deleteQueryById(id, projectName);
     }
 
     private ArrayList<String> getFromProfiles(String projectName, ArrayList<String> fromProfilesValue) {

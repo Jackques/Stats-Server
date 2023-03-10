@@ -22,32 +22,35 @@ class QuerySetTest {
                                 "graphType": "LINE_GRAPH"
                             },
                             "queryResults": {},
-                            "queryContent": {
-                                    "amount": "ALL",
+                            "queryMetaData" : {
+                                  "affectedProfileNames" : [ "Jack-fitnes" ],
+                                  "graphType" : "COLUMN_CHART"
+                            },
+                            "queries": [{
+                                    "amountValue": "ALL",
                                     "fromDate": "2021-01-27T14:26:11.339Z",
                                     "toDate": "ALL",
                                     "labelForThisQuery": "myFirstQuery",
-                                    "colorForThisQuery": "#ff3333",
-                                    "returnFields": ["Name", "Age"],
+                                    "colorQuery": "#ff3333",
                                     "queryParameters": [
                                                 {
-                                                    "whereKey": "Age",
+                                                    "key": "Age",
                                                     "operator": "GREATER_THAN_OR_EQUAL_TO",
                                                     "value": 35.0
                                                 },
                                                 {
-                                                    "whereKey": "Interests",
+                                                    "key": "Interests",
                                                     "operator": "CONTAINS",
                                                     "value": ["Reizen"]
                                                 },
                                                 {
-                                                    "whereKey": "How-many-ghosts",
-                                                    "whereSubKey": "number",
+                                                    "key": "How-many-ghosts",
+                                                    "subKey": "number",
                                                     "operator": "LESS_THAN_OR_EQUAL_TO",
                                                     "value": 1
                                                 }
                                     ]
-                            }
+                            }]
                         }
                 """;
 
@@ -58,7 +61,6 @@ class QuerySetTest {
         Assertions.assertEquals(querySet.getName(), "Verloop fitnesresultaten 100 dagen");
         Assertions.assertEquals(querySet.getProjectName(), null);
         Assertions.assertEquals(querySet.getQueryMetaData().getAffectedProfileNames().contains("Jack-fitnes"), true);
-        Assertions.assertEquals(querySet.getQueryMetaData().getGraphType().equals(GraphType.LINE_GRAPH), true);
-        Assertions.assertEquals(querySet.getQueryParameters().size(), 3);
+        Assertions.assertEquals(querySet.getQueryMetaData().getGraphType().equals(GraphType.COLUMN_CHART), true);
     }
 }

@@ -2,13 +2,10 @@ package org.statsserver.domain;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.statsserver.domain.Product;
-import org.statsserver.util.QueryFakeDatabaseRepository;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -42,13 +39,6 @@ class ProductTest {
         Assertions.assertEquals(product.getName(), "The Best Product");
         Assertions.assertEquals(product.getBrandName(), "ACME Products");
         Assertions.assertEquals(product.getOwnerName(), "Ultimate Corp, Inc.");
-    }
-
-    @Test
-    public void queryFakeDatabaseRepository() {
-        //
-        QueryFakeDatabaseRepository queryFakeDatabaseRepository = new QueryFakeDatabaseRepository();
-        Assertions.assertEquals(queryFakeDatabaseRepository.resultsDB.size(), 2);
     }
 
     @Test
