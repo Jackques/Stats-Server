@@ -27,6 +27,9 @@ public class ProjectsFakeDB extends ArrayList<ProjectDBDomain> {
     //TODO TODO TODO: write logic to no two the same projectnames exist in db
     //TODO TODO TODO: write logic to ensure no two the same projectnames exist in projectservice
 
+    //TODO TODO TODO: fromProfiles should not allow duplicates
+    //TODO TODO TODO: returnFields should not allow duplicates
+
     public Optional<QuerySet> getQueryById(String id, String projectName){
         return this.getProjectDBDomainByProjectName(projectName).getQuerySets().stream().filter((querySet)-> querySet.getId().toString().equals(id)).findFirst();
     }
@@ -39,10 +42,17 @@ public class ProjectsFakeDB extends ArrayList<ProjectDBDomain> {
         this.overwriteFakeDB(pathToDBFile);
         return result;
     }
-
-    //    public updateQueryById(){
-//        //todo: needs inplementation
-//    }
+    public Boolean updateQueryById(QuerySet querySet, String queryId, String projectName){
+        Boolean result = false;
+        Optional<QuerySet> currentQuerySet = this.getQueryById(queryId, projectName);
+        if(currentQuerySet.isPresent()){
+            if(this.deleteQueryById(queryId, projectName)){
+                result = this.addQuerySet(querySet, projectName);
+                this.overwriteFakeDB(pathToDBFile);
+            }
+        }
+        return result;
+    }
     public Boolean deleteQueryById(String id, String projectName){
         Boolean result = this.getProjectDBDomainByProjectName(projectName).removeQuerySetById(id);
         this.overwriteFakeDB(pathToDBFile);

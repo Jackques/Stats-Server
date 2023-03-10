@@ -80,14 +80,14 @@
       } ]
     } ]
   }, {
-    "id" : "b1cf5223-cf2b-4e3e-8a11-b89dff1547d5",
+    "id" : "f4f46ad8-dfa5-409e-b193-d57ddf87cd73",
     "name" : "my fourth query i posted",
     "description" : "My fourth query just for testing",
     "projectName" : "T-Helper",
     "queryResults" : null,
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-updated" ],
-      "graphType" : "COLUMN_CHART"
+      "affectedProfileNames" : [ "Jack-updated", "Jack-original" ],
+      "graphType" : "LINE_GRAPH"
     },
     "queries" : [ {
       "amountValue" : "ALL",
@@ -96,7 +96,7 @@
       "colorQuery" : "#ff3333",
       "labelForThisQuery" : "firstQuery",
       "visibilityQuery" : true,
-      "returnFields" : [ "Name", "Age" ],
+      "returnFields" : [ "Name", "Age", "Notes" ],
       "queryParameters" : [ {
         "key" : "Age",
         "subKey" : null,

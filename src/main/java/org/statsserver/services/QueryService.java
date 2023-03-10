@@ -22,13 +22,23 @@ public class QueryService {
     public UUID createQuery(String projectName, HashMap<String, ?> query) {
         try {
             ArrayList<String> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("fromProfiles"));
-
             QuerySet newQuerySet = new QuerySet((String) query.get("name"), (String) query.get("description"), projectName, (String) query.get("graphType"), fromProfiles, (List<HashMap<String, Object>>) query.get("queryList"));
             this.projectsFakeDB.addQuerySet(newQuerySet, projectName);
             return newQuerySet.getId();
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+    public Boolean updateQuery(String projectName, String queryId, HashMap<String, ?> query){
+        QuerySet updatedQuerySet;
+        try {
+            ArrayList<String> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("fromProfiles"));
+            updatedQuerySet = new QuerySet((String) query.get("name"), (String) query.get("description"), projectName, (String) query.get("graphType"), fromProfiles, (List<HashMap<String, Object>>) query.get("queryList"));
+            updatedQuerySet.setId(UUID.fromString(queryId));
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+        return this.projectsFakeDB.updateQueryById(updatedQuerySet, queryId, projectName);
     }
 
     public List<QuerySet> getAllQueries(String projectName) {

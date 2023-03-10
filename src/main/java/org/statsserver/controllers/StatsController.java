@@ -8,6 +8,7 @@ import org.statsserver.domain.QuerySet;
 import org.statsserver.services.KeyDataListStatic;
 import org.statsserver.services.ProjectService;
 import org.statsserver.services.QueryService;
+import org.statsserver.util.UUIDChecker;
 
 import java.net.URI;
 import java.util.*;
@@ -51,7 +52,7 @@ public class StatsController {
         System.out.println("GET MAPPING AANGESPROKEN getKeysFromProject: ");
 
         if(!this.projectService.getProjectNameExist(projectName)){
-            //TODO: throw error OR return 404
+            return ResponseEntity.badRequest().body(null);
         }
 
         return ResponseEntity
@@ -87,7 +88,6 @@ public class StatsController {
     public ResponseEntity<List<QuerySet>> getAllQueriesFromProject(@PathVariable String projectName){
 
         if(!this.projectService.getProjectNameExist(projectName)){
-            //TODO: throw error OR return 404
             return ResponseEntity.badRequest().body(null);
         }
 
@@ -102,7 +102,7 @@ public class StatsController {
         System.out.println("POST MAPPING AANGESPROKEN query: , received query: " + query);
 
         if(!this.projectService.getProjectNameExist(projectName)){
-            //TODO: throw error OR return 404
+            return ResponseEntity.badRequest().body(null);
         }
 
         //todo: add response error advice, because if something goes wrong inside the code then how will i know what went wrong?
@@ -125,7 +125,7 @@ public class StatsController {
         System.out.println("GET MAPPING AANGESPROKEN getQuery, projectName is: " + projectName + "queryId is: " + queryId);
 
         if(!this.projectService.getProjectNameExist(projectName)){
-            //TODO: throw error OR return 404
+            return ResponseEntity.badRequest().body(null);
         }
         Optional<QuerySet> result = this.queryService.getQueryById(queryId, projectName);
 
@@ -139,15 +139,27 @@ public class StatsController {
 
     }
 
-    @PutMapping(path = "api/v1/getQuery/{projectName}/{queryId}")
-    public boolean updateQuery(@PathVariable String projectName, @PathVariable String queryId){
+    @PutMapping(path = "api/v1/putQuery/{projectName}/{queryId}")
+    public ResponseEntity<Boolean> updateQuery(@PathVariable String projectName, @PathVariable String queryId, @RequestBody HashMap<String, ?> query){
         System.out.println("PUT MAPPING AANGESPROKEN updateQuery, projectName is: " + projectName + "queryId is: " + queryId);
 
-        if(Objects.equals(projectName, "T-Helper") && Objects.equals(queryId, "123abcDEF")){
-            return true;
+        if(!this.projectService.getProjectNameExist(projectName)){
+            return ResponseEntity.badRequest().body(null);
         }
-        //todo: needs work, return actual result of query or bad request or query not found?
-        return false;
+
+        if(!UUIDChecker.isUUIDValid(queryId)){
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        Boolean result = this.queryService.updateQuery(projectName, queryId, query);
+        if(result){
+            return ResponseEntity
+                    .ok()
+                    .body(true);
+        }
+        return ResponseEntity
+                .badRequest()
+                .body(false);
     }
 
     @DeleteMapping(path = "api/v1/deleteQuery/{projectName}/{queryId}")
@@ -155,7 +167,7 @@ public class StatsController {
         System.out.println("DELETE MAPPING AANGESPROKEN deleteQuery, projectName is: " + projectName + "queryId is: " + queryId);
 
         if(!this.projectService.getProjectNameExist(projectName)){
-            //TODO: throw error OR return 404
+            return ResponseEntity.badRequest().body(null);
         }
 
         Boolean result = this.queryService.removeQuery(queryId, projectName);
