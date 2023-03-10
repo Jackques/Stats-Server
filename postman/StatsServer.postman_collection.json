@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/getProfileNamesFromProject/T-Helper",
+					"raw": "http://localhost:8080/api/v1/getProjects",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -20,8 +20,7 @@
 					"path": [
 						"api",
 						"v1",
-						"getProfileNamesFromProject",
-						"T-Helper"
+						"getProjects"
 					]
 				}
 			},
@@ -55,7 +54,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/getKeysFromProject/T-Helper",
+					"raw": "http://localhost:8080/api/v1/getKeysFromProject/{{project}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -65,7 +64,7 @@
 						"api",
 						"v1",
 						"getKeysFromProject",
-						"T-Helper"
+						"{{project}}"
 					]
 				}
 			},
@@ -95,6 +94,28 @@
 			"response": []
 		},
 		{
+			"name": "getAllQueriesFromProject",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getAllQueriesFromProject/T-Helper",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getAllQueriesFromProject",
+						"T-Helper"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "postQuery",
 			"request": {
 				"method": "POST",
@@ -107,7 +128,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"type\": \"GET\",\r\n    \"period\": \"ALL\",\r\n    \"fromDate\": \"ALL\",\r\n    \"toDate\": \"14-04-2022\",\r\n    \"fromProfiles\": [\r\n        \"Profile-x\",\r\n        \"Profile-y\"\r\n    ],\r\n    \"queries\": [\r\n        {\r\n            \"whereKey\": \"age\",\r\n            \"operator\": \"EQUALS\",\r\n            \"values\": [\r\n                \"30\"\r\n            ]\r\n        },\r\n        {\r\n            \"whereKey\": \"age\",\r\n            \"operator\": \"GREATER_THAN_OR_EQUAL_TO\",\r\n            \"values\": [\r\n                \"35\"\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"name\": \"my fourth query i posted\",\r\n    \"description\": \"My fourth query just for testing\",\r\n    \"fromProfiles\": [\r\n        \"Jack-updated\"\r\n    ],\r\n    \"graphType\": \"COLUMN_CHART\",\r\n    \"queryList\": [\r\n        {\r\n            \"amount\": \"ALL\",\r\n            \"fromDate\": \"2021-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"ALL\",\r\n            \"labelForThisQuery\": \"firstQuery\",\r\n            \"colorForThisQuery\": \"#ff3333\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Name\",\r\n                \"Age\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Age\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": 30.0\r\n                },\r\n                {\r\n                    \"key\": \"Interests\",\r\n                    \"operator\": \"CONTAINS\",\r\n                    \"value\": [\r\n                        \"Reizen\"\r\n                    ]\r\n                },\r\n                {\r\n                    \"key\": \"How-many-ghosts\",\r\n                    \"subKey\": \"number\",\r\n                    \"operator\": \"LESS_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 1\r\n                },\r\n                {\r\n                    \"key\": \"System-no\",\r\n                    \"subKey\": \"tempId\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"hi\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"amount\": \"ALL\",\r\n            \"fromDate\": \"2021-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"2022-02-03T14:26:11.339Z\",\r\n            \"labelForThisQuery\": \"secondQuery\",\r\n            \"colorForThisQuery\": \"#ff3311\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Name\",\r\n                \"Age\",\r\n                \"City\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Age\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": 30.0\r\n                },\r\n                {\r\n                    \"key\": \"Age\",\r\n                    \"operator\": \"GREATER_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 35.0\r\n                },\r\n                {\r\n                    \"key\": \"Interests\",\r\n                    \"operator\": \"CONTAINS\",\r\n                    \"value\": [\r\n                        \"Reizen\"\r\n                    ]\r\n                },\r\n                {\r\n                    \"key\": \"How-many-ghosts\",\r\n                    \"subKey\": \"number\",\r\n                    \"operator\": \"LESS_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 1\r\n                },\r\n                {\r\n                    \"key\": \"System-no\",\r\n                    \"subKey\": \"tempId\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"hi\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -132,12 +153,50 @@
 			"response": []
 		},
 		{
+			"name": "putQuery",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"my fourth query i posted\",\r\n    \"description\": \"My fourth query just for testing\",\r\n    \"fromProfiles\": [\r\n        \"Jack-updated\",\r\n        \"Jack-original\"\r\n    ],\r\n    \"graphType\": \"LINE_GRAPH\",\r\n    \"queryList\": [\r\n        {\r\n            \"amount\": \"ALL\",\r\n            \"fromDate\": \"2021-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"ALL\",\r\n            \"labelForThisQuery\": \"firstQuery\",\r\n            \"colorForThisQuery\": \"#ff3333\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Name\",\r\n                \"Age\",\r\n                \"Notes\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Age\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": 30.0\r\n                },\r\n                {\r\n                    \"key\": \"Interests\",\r\n                    \"operator\": \"CONTAINS\",\r\n                    \"value\": [\r\n                        \"Reizen\"\r\n                    ]\r\n                },\r\n                {\r\n                    \"key\": \"How-many-ghosts\",\r\n                    \"subKey\": \"number\",\r\n                    \"operator\": \"LESS_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 1\r\n                },\r\n                {\r\n                    \"key\": \"System-no\",\r\n                    \"subKey\": \"tempId\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"hi\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"amount\": \"ALL\",\r\n            \"fromDate\": \"2021-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"2022-02-03T14:26:11.339Z\",\r\n            \"labelForThisQuery\": \"secondQuery\",\r\n            \"colorForThisQuery\": \"#ff3311\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Name\",\r\n                \"Age\",\r\n                \"City\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Age\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": 30.0\r\n                },\r\n                {\r\n                    \"key\": \"Age\",\r\n                    \"operator\": \"GREATER_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 35.0\r\n                },\r\n                {\r\n                    \"key\": \"Interests\",\r\n                    \"operator\": \"CONTAINS\",\r\n                    \"value\": [\r\n                        \"Reizen\"\r\n                    ]\r\n                },\r\n                {\r\n                    \"key\": \"How-many-ghosts\",\r\n                    \"subKey\": \"number\",\r\n                    \"operator\": \"LESS_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 1\r\n                },\r\n                {\r\n                    \"key\": \"System-no\",\r\n                    \"subKey\": \"tempId\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"hi\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/putQuery/T-Helper/fecb27ae-df76-4d78-8987-58d425781ec4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"putQuery",
+						"T-Helper",
+						"fecb27ae-df76-4d78-8987-58d425781ec4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "getQuery",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/getQuery/T-Helper/123abcDEF",
+					"raw": "http://localhost:8080/api/v1/getQuery/T-Helper/fecb27ae-df76-4d78-8987-58d425781ec4",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -148,7 +207,7 @@
 						"v1",
 						"getQuery",
 						"T-Helper",
-						"123abcDEF"
+						"fecb27ae-df76-4d78-8987-58d425781ec4"
 					]
 				}
 			},
@@ -160,7 +219,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/deleteQuery/T-Helper/123abcDEF",
+					"raw": "http://localhost:8080/api/v1/deleteQuery/T-Helper/f4f46ad8-dfa5-409e-b193-d57ddf87cd73",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -171,11 +230,17 @@
 						"v1",
 						"deleteQuery",
 						"T-Helper",
-						"123abcDEF"
+						"f4f46ad8-dfa5-409e-b193-d57ddf87cd73"
 					]
 				}
 			},
 			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "Project",
+			"value": "Fitness-stats"
 		}
 	]
 }
