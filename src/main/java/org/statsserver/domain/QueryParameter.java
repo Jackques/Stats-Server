@@ -23,10 +23,9 @@ public class QueryParameter {
     @JsonIgnore private KeyData keySubData;
     @JsonIgnore
     private ProjectService projectService;
-    public QueryParameter(ProjectService projectService, HashMap<String, Object> queryParameterMap, String projectName) {
-        this.projectService = projectService;
-        this.key = (String) queryParameterMap.get("whereKey");
-        this.subKey = (String) queryParameterMap.get("whereSubKey");
+    public QueryParameter(HashMap<String, Object> queryParameterMap, String projectName) {
+        this.key = (String) queryParameterMap.get("key");
+        this.subKey = (String) queryParameterMap.get("subKey");
         this.operator = (String) queryParameterMap.get("operator");
         this.value = (Object) queryParameterMap.get("value");
         

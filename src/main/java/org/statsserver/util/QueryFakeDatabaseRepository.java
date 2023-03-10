@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.stereotype.Service;
-import org.statsserver.domain.QueryDto;
+import org.statsserver.domain.QuerySet;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -17,7 +17,7 @@ import java.util.*;
 @Service
 public class QueryFakeDatabaseRepository {
     private final String pathToDBFile = "src/main/resources/queryDB.json";
-    public ArrayList<QueryDto> resultsDB;
+    public ArrayList<QuerySet> resultsDB;
     private static Validator validator;
 
     public QueryFakeDatabaseRepository() {
@@ -25,14 +25,14 @@ public class QueryFakeDatabaseRepository {
         this.runValidations();
     }
 
-    public Optional<QueryDto> getQueryById(String id){
+    public Optional<QuerySet> getQueryById(String id){
         return this.resultsDB.stream().filter((resultDb)-> resultDb.getId().toString().equals(id)).findFirst();
     }
-    public List<QueryDto> getAllQueries(){
+    public List<QuerySet> getAllQueries(){
         return resultsDB;
     }
-    public Boolean addQuery(QueryDto queryDto){
-        Boolean result = this.resultsDB.add(queryDto);
+    public Boolean addQuery(QuerySet querySet){
+        Boolean result = this.resultsDB.add(querySet);
         this.overwriteFakeDB();
         return result;
     }
@@ -42,7 +42,7 @@ public class QueryFakeDatabaseRepository {
 //    }
 
     public Boolean deleteQueryById(String id){
-        Optional<QueryDto> optionalQueryDto = this.getQueryById(id);
+        Optional<QuerySet> optionalQueryDto = this.getQueryById(id);
         if(optionalQueryDto.isPresent()){
             this.resultsDB.remove(optionalQueryDto.get());
             return true;
@@ -50,12 +50,12 @@ public class QueryFakeDatabaseRepository {
         return false;
     }
 
-    private ArrayList<QueryDto> getAllQueriesFromFakeDb() {
+    private ArrayList<QuerySet> getAllQueriesFromFakeDb() {
         ObjectMapper mapper = new ObjectMapper();
 
         try {
-            QueryDto[] fileContents = mapper.readValue(new File(pathToDBFile), QueryDto[].class);
-            ArrayList<QueryDto> arrayToBeReturned = new ArrayList<QueryDto>();
+            QuerySet[] fileContents = mapper.readValue(new File(pathToDBFile), QuerySet[].class);
+            ArrayList<QuerySet> arrayToBeReturned = new ArrayList<QuerySet>();
             Collections.addAll(arrayToBeReturned, fileContents);
             return arrayToBeReturned;
         } catch (IOException e) {
@@ -69,7 +69,7 @@ public class QueryFakeDatabaseRepository {
             validator = validatorFactory.getValidator();
         }
         this.resultsDB.forEach((result) -> {
-            Set<ConstraintViolation<QueryDto>> violations = validator.validate(result);
+            Set<ConstraintViolation<QuerySet>> violations = validator.validate(result);
             if (violations.size() > 0) {
                 System.out.println("Validations found!");
                 throw new RuntimeException("Validations found in imported queries, please resolve these issues; " + violations.toString());

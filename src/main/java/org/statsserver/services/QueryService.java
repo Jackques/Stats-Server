@@ -2,7 +2,7 @@ package org.statsserver.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.statsserver.domain.QueryDto;
+import org.statsserver.domain.QuerySet;
 import org.statsserver.util.QueryFakeDatabaseRepository;
 
 import java.util.*;
@@ -23,19 +23,19 @@ public class QueryService {
         try {
             ArrayList<String> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("fromProfiles"));
 
-            QueryDto newQueryDto = new QueryDto((String) query.get("name"), (String) query.get("description"), projectName, (String) query.get("graphType"), fromProfiles, (HashMap<String, Object>) query.get("queryContent"));
-            this.queryFakeDatabaseRepository.addQuery(newQueryDto);
-            return newQueryDto.getId();
+            QuerySet newQuerySet = new QuerySet((String) query.get("name"), (String) query.get("description"), projectName, (String) query.get("graphType"), fromProfiles, (List<HashMap<String, Object>>) query.get("queryList"));
+            this.queryFakeDatabaseRepository.addQuery(newQuerySet);
+            return newQuerySet.getId();
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
     }
 
-    public List<QueryDto> getAllQueries() {
+    public List<QuerySet> getAllQueries() {
         return this.queryFakeDatabaseRepository.getAllQueries();
     }
 
-    public Optional<QueryDto> getQueryById(String id){
+    public Optional<QuerySet> getQueryById(String id){
         return this.queryFakeDatabaseRepository.getQueryById(id);
     }
 

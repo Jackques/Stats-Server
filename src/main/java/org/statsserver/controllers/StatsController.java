@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.statsserver.domain.QueryDto;
+import org.statsserver.domain.QuerySet;
 import org.statsserver.services.KeyDataListStatic;
 import org.statsserver.services.ProjectService;
 import org.statsserver.services.QueryService;
@@ -84,7 +84,7 @@ public class StatsController {
     }
 
     @GetMapping(path = "api/v1/getAllQueriesFromProject/{projectName}")
-    public ResponseEntity<List<QueryDto>> getAllQueriesFromProject(@PathVariable String projectName){
+    public ResponseEntity<List<QuerySet>> getAllQueriesFromProject(@PathVariable String projectName){
 
         if(!this.projectService.getProjectNameExist(projectName)){
             //TODO: throw error OR return 404
@@ -121,16 +121,22 @@ public class StatsController {
     }
 
     @GetMapping(path = "api/v1/getQuery/{projectName}/{queryId}")
-    public ResponseEntity<Optional<QueryDto>> getQuery(@PathVariable String projectName, @PathVariable String queryId){
+    public ResponseEntity<Optional<QuerySet>> getQuery(@PathVariable String projectName, @PathVariable String queryId){
         System.out.println("GET MAPPING AANGESPROKEN getQuery, projectName is: " + projectName + "queryId is: " + queryId);
 
         if(!this.projectService.getProjectNameExist(projectName)){
             //TODO: throw error OR return 404
         }
+        Optional<QuerySet> result = this.queryService.getQueryById(queryId);
 
-        return ResponseEntity
-                .ok()
-                .body(this.queryService.getQueryById(queryId));
+        if(result.isPresent()){
+            return ResponseEntity
+                    .ok()
+                    .body(result);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
+
     }
 
     @PutMapping(path = "api/v1/getQuery/{projectName}/{queryId}")
@@ -152,9 +158,17 @@ public class StatsController {
             //TODO: throw error OR return 404
         }
 
+        Boolean result = this.queryService.removeQuery(queryId);
+
+        if(result){
+            return ResponseEntity
+                    .ok()
+                    .body(true);
+        }
         return ResponseEntity
-                .ok()
-                .body(this.queryService.removeQuery(queryId));
+                .badRequest()
+                .body(false);
+
     }
 
 }

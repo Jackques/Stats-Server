@@ -7,9 +7,7 @@ import org.statsserver.enums.GraphType;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class QueryDtoTest {
+class QuerySetTest {
     @Test
     public void whenUsingAnnotations_thenOk() throws IOException {
         // Test to check if it's possible to map a JSON string directly into a class instance
@@ -53,14 +51,14 @@ class QueryDtoTest {
                         }
                 """;
 
-        QueryDto queryDto = new ObjectMapper()
-                .readerFor(QueryDto.class)
+        QuerySet querySet = new ObjectMapper()
+                .readerFor(QuerySet.class)
                 .readValue(SOURCE_JSON);
 
-        Assertions.assertEquals(queryDto.getName(), "Verloop fitnesresultaten 100 dagen");
-        Assertions.assertEquals(queryDto.getProjectName(), null);
-        Assertions.assertEquals(queryDto.getQueryMetaData().getAffectedProfileNames().contains("Jack-fitnes"), true);
-        Assertions.assertEquals(queryDto.getQueryMetaData().getGraphType().equals(GraphType.LINE_GRAPH), true);
-        Assertions.assertEquals(queryDto.getQueryParameters().size(), 3);
+        Assertions.assertEquals(querySet.getName(), "Verloop fitnesresultaten 100 dagen");
+        Assertions.assertEquals(querySet.getProjectName(), null);
+        Assertions.assertEquals(querySet.getQueryMetaData().getAffectedProfileNames().contains("Jack-fitnes"), true);
+        Assertions.assertEquals(querySet.getQueryMetaData().getGraphType().equals(GraphType.LINE_GRAPH), true);
+        Assertions.assertEquals(querySet.getQueryParameters().size(), 3);
     }
 }
