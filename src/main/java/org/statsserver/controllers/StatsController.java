@@ -24,7 +24,10 @@ public class StatsController {
         this.queryService = queryService;
     }
 
-    //todo: advies Siebe; pas dezelfde path toe op meerdere annotations, maar dan wel van andere types; delete, get, post? Vraag nogmaals naar meer uitleg
+    //todo: advies Siebe; pas dezelfde path toe op meerdere annotations, maar dan wel van andere types; delete, get, post? Op hetzelfde endpoint?
+    // Dus bijv;
+    // get/put/delete/post querySet
+    // Vraag nogmaals naar meer uitleg
 
     // LEARNED: do not return Java object instances of my own created classes (an error is returned if you do).
     // Instead ALWAYS return a known Java object ie.e. hashmap, map, array, etc.
@@ -33,18 +36,24 @@ public class StatsController {
     // When returning objects to a REST endpoint that is
 
     @RequestMapping(path = "api/v1/getProjects")
-    public List<String> getProjects(){
+    public ResponseEntity<List<String>> getProjects(){
         System.out.println("GET MAPPING AANGESPROKEN getProjects: "+this.projectService.getLoadedProjectNames());
-        return this.projectService.getLoadedProjectNames();
+
+        return ResponseEntity
+                .ok()
+                .body(this.projectService.getLoadedProjectNames());
     }
     @RequestMapping(path = "api/v1/getProfileNamesFromProject/{projectName}")
-    public List<String> getProfileNamesFromProject(@PathVariable("projectName") String projectName){
+    public ResponseEntity<List<String>> getProfileNamesFromProject(@PathVariable("projectName") String projectName){
         System.out.println("GET MAPPING AANGESPROKEN getProfileNamesFromProject: "+this.projectService.getProfileNamesByProject(projectName)+", and the projectName provided is: "+projectName);
 
         if(!this.projectService.getProjectNameExist(projectName)){
-            //TODO: throw error OR return 404
+            return ResponseEntity.badRequest().body(null);
         }
-        return this.projectService.getProfileNamesByProject(projectName);
+
+        return ResponseEntity
+                .ok()
+                .body(this.projectService.getProfileNamesByProject(projectName));
     }
 
     @RequestMapping(path = "api/v1/getKeysFromProject/{projectName}")
@@ -65,19 +74,16 @@ public class StatsController {
         System.out.println("GET MAPPING AANGESPROKEN getAllListValuesFromKey: ");
 
         if(!this.projectService.getProjectNameExist(projectName)){
-            //TODO: throw error OR return 404
             return ResponseEntity.badRequest().body(null);
         }
 
         if(!KeyDataListStatic.doesKeyExist(keyName, projectName)){
-            //TODO: throw error OR return 404
             return ResponseEntity.badRequest().body(null);
         }
 
         Set<?> listValues = KeyDataListStatic.getKeyDataListValues(keyName, projectName);
 
         if(listValues == null){
-            //todo: throw 400 bad request if provided field does not exist or field does not contain a list to return (wrong data type)
             return ResponseEntity.noContent().build();
         }
 
