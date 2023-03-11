@@ -41,4 +41,19 @@ public class SetvsListTest {
         set2.add(4);
         assertArrayEquals(set1.toArray(), set2.toArray());
     }
+
+    @Test
+    public void canIAccessListWithinForeachOnThatList(){
+        List<String> mylist = new ArrayList<>();
+        mylist.add("one");
+        mylist.add("two");
+        mylist.add("three");
+        mylist.forEach((mylistItem)->{
+            System.out.println("myListItem is: "+mylistItem);
+            System.out.println(mylist); // but yes i can access mylist from within this foreach!
+            if(mylistItem.equals("two")){
+               mylist.add("four"); // answer: nope.. throw currentModificationException!
+            }
+        });
+    }
 }
