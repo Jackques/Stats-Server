@@ -3,7 +3,9 @@ package org.statsserver.domain;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.statsserver.services.ProjectService;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -15,15 +17,26 @@ import java.util.*;
 
 @Service
 public class ProjectsFakeDB extends ArrayList<ProjectDBDomain> {
+    @Autowired
+    private final ProjectService projectService;
     private final String pathToDBFile = "src/main/resources/queryDB.json";
     private ArrayList<ProjectDBDomain> projectDBDomains;
     private static Validator validator;
 
-    private ProjectsFakeDB(){
+    private ProjectsFakeDB(ProjectService projectService){
+        this.projectService = projectService;
+
         this.projectDBDomains = this.getAllQueriesFromFakeDb();
         this.runValidations();
+        this.checkProjects();
     }
-    //TODO TODO TODO: write logic to ensure project names in project also exist in db
+
+    private void checkProjects() {
+        List<String> dbProjects = this.projectDBDomains.stream().map(ProjectDBDomain::getProjectName).toList();
+        if(!dbProjects.containsAll(projectService.getLoadedProjectNames())){
+            throw new RuntimeException("Some projects set in projectService have no (fake)DB entry");
+        }
+    }
     //TODO TODO TODO: write logic to no two the same projectnames exist in db
     //TODO TODO TODO: write logic to ensure no two the same projectnames exist in projectservice
 
