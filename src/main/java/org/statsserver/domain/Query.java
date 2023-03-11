@@ -10,6 +10,8 @@ import org.statsserver.util.HexValidatorWebColor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -36,7 +38,7 @@ public class Query {
     private String colorQuery;
     private String labelForThisQuery = "";
     private Boolean visibilityQuery = true;
-    private ArrayList<String> returnFields = null;
+    private Set<String> returnFields = new HashSet<>();
     private final ArrayList<QueryParameter> queryParameters = new ArrayList<>();
 
     public Query(HashMap<String, Object> queryContent, String projectName) {
@@ -124,7 +126,7 @@ public class Query {
                     if (returnFieldsValue.size() != 0 && !KeyDataListStatic.doKeysExist(returnFieldsValue, projectName)) {
                         throw new RuntimeException("Value provided in returnFields is not valid");
                     }
-                    this.returnFields = returnFieldsValue;
+                    this.returnFields.addAll(returnFieldsValue);
                 }
                 case "queryParameters" -> {
                     ArrayList<HashMap<String, Object>> queryParametersValues = (ArrayList<HashMap<String, Object>>) value;

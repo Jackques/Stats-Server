@@ -17,7 +17,7 @@
       "colorQuery" : "#ff3333",
       "labelForThisQuery" : "firstQuery",
       "visibilityQuery" : true,
-      "returnFields" : [ "Name", "Age" ],
+      "returnFields" : [ "Age", "Name" ],
       "queryParameters" : [ {
         "key" : "Age",
         "subKey" : null,
@@ -51,7 +51,7 @@
       "colorQuery" : "#ff3311",
       "labelForThisQuery" : "secondQuery",
       "visibilityQuery" : true,
-      "returnFields" : [ "Name", "Age", "City" ],
+      "returnFields" : [ "City", "Age", "Name" ],
       "queryParameters" : [ {
         "key" : "Age",
         "subKey" : null,
@@ -80,7 +80,7 @@
       } ]
     } ]
   }, {
-    "id" : "f4f46ad8-dfa5-409e-b193-d57ddf87cd73",
+    "id" : "fecb27ae-df76-4d78-8987-58d425781ec4",
     "name" : "my fourth query i posted",
     "description" : "My fourth query just for testing",
     "projectName" : "T-Helper",
@@ -96,7 +96,7 @@
       "colorQuery" : "#ff3333",
       "labelForThisQuery" : "firstQuery",
       "visibilityQuery" : true,
-      "returnFields" : [ "Name", "Age", "Notes" ],
+      "returnFields" : [ "Age", "Name" ],
       "queryParameters" : [ {
         "key" : "Age",
         "subKey" : null,
@@ -125,7 +125,7 @@
       "colorQuery" : "#ff3311",
       "labelForThisQuery" : "secondQuery",
       "visibilityQuery" : true,
-      "returnFields" : [ "Name", "Age", "City" ],
+      "returnFields" : [ "City", "Age", "Name" ],
       "queryParameters" : [ {
         "key" : "Age",
         "subKey" : null,
@@ -173,7 +173,7 @@
       "colorQuery" : "#ff3333",
       "labelForThisQuery" : "prachtige label",
       "visibilityQuery" : true,
-      "returnFields" : [ "Gewicht in kg", "Vetpercentage in %", "Spiermassa in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Lichaamsvocht in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)" ],
+      "returnFields" : [ "Gewicht in kg", "Spiermassa in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)", "Lichaamsvocht in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Vetpercentage in %" ],
       "queryParameters" : [ {
         "key" : "Gewicht in kg",
         "subKey" : null,
@@ -192,7 +192,7 @@
       "colorQuery" : "#ff8833",
       "labelForThisQuery" : "prachtige andere label",
       "visibilityQuery" : true,
-      "returnFields" : [ "Gewicht in kg", "Vetpercentage in %", "Spiermassa in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Lichaamsvocht in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)" ],
+      "returnFields" : [ "Gewicht in kg", "Spiermassa in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)", "Lichaamsvocht in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Vetpercentage in %" ],
       "queryParameters" : [ {
         "key" : "Gewicht in kg",
         "subKey" : null,

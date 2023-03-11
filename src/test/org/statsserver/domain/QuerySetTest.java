@@ -1,11 +1,12 @@
 package org.statsserver.domain;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.statsserver.enums.GraphType;
 
 import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class QuerySetTest {
     @Test
@@ -58,9 +59,9 @@ class QuerySetTest {
                 .readerFor(QuerySet.class)
                 .readValue(SOURCE_JSON);
 
-        Assertions.assertEquals(querySet.getName(), "Verloop fitnesresultaten 100 dagen");
-        Assertions.assertEquals(querySet.getProjectName(), null);
-        Assertions.assertEquals(querySet.getQueryMetaData().getAffectedProfileNames().contains("Jack-fitnes"), true);
-        Assertions.assertEquals(querySet.getQueryMetaData().getGraphType().equals(GraphType.COLUMN_CHART), true);
+        assertEquals(querySet.getName(), "Verloop fitnesresultaten 100 dagen");
+        assertEquals(querySet.getProjectName(), null);
+        assertEquals(querySet.getQueryMetaData().getAffectedProfileNames().contains("Jack-fitnes"), true);
+        assertEquals(querySet.getQueryMetaData().getGraphType().equals(GraphType.COLUMN_CHART), true);
     }
 }

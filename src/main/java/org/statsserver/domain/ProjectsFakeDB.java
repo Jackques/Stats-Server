@@ -27,9 +27,6 @@ public class ProjectsFakeDB extends ArrayList<ProjectDBDomain> {
     //TODO TODO TODO: write logic to no two the same projectnames exist in db
     //TODO TODO TODO: write logic to ensure no two the same projectnames exist in projectservice
 
-    //TODO TODO TODO: fromProfiles should not allow duplicates
-    //TODO TODO TODO: returnFields should not allow duplicates
-
     public Optional<QuerySet> getQueryById(String id, String projectName){
         return this.getProjectDBDomainByProjectName(projectName).getQuerySets().stream().filter((querySet)-> querySet.getId().toString().equals(id)).findFirst();
     }
