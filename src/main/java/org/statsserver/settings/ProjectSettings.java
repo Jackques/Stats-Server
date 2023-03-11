@@ -20,9 +20,8 @@ public class ProjectSettings {
     private final ArrayList<ProjectSetting> projectSettings = new ArrayList<ProjectSetting>();
     public ProjectSettings() {}
     public boolean addProject(ProjectSetting projectSetting){
-        if(!this.isFilePathsValid(projectSetting)){
-            //todo: throw exception?
-            return false;
+        if(!this.isFilePathsValid(projectSetting) || !this.isProjectNameValid(projectSetting)){
+            throw new RuntimeException("Projectsetting: "+projectSetting.getProjectName()+" is invalid. Please check your projectsettings");
         }
 
         HashMap<String, FileInDirectory> latestFiles = this.getLatestFilePathsFromDirectories(projectSetting.projectFilesPaths);
@@ -40,6 +39,13 @@ public class ProjectSettings {
 
         this.projectSettings.add(projectSetting);
         return true;
+    }
+
+    private boolean isProjectNameValid(ProjectSetting projectSetting) {
+        String projectName = projectSetting.getProjectName();
+        boolean isBlank = projectName.isBlank();
+        boolean isDuplicate = this.projectSettings.stream().anyMatch((currentProjectSetting)-> currentProjectSetting.getProjectName().equals(projectName));
+        return !isBlank && !isDuplicate;
     }
 
     private boolean isFilePathsValid(ProjectSetting projectSetting) {
