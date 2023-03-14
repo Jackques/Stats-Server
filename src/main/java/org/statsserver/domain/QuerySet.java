@@ -16,7 +16,7 @@ public class QuerySet {
     private String name;
     private String description;
     private String projectName;
-    private QueryResults queryResults;
+    private QuerySetResults querySetResults;
     private QueryMetaData queryMetaData;
     private ArrayList<Query> queries = new ArrayList<>();
 
@@ -48,6 +48,7 @@ public class QuerySet {
     private void unpackNestedQueryResults(Map<String, Object> queryResults) {
         System.out.println("here are my query results:");
         System.out.println(queryResults);
+        this.querySetResults = new QuerySetResults();
         //todo todo todo: need to create this once i know what this data will look like
     }
 
@@ -75,6 +76,11 @@ public class QuerySet {
 
     private QueryMetaData generateQueryMetaData(ArrayList<String> fromProfiles, String graphType) {
         return new QueryMetaData(fromProfiles, graphType);
+    }
+
+    /* Gets the QuerySet with the queryResults set to null */
+    public void cleanResults(){
+        this.querySetResults = null;
     }
 
 }

@@ -5,7 +5,10 @@
     "name" : "my third query i posted",
     "description" : "My third query just ofr testing",
     "projectName" : "T-Helper",
-    "queryResults" : null,
+    "querySetResults" : {
+      "totalResults": 33,
+      "amountOfQueries": 3
+    },
     "queryMetaData" : {
       "affectedProfileNames" : [ "Jack-updated" ],
       "graphType" : "COLUMN_CHART"
@@ -84,7 +87,10 @@
     "name" : "my fourth query i posted",
     "description" : "My fourth query just for testing",
     "projectName" : "T-Helper",
-    "queryResults" : null,
+    "querySetResults" : {
+      "totalResults": 44,
+      "amountOfQueries": 4
+    },
     "queryMetaData" : {
       "affectedProfileNames" : [ "Jack-updated", "Jack-original" ],
       "graphType" : "LINE_GRAPH"
@@ -158,7 +164,10 @@
     "name" : "My sixth query i posted",
     "description" : "My sixth query just for testing",
     "projectName" : "T-Helper",
-    "queryResults" : null,
+    "querySetResults" : {
+      "totalResults": 6,
+      "amountOfQueries": 66
+    },
     "queryMetaData" : {
       "affectedProfileNames" : [ "Jack-updated" ],
       "graphType" : "COLUMN_CHART"
@@ -232,7 +241,10 @@
     "name" : "My seventh query i posted",
     "description" : "My seventh query just for testing",
     "projectName" : "T-Helper",
-    "queryResults" : null,
+    "querySetResults" : {
+      "totalResults": 77,
+      "amountOfQueries": 7
+    },
     "queryMetaData" : {
       "affectedProfileNames" : [ "Jack-updated" ],
       "graphType" : "COLUMN_CHART"
@@ -306,7 +318,10 @@
     "name" : "my fifth query i posted",
     "description" : "My fifth query just for testing",
     "projectName" : "T-Helper",
-    "queryResults" : null,
+    "querySetResults" : {
+      "totalResults": 55,
+      "amountOfQueries": 5
+    },
     "queryMetaData" : {
       "affectedProfileNames" : [ "Jack-updated", "Jack-original" ],
       "graphType" : "LINE_GRAPH"
@@ -383,7 +398,10 @@
     "name" : "Verloop fitnesresultaten 100 dagen",
     "description" : "Het verloop van de fitnesresultaten van de afgelopen 100 dagen",
     "projectName" : "Fitness-stats",
-    "queryResults" : null,
+    "querySetResults" : {
+      "totalResults": 123456789,
+      "amountOfQueries": 1132579486
+    },
     "queryMetaData" : {
       "affectedProfileNames" : [ "Jack-fitnes" ],
       "graphType" : "LINE_GRAPH"

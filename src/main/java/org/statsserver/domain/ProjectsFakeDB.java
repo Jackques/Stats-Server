@@ -39,10 +39,10 @@ public class ProjectsFakeDB extends ArrayList<ProjectDBDomain> {
     }
 
     public Optional<QuerySet> getQueryById(String id, String projectName){
-        return this.getProjectDBDomainByProjectName(projectName).getQuerySets().stream().filter((querySet)-> querySet.getId().toString().equals(id)).findFirst();
+        return this.getProjectDBDomainByProjectName(projectName).getQuerySets(false).stream().filter((querySet)-> querySet.getId().toString().equals(id)).findFirst();
     }
     public List<QuerySet> getAllQueries(String projectName){
-        return this.getProjectDBDomainByProjectName(projectName).getQuerySets();
+        return this.getProjectDBDomainByProjectName(projectName).getQuerySets(true);
     }
     public Boolean addQuerySet(QuerySet querySet, String projectName){
         ProjectDBDomain projectDBDomain = this.getProjectDBDomainByProjectName(projectName);
