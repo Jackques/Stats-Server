@@ -28,6 +28,7 @@ public class QuerySet {
 
         queryList.forEach((query) -> {
             this.queries.add(new Query(query, projectName));
+            this.checkDuplicatesInQueryLabels(this.queries);
         });
 
         this.queryMetaData = this.generateQueryMetaData(fromProfiles, graphType);
@@ -53,10 +54,22 @@ public class QuerySet {
     @SuppressWarnings("unchecked")
     @JsonProperty("queryList")
     private void unpackNestedqueryList(List<HashMap<String, Object>> queryList) {
-        System.out.println("here are my query results:");
+        System.out.println("here is my queryList:");
         System.out.println(queryList);
         queryList.forEach((query) -> {
             this.queries.add(new Query(query, projectName));
+        });
+        this.checkDuplicatesInQueryLabels(this.queries);
+    }
+
+    private void checkDuplicatesInQueryLabels(ArrayList<Query> queries) {
+        ArrayList<String> queryLabels = new ArrayList<>();
+        queries.forEach((query)->{
+            String label = query.getLabelForThisQuery();
+            if(queryLabels.contains(label)){
+                throw new RuntimeException("QueryList already has a query with label: "+label);
+            }
+            queryLabels.add(label);
         });
     }
 

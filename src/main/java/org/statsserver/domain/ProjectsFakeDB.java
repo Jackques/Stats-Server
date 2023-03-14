@@ -37,8 +37,6 @@ public class ProjectsFakeDB extends ArrayList<ProjectDBDomain> {
             throw new RuntimeException("Some projects set in projectService have no (fake)DB entry");
         }
     }
-    //TODO TODO TODO: write logic to no two the same projectnames exist in db
-    //TODO TODO TODO: write logic to ensure no two the same projectnames exist in projectservice
 
     public Optional<QuerySet> getQueryById(String id, String projectName){
         return this.getProjectDBDomainByProjectName(projectName).getQuerySets().stream().filter((querySet)-> querySet.getId().toString().equals(id)).findFirst();

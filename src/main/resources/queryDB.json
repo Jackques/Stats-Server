@@ -153,6 +153,228 @@
         "value" : "hi"
       } ]
     } ]
+  }, {
+    "id" : "2b02054b-4861-49e7-b1b0-0f4d7005e319",
+    "name" : "My sixth query i posted",
+    "description" : "My sixth query just for testing",
+    "projectName" : "T-Helper",
+    "queryResults" : null,
+    "queryMetaData" : {
+      "affectedProfileNames" : [ "Jack-updated" ],
+      "graphType" : "COLUMN_CHART"
+    },
+    "queries" : [ {
+      "amountValue" : "ALL",
+      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "toDate" : "ALL",
+      "colorQuery" : "#ff3333",
+      "labelForThisQuery" : "myQuery",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Age", "Name" ],
+      "queryParameters" : [ {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : 30.0
+      }, {
+        "key" : "Interests",
+        "subKey" : null,
+        "operator" : "CONTAINS",
+        "value" : [ "Reizen" ]
+      }, {
+        "key" : "How-many-ghosts",
+        "subKey" : "number",
+        "operator" : "LESS_THAN_OR_EQUAL_TO",
+        "value" : 1
+      }, {
+        "key" : "System-no",
+        "subKey" : "tempId",
+        "operator" : "EQUALS",
+        "value" : "hi"
+      } ]
+    }, {
+      "amountValue" : "ALL",
+      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "toDate" : "2022-02-03T14:26:11.339Z",
+      "colorQuery" : "#ff3311",
+      "labelForThisQuery" : "myQuery",
+      "visibilityQuery" : true,
+      "returnFields" : [ "City", "Age", "Name" ],
+      "queryParameters" : [ {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : 30.0
+      }, {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "GREATER_THAN_OR_EQUAL_TO",
+        "value" : 35.0
+      }, {
+        "key" : "Interests",
+        "subKey" : null,
+        "operator" : "CONTAINS",
+        "value" : [ "Reizen" ]
+      }, {
+        "key" : "How-many-ghosts",
+        "subKey" : "number",
+        "operator" : "LESS_THAN_OR_EQUAL_TO",
+        "value" : 1
+      }, {
+        "key" : "System-no",
+        "subKey" : "tempId",
+        "operator" : "EQUALS",
+        "value" : "hi"
+      } ]
+    } ]
+  }, {
+    "id" : "9bba7951-d6e9-468b-a003-00cc33903c5d",
+    "name" : "My seventh query i posted",
+    "description" : "My seventh query just for testing",
+    "projectName" : "T-Helper",
+    "queryResults" : null,
+    "queryMetaData" : {
+      "affectedProfileNames" : [ "Jack-updated" ],
+      "graphType" : "COLUMN_CHART"
+    },
+    "queries" : [ {
+      "amountValue" : "ALL",
+      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "toDate" : "ALL",
+      "colorQuery" : "#ff3333",
+      "labelForThisQuery" : "myQuery",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Age", "Name" ],
+      "queryParameters" : [ {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : 30.0
+      }, {
+        "key" : "Interests",
+        "subKey" : null,
+        "operator" : "CONTAINS",
+        "value" : [ "Reizen" ]
+      }, {
+        "key" : "How-many-ghosts",
+        "subKey" : "number",
+        "operator" : "LESS_THAN_OR_EQUAL_TO",
+        "value" : 1
+      }, {
+        "key" : "System-no",
+        "subKey" : "tempId",
+        "operator" : "EQUALS",
+        "value" : "hi"
+      } ]
+    }, {
+      "amountValue" : "ALL",
+      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "toDate" : "2022-02-03T14:26:11.339Z",
+      "colorQuery" : "#ff3311",
+      "labelForThisQuery" : "myQuery1",
+      "visibilityQuery" : true,
+      "returnFields" : [ "City", "Age", "Name" ],
+      "queryParameters" : [ {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : 30.0
+      }, {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "GREATER_THAN_OR_EQUAL_TO",
+        "value" : 35.0
+      }, {
+        "key" : "Interests",
+        "subKey" : null,
+        "operator" : "CONTAINS",
+        "value" : [ "Reizen" ]
+      }, {
+        "key" : "How-many-ghosts",
+        "subKey" : "number",
+        "operator" : "LESS_THAN_OR_EQUAL_TO",
+        "value" : 1
+      }, {
+        "key" : "System-no",
+        "subKey" : "tempId",
+        "operator" : "EQUALS",
+        "value" : "hi"
+      } ]
+    } ]
+  }, {
+    "id" : "b01393b6-881b-4ece-959f-7dee133218cd",
+    "name" : "my fifth query i posted",
+    "description" : "My fifth query just for testing",
+    "projectName" : "T-Helper",
+    "queryResults" : null,
+    "queryMetaData" : {
+      "affectedProfileNames" : [ "Jack-updated", "Jack-original" ],
+      "graphType" : "LINE_GRAPH"
+    },
+    "queries" : [ {
+      "amountValue" : "ALL",
+      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "toDate" : "ALL",
+      "colorQuery" : "#ff3333",
+      "labelForThisQuery" : "firstQuery",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Age", "Name" ],
+      "queryParameters" : [ {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : 30.0
+      }, {
+        "key" : "Interests",
+        "subKey" : null,
+        "operator" : "CONTAINS",
+        "value" : [ "Reizen" ]
+      }, {
+        "key" : "How-many-ghosts",
+        "subKey" : "number",
+        "operator" : "LESS_THAN_OR_EQUAL_TO",
+        "value" : 1
+      }, {
+        "key" : "System-no",
+        "subKey" : "tempId",
+        "operator" : "EQUALS",
+        "value" : "hi"
+      } ]
+    }, {
+      "amountValue" : "ALL",
+      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "toDate" : "2022-02-03T14:26:11.339Z",
+      "colorQuery" : "#ff3311",
+      "labelForThisQuery" : "secondQuery",
+      "visibilityQuery" : true,
+      "returnFields" : [ "City", "Age", "Name" ],
+      "queryParameters" : [ {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : 30.0
+      }, {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "GREATER_THAN_OR_EQUAL_TO",
+        "value" : 35.0
+      }, {
+        "key" : "Interests",
+        "subKey" : null,
+        "operator" : "CONTAINS",
+        "value" : [ "Reizen" ]
+      }, {
+        "key" : "How-many-ghosts",
+        "subKey" : "number",
+        "operator" : "LESS_THAN_OR_EQUAL_TO",
+        "value" : 1
+      }, {
+        "key" : "System-no",
+        "subKey" : "tempId",
+        "operator" : "EQUALS",
+        "value" : "hi"
+      } ]
+    } ]
   } ]
 }, {
   "projectName" : "Fitness-stats",
