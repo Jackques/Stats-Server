@@ -11,7 +11,7 @@
       "queryResults" : [ ]
     },
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-updated" ],
+      "affectedProfileNames" : [ "Jack-original", "Jack-updated" ],
       "graphType" : "COLUMN_CHART"
     },
     "queries" : [ {
@@ -19,6 +19,9 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
+      "fromProfiles": [
+        "Jack-original", "Jack-updated"
+      ],
       "labelForThisQuery" : "firstQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -53,6 +56,9 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
+      "fromProfiles": [
+        "Jack-original", "Jack-updated"
+      ],
       "labelForThisQuery" : "secondQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -110,6 +116,9 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
+      "fromProfiles": [
+        "Jack-original", "Jack-updated"
+      ],
       "labelForThisQuery" : "firstQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -139,6 +148,9 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
+      "fromProfiles": [
+        "Jack-original", "Jack-updated"
+      ],
       "labelForThisQuery" : "secondQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -180,7 +192,7 @@
       "queryResults" : [ ]
     },
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-updated" ],
+      "affectedProfileNames" : [ "Jack-original", "Jack-updated" ],
       "graphType" : "COLUMN_CHART"
     },
     "queries" : [ {
@@ -188,6 +200,9 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
+      "fromProfiles": [
+        "Jack-original", "Jack-updated"
+      ],
       "labelForThisQuery" : "myQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -217,6 +232,9 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
+      "fromProfiles": [
+        "Jack-original", "Jack-updated"
+      ],
       "labelForThisQuery" : "myQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -258,7 +276,7 @@
       "queryResults" : [ ]
     },
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-updated" ],
+      "affectedProfileNames" : [ "Jack-original", "Jack-updated" ],
       "graphType" : "COLUMN_CHART"
     },
     "queries" : [ {
@@ -266,6 +284,9 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
+      "fromProfiles": [
+        "Jack-original", "Jack-updated"
+      ],
       "labelForThisQuery" : "myQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -295,6 +316,9 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
+      "fromProfiles": [
+        "Jack-original", "Jack-updated"
+      ],
       "labelForThisQuery" : "myQuery1",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -344,6 +368,9 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
+      "fromProfiles": [
+        "Jack-original", "Jack-updated"
+      ],
       "labelForThisQuery" : "firstQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -373,6 +400,9 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
+      "fromProfiles": [
+        "Jack-original", "Jack-updated"
+      ],
       "labelForThisQuery" : "secondQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -410,7 +440,7 @@
     "projectName" : "T-Helper",
     "querySetResults" : null,
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-updated" ],
+      "affectedProfileNames" : [ "Jack-original","Jack-updated" ],
       "graphType" : "COLUMN_CHART"
     },
     "queries" : [ {
@@ -418,6 +448,9 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
+      "fromProfiles": [
+        "Jack-original", "Jack-updated"
+      ],
       "labelForThisQuery" : "myQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -447,6 +480,9 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
+      "fromProfiles": [
+        "Jack-original", "Jack-updated"
+      ],
       "labelForThisQuery" : "myQuery1",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -499,6 +535,9 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
+      "fromProfiles": [
+        "Jack-fitnes"
+      ],
       "labelForThisQuery" : "prachtige label",
       "visibilityQuery" : true,
       "returnFields" : [ "Gewicht in kg", "Spiermassa in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)", "Lichaamsvocht in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Vetpercentage in %" ],
@@ -518,6 +557,9 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2021-04-09T14:26:11.339Z",
       "colorQuery" : "#ff8833",
+      "fromProfiles": [
+        "Jack-fitnes"
+      ],
       "labelForThisQuery" : "prachtige andere label",
       "visibilityQuery" : true,
       "returnFields" : [ "Gewicht in kg", "Spiermassa in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)", "Lichaamsvocht in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Vetpercentage in %" ],

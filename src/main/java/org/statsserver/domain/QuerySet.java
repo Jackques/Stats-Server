@@ -19,18 +19,18 @@ public class QuerySet {
     private QueryMetaData queryMetaData;
     private ArrayList<Query> queries = new ArrayList<>();
 
-    public QuerySet(String name, String description, String projectName, String graphType, ArrayList<String> fromProfiles, List<HashMap<String, Object>> queryList) throws Exception {
+    public QuerySet(String name, String description, String projectName, String graphType, ArrayList<String> usedProfiles, List<HashMap<String, Object>> queryList) throws Exception {
         this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
         this.projectName = projectName;
 
         queryList.forEach((query) -> {
-            this.queries.add(new Query(query, projectName));
+            this.queries.add(new Query(query, projectName, usedProfiles));
             this.checkDuplicatesInQueryLabels(this.queries);
         });
 
-        this.queryMetaData = this.generateQueryMetaData(fromProfiles, graphType);
+        this.queryMetaData = this.generateQueryMetaData(usedProfiles, graphType);
     }
 
     @SuppressWarnings("unchecked")
@@ -48,7 +48,7 @@ public class QuerySet {
         System.out.println("here is my queryList:");
         System.out.println(queryList);
         queryList.forEach((query) -> {
-            this.queries.add(new Query(query, projectName));
+            this.queries.add(new Query(query, projectName, null));
         });
         this.checkDuplicatesInQueryLabels(this.queries);
     }

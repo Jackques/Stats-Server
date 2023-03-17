@@ -20,7 +20,7 @@ public class QueryService {
 
     public UUID createQuery(String projectName, HashMap<String, ?> query) {
         try {
-            ArrayList<String> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("fromProfiles"));
+            ArrayList<String> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("usedProfiles"));
             QuerySet newQuerySet = new QuerySet((String) query.get("name"), (String) query.get("description"), projectName, (String) query.get("graphType"), fromProfiles, (List<HashMap<String, Object>>) query.get("queryList"));
 //            QuerySetResults results = this.getResultsForQuerySet(newQuerySet);
             ArrayList<HashMap<String, HashMap>> querySetResults = this.getResultsForQuerySet(projectName, newQuerySet);

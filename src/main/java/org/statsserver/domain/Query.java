@@ -36,12 +36,12 @@ public class Query {
     @JsonIgnore
     private String toDateValue = null;
     private String colorQuery;
+    private ArrayList<String> fromProfiles;
     private String labelForThisQuery = "";
     private Boolean visibilityQuery = true;
     private Set<String> returnFields = new HashSet<>();
     private final ArrayList<QueryParameter> queryParameters = new ArrayList<>();
-
-    public Query(HashMap<String, Object> queryContent, String projectName) {
+    public Query(HashMap<String, Object> queryContent, String projectName, ArrayList<String> usedProfiles) {
         queryContent.forEach((key, value) -> {
 
             if (value == null) {
@@ -104,6 +104,16 @@ public class Query {
                             throw new RuntimeException("Value provided in toDate is not valid");
                         }
                     }
+                }
+                case "fromProfiles" -> {
+                    ArrayList<String> fromProfiles = (ArrayList<String>) value;
+
+                    if(usedProfiles != null){
+                        if(!usedProfiles.containsAll(fromProfiles)){
+                            throw new RuntimeException("Query does not posses profile listed in affected profiles");
+                        }
+                    }
+                    this.fromProfiles = fromProfiles;
                 }
                 case "labelForThisQuery" -> {
                     String queryLabel = (String) value;
