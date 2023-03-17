@@ -4,6 +4,7 @@ import org.statsserver.records.Profile;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ProjectSetting {
     private final String projectName;
@@ -38,6 +39,14 @@ public class ProjectSetting {
     public KeyDataList getDataTypesList() {
         //todo: can be replaced by simple Lombok getter?
         return dataTypesList;
+    }
+
+    public LinkedHashMap<Integer, HashMap<String, ?>> getDataFromProfileName(String profileName){
+        Optional<Map.Entry<FileInDirectory, LinkedHashMap>> dataProfile = this.latestFilePaths.entrySet().stream().filter((latestFilePath)-> latestFilePath.getKey().getAssociatedProfile().name().equals(profileName)).findFirst();
+        if(dataProfile.isPresent()){
+            return dataProfile.get().getValue();
+        }
+        throw new RuntimeException("No imported file for profileName: "+profileName+" present");
     }
 
     public Set<?> getValuesFromKey(String keyName) {

@@ -2,10 +2,7 @@ package org.statsserver.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.statsserver.domain.ProjectsFakeDB;
-import org.statsserver.domain.QueryResult;
-import org.statsserver.domain.QuerySet;
-import org.statsserver.domain.QuerySetResults;
+import org.statsserver.domain.*;
 
 import java.util.*;
 
@@ -25,11 +22,26 @@ public class QueryService {
         try {
             ArrayList<String> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("fromProfiles"));
             QuerySet newQuerySet = new QuerySet((String) query.get("name"), (String) query.get("description"), projectName, (String) query.get("graphType"), fromProfiles, (List<HashMap<String, Object>>) query.get("queryList"));
-            this.projectsFakeDB.addQuerySet(newQuerySet, projectName);
+//            QuerySetResults results = this.getResultsForQuerySet(newQuerySet);
+            ArrayList<HashMap<String, HashMap>> querySetResults = this.getResultsForQuerySet(projectName, newQuerySet);
+
+//            this.projectsFakeDB.addQuerySet(newQuerySet, projectName); //TODO TODO TODO: Tijdelijk uitgecomment omdat ik niet duizend nieuwe records in db wil hebben
             return newQuerySet.getId();
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    private ArrayList<HashMap<String, HashMap>> getResultsForQuerySet(String projectName, QuerySet newQuerySet) {
+        ArrayList<HashMap<String, HashMap>> querySetResultsProfile = new ArrayList<>();
+        newQuerySet.getQueryMetaData().getAffectedProfileNames().forEach((profileName)->{
+            Optional<ProjectSetting> projectSetting = this.projectService.loadedProjects.getProjectSettings(Optional.of(projectName)).stream().findFirst();
+            LinkedHashMap<Integer, HashMap<String, ?>> profileData = projectSetting.get().getDataFromProfileName(profileName);
+            querySetResultsProfile.add(new HashMap<String, LinkedHashMap>().put(profileName, profileData));
+        });
+        return querySetResultsProfile;
+
+//        newQuerySet.getQueryMetaData().getAffectedProfileNames().
     }
 
     public Boolean updateQuery(String projectName, String queryId, HashMap<String, ?> query) {

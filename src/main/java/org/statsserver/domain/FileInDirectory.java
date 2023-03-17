@@ -1,5 +1,6 @@
 package org.statsserver.domain;
 
+import lombok.Getter;
 import org.statsserver.enums.FileExtension;
 import org.statsserver.records.Profile;
 import org.statsserver.util.FileNameChecker;
@@ -22,6 +23,7 @@ public class FileInDirectory implements Comparable<FileInDirectory> {
     public Boolean hasValidDataStructure = false;//todo: remove this if not used?
     public FileExtension fileExtension;
 
+    @Getter
     private final Profile associatedProfile;
 
     public FileInDirectory(String fullFileName, String directoryPath, Profile profile, String dateStringFromFileName) {

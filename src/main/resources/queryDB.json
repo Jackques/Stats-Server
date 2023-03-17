@@ -6,8 +6,9 @@
     "description" : "My third query just ofr testing",
     "projectName" : "T-Helper",
     "querySetResults" : {
-      "totalResults": 33,
-      "amountOfQueries": 3
+      "totalResults" : 33,
+      "amountOfQueries" : 3,
+      "queryResults" : [ ]
     },
     "queryMetaData" : {
       "affectedProfileNames" : [ "Jack-updated" ],
@@ -88,22 +89,17 @@
     "description" : "My fourth query just for testing",
     "projectName" : "T-Helper",
     "querySetResults" : {
-      "totalResults": 44,
-      "amountOfQueries": 2,
-      "queryResults": [
-        {
-          "id": "abc-1",
-          "labelForThisQuery": "label-a",
-          "totalResults": 4588,
-          "queryResultsABC": [{"name":  "Joker"}]
-        },
-        {
-          "id": "abc-2",
-          "labelForThisQuery": "label-b",
-          "totalResults": 2387,
-          "queryResultsABC": []
-        }
-      ]
+      "totalResults" : 44,
+      "amountOfQueries" : 2,
+      "queryResults" : [ {
+        "id" : "abc-1",
+        "labelForThisQuery" : "label-a",
+        "totalResults" : 4588
+      }, {
+        "id" : "abc-2",
+        "labelForThisQuery" : "label-b",
+        "totalResults" : 2387
+      } ]
     },
     "queryMetaData" : {
       "affectedProfileNames" : [ "Jack-updated", "Jack-original" ],
@@ -179,8 +175,9 @@
     "description" : "My sixth query just for testing",
     "projectName" : "T-Helper",
     "querySetResults" : {
-      "totalResults": 6,
-      "amountOfQueries": 66
+      "totalResults" : 6,
+      "amountOfQueries" : 66,
+      "queryResults" : [ ]
     },
     "queryMetaData" : {
       "affectedProfileNames" : [ "Jack-updated" ],
@@ -256,8 +253,9 @@
     "description" : "My seventh query just for testing",
     "projectName" : "T-Helper",
     "querySetResults" : {
-      "totalResults": 77,
-      "amountOfQueries": 7
+      "totalResults" : 77,
+      "amountOfQueries" : 7,
+      "queryResults" : [ ]
     },
     "queryMetaData" : {
       "affectedProfileNames" : [ "Jack-updated" ],
@@ -333,8 +331,9 @@
     "description" : "My fifth query just for testing",
     "projectName" : "T-Helper",
     "querySetResults" : {
-      "totalResults": 55,
-      "amountOfQueries": 5
+      "totalResults" : 55,
+      "amountOfQueries" : 5,
+      "queryResults" : [ ]
     },
     "queryMetaData" : {
       "affectedProfileNames" : [ "Jack-updated", "Jack-original" ],
@@ -404,6 +403,80 @@
         "value" : "hi"
       } ]
     } ]
+  }, {
+    "id" : "1db72371-88bf-4aaf-92ea-326560bcefb7",
+    "name" : "My eight query i posted",
+    "description" : "My eight query just for testing",
+    "projectName" : "T-Helper",
+    "querySetResults" : null,
+    "queryMetaData" : {
+      "affectedProfileNames" : [ "Jack-updated" ],
+      "graphType" : "COLUMN_CHART"
+    },
+    "queries" : [ {
+      "amountValue" : "ALL",
+      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "toDate" : "ALL",
+      "colorQuery" : "#ff3333",
+      "labelForThisQuery" : "myQuery",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Age", "Name" ],
+      "queryParameters" : [ {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : 30.0
+      }, {
+        "key" : "Interests",
+        "subKey" : null,
+        "operator" : "CONTAINS",
+        "value" : [ "Reizen" ]
+      }, {
+        "key" : "How-many-ghosts",
+        "subKey" : "number",
+        "operator" : "LESS_THAN_OR_EQUAL_TO",
+        "value" : 1
+      }, {
+        "key" : "System-no",
+        "subKey" : "tempId",
+        "operator" : "EQUALS",
+        "value" : "hi"
+      } ]
+    }, {
+      "amountValue" : "ALL",
+      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "toDate" : "2022-02-03T14:26:11.339Z",
+      "colorQuery" : "#ff3311",
+      "labelForThisQuery" : "myQuery1",
+      "visibilityQuery" : true,
+      "returnFields" : [ "City", "Age", "Name" ],
+      "queryParameters" : [ {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : 30.0
+      }, {
+        "key" : "Age",
+        "subKey" : null,
+        "operator" : "GREATER_THAN_OR_EQUAL_TO",
+        "value" : 35.0
+      }, {
+        "key" : "Interests",
+        "subKey" : null,
+        "operator" : "CONTAINS",
+        "value" : [ "Reizen" ]
+      }, {
+        "key" : "How-many-ghosts",
+        "subKey" : "number",
+        "operator" : "LESS_THAN_OR_EQUAL_TO",
+        "value" : 1
+      }, {
+        "key" : "System-no",
+        "subKey" : "tempId",
+        "operator" : "EQUALS",
+        "value" : "hi"
+      } ]
+    } ]
   } ]
 }, {
   "projectName" : "Fitness-stats",
@@ -413,8 +486,9 @@
     "description" : "Het verloop van de fitnesresultaten van de afgelopen 100 dagen",
     "projectName" : "Fitness-stats",
     "querySetResults" : {
-      "totalResults": 123456789,
-      "amountOfQueries": 1132579486
+      "totalResults" : 123456789,
+      "amountOfQueries" : 1132579486,
+      "queryResults" : [ ]
     },
     "queryMetaData" : {
       "affectedProfileNames" : [ "Jack-fitnes" ],
