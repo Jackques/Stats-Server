@@ -11,7 +11,6 @@ import java.util.*;
 @Setter
 @NoArgsConstructor
 public class QuerySet {
-
     private UUID id;
     private String name;
     private String description;
@@ -67,11 +66,6 @@ public class QuerySet {
 
     private QueryMetaData generateQueryMetaData(ArrayList<String> fromProfiles, String graphType) {
         return new QueryMetaData(fromProfiles, graphType);
-    }
-
-    /* Gets the QuerySet with the queryResults set to null */
-    public void cleanResults() {
-        this.querySetResults = null;
     }
 
 }
