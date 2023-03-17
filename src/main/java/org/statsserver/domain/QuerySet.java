@@ -44,15 +44,6 @@ public class QuerySet {
     }
 
     @SuppressWarnings("unchecked")
-    @JsonProperty("queryResults")
-    private void unpackNestedQueryResults(Map<String, Object> queryResults) {
-        System.out.println("here are my query results:");
-        System.out.println(queryResults);
-        this.querySetResults = new QuerySetResults();
-        //todo todo todo: need to create this once i know what this data will look like
-    }
-
-    @SuppressWarnings("unchecked")
     @JsonProperty("queryList")
     private void unpackNestedqueryList(List<HashMap<String, Object>> queryList) {
         System.out.println("here is my queryList:");
@@ -65,10 +56,10 @@ public class QuerySet {
 
     private void checkDuplicatesInQueryLabels(ArrayList<Query> queries) {
         ArrayList<String> queryLabels = new ArrayList<>();
-        queries.forEach((query)->{
+        queries.forEach((query) -> {
             String label = query.getLabelForThisQuery();
-            if(queryLabels.contains(label)){
-                throw new RuntimeException("QueryList already has a query with label: "+label);
+            if (queryLabels.contains(label)) {
+                throw new RuntimeException("QueryList already has a query with label: " + label);
             }
             queryLabels.add(label);
         });
@@ -79,7 +70,7 @@ public class QuerySet {
     }
 
     /* Gets the QuerySet with the queryResults set to null */
-    public void cleanResults(){
+    public void cleanResults() {
         this.querySetResults = null;
     }
 

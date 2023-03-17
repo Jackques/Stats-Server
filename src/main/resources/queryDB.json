@@ -89,7 +89,21 @@
     "projectName" : "T-Helper",
     "querySetResults" : {
       "totalResults": 44,
-      "amountOfQueries": 4
+      "amountOfQueries": 2,
+      "queryResults": [
+        {
+          "id": "abc-1",
+          "labelForThisQuery": "label-a",
+          "totalResults": 4588,
+          "queryResultsABC": [{"name":  "Joker"}]
+        },
+        {
+          "id": "abc-2",
+          "labelForThisQuery": "label-b",
+          "totalResults": 2387,
+          "queryResultsABC": []
+        }
+      ]
     },
     "queryMetaData" : {
       "affectedProfileNames" : [ "Jack-updated", "Jack-original" ],

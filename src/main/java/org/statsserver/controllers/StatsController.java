@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.statsserver.domain.QueryResult;
 import org.statsserver.domain.QuerySet;
 import org.statsserver.services.KeyDataListStatic;
 import org.statsserver.services.ProjectService;
@@ -143,6 +144,22 @@ public class StatsController {
             return ResponseEntity.notFound().build();
         }
 
+    }
+    @GetMapping(path = "api/v1/getQuery/{projectName}/{querySetId}/detailResults")
+    public ResponseEntity<ArrayList<QueryResult>> getQueryDetailResults(@PathVariable String projectName, @PathVariable String querySetId, @RequestBody ArrayList<String> queryIds){
+        System.out.println("GET MAPPING AANGESPROKEN getQuery, projectName is: " + projectName + "queryId is: " + querySetId);
+
+        if(!this.projectService.getProjectNameExist(projectName)){
+            return ResponseEntity.badRequest().body(null);
+        }
+        if(queryIds.isEmpty()){
+            return ResponseEntity.badRequest().body(null);
+        }
+        ArrayList<QueryResult> result = this.queryService.getQueryDetailResults(querySetId, projectName, queryIds);
+
+        return ResponseEntity
+                .ok()
+                .body(result);
     }
 
     @PutMapping(path = "api/v1/putQuery/{projectName}/{queryId}")

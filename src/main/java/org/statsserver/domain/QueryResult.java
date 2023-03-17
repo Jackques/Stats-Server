@@ -1,5 +1,6 @@
 package org.statsserver.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,8 +11,14 @@ import java.util.ArrayList;
 @Setter
 @NoArgsConstructor
 public class QueryResult {
+    private String id;
     private String labelForThisQuery = "";
     private int totalResults = 123456789;
-    private ArrayList<Object> queryResults = new ArrayList<>();
+    @JsonIgnore
+    private ArrayList<Object> queryResultsABC = new ArrayList<>();
 
+    public QueryResult(String labelForThisQuery, int totalResults) {
+        this.labelForThisQuery = labelForThisQuery;
+        this.totalResults = totalResults;
+    }
 }

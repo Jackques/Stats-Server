@@ -3,7 +3,9 @@ package org.statsserver.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.statsserver.domain.ProjectsFakeDB;
+import org.statsserver.domain.QueryResult;
 import org.statsserver.domain.QuerySet;
+import org.statsserver.domain.QuerySetResults;
 
 import java.util.*;
 
@@ -29,7 +31,8 @@ public class QueryService {
             throw new RuntimeException(e.getMessage());
         }
     }
-    public Boolean updateQuery(String projectName, String queryId, HashMap<String, ?> query){
+
+    public Boolean updateQuery(String projectName, String queryId, HashMap<String, ?> query) {
         QuerySet updatedQuerySet;
         try {
             ArrayList<String> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("fromProfiles"));
@@ -45,11 +48,11 @@ public class QueryService {
         return this.projectsFakeDB.getAllQueries(projectName);
     }
 
-    public Optional<QuerySet> getQueryById(String id, String projectName){
+    public Optional<QuerySet> getQueryById(String id, String projectName) {
         return this.projectsFakeDB.getQueryById(id, projectName);
     }
 
-    public Boolean removeQuery(String id, String projectName){
+    public Boolean removeQuery(String id, String projectName) {
         return this.projectsFakeDB.deleteQueryById(id, projectName);
     }
 
@@ -58,5 +61,17 @@ public class QueryService {
             throw new RuntimeException("Value provided in fromProfiles is not valid");
         }
         return fromProfilesValue;
+    }
+
+    public ArrayList<QueryResult> getQueryDetailResults(String querySetId, String projectName, ArrayList<String> queryIds) {
+        Optional<QuerySet> querySet = this.projectsFakeDB.getQueryById(querySetId, projectName);
+        if (querySet.isPresent()) {
+            QuerySetResults querySetResults = querySet.get().getQuerySetResults();
+            if (!querySetResults.isValidIds(queryIds)) {
+                throw new RuntimeException("QueryIds provided is not valid");
+            }
+            return querySetResults.getQueryResultsByQueryIds(queryIds);
+        }
+        throw new RuntimeException("Provided queryId and/or projectName is invalid");
     }
 }
