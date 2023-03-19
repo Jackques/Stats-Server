@@ -62,7 +62,7 @@ public class QueryParameter {
                 return this.operator.equals("EQUALS") || this.operator.equals("CONTAINS") || this.operator.equals("EXCLUDES");
             }
             case "DateString" -> {
-                return this.operator.equals("BEFORE_DATE") || this.operator.equals("ON_DATE") || this.operator.equals("AFTER_DATE");
+                return this.operator.equals("BEFORE_DATE") || this.operator.equals("AFTER_DATE");
             }
             case "WholeNumber", "DecimalNumber" -> {
                 return this.operator.equals("LESS_THAN") || this.operator.equals("LESS_THAN_OR_EQUAL_TO") || this.operator.equals("EQUALS") || this.operator.equals("GREATER_THAN") || this.operator.equals("GREATER_THAN_OR_EQUAL_TO");

@@ -78,8 +78,10 @@ public class QuerySet {
             resultList.removeAll(QueryChecker.getFromOrToDateResultsToBeRemoved(query, resultList, dateKeyName, true));
             resultList.removeAll(QueryChecker.getFromOrToDateResultsToBeRemoved(query, resultList, dateKeyName, false));
 
-            System.out.println("So,.. what is the result we end up with?");
+            System.out.println("So,.. what is the result we end up with so far with checking the amount, from & to-date & profiles?");
             System.out.println(resultList.size());
+
+            resultList.removeAll(QueryChecker.getQueryParametersResultsToBeRemoved(query, resultList));
 
         });
         //todo todo todo: don't forget to set the correct amounts on query and querySetResult after filtering these results and setting to to querySetResults
