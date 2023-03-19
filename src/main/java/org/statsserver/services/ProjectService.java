@@ -7,6 +7,7 @@ import org.statsserver.records.Profile;
 import org.statsserver.settings.ProjectSettings;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @Service
@@ -85,15 +86,25 @@ public class ProjectService {
         });
     }
 
+    public String getProjectDateKey(String projectName){
+        AtomicReference<String> projectDateKey = new AtomicReference<>("");
+        this.loadedProjects.getProjectSettings().forEach((projectSetting)->{
+            if(projectSetting.getProjectName().equals(projectName)){
+                projectDateKey.set(projectSetting.keyNameForDate);
+            }
+        });
+        if(projectDateKey.get().isEmpty() || projectDateKey.get().isBlank()){
+            throw new RuntimeException("Could not get set project date key for project: "+projectName);
+        }
+        return projectDateKey.get();
+    }
+
     public ArrayList<HashMap<String, Object>> getAllKeysFromProject(String projectName){
-        // todo todo todo: turn into private method which returns the list once, stores it and makes it available?
         List<ProjectSetting> projectSettingList = this.loadedProjects.getProjectSettings(Optional.of(projectName));
         if(projectSettingList.size() > 1){
-            //todo: throw error multiple projectSettings with same name should not be allowed
             return new ArrayList<>();
         }
         return projectSettingList.get(0).getDataTypesList().getAllKeysAndDataTypes();
-        //todo: isn't this something i should do once and store it somewhere in memory for preformance?
     }
 
 }

@@ -2,10 +2,14 @@ package org.statsserver.util;
 
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
+import java.util.Date;
 
 @Service
 public class DateChecker {
@@ -26,5 +30,18 @@ public class DateChecker {
         } catch (Exception pe) {
             return false;
         }
+    }
+    public static boolean isDateOneBeforeDateTwo(String dateOne, String dateTwo){
+        if(!DateChecker.isValidDate(dateOne) || !DateChecker.isValidDate(dateTwo)){
+            throw new RuntimeException("Provided date is invalid date");
+        }
+        return ZonedDateTime.parse(dateOne).isBefore(ZonedDateTime.parse(dateTwo));
+    }
+
+    public static boolean isDateOneAfterDateTwo(String dateOne, String dateTwo){
+        if(!DateChecker.isValidDate(dateOne) || !DateChecker.isValidDate(dateTwo)){
+            throw new RuntimeException("Provided date is invalid date");
+        }
+        return ZonedDateTime.parse(dateOne).isAfter(ZonedDateTime.parse(dateTwo));
     }
 }
