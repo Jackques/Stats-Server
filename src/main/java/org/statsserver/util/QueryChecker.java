@@ -1,8 +1,10 @@
 package org.statsserver.util;
 
 import org.statsserver.domain.Query;
+import org.statsserver.domain.QueryParameter;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class QueryChecker {
@@ -60,5 +62,76 @@ public class QueryChecker {
             }
         });
         return results;
+    }
+
+    public static ArrayList<HashMap> getQueryParametersResultsToBeRemoved(Query query, ArrayList<HashMap> resultList) {
+        ArrayList<HashMap> resultsToBeRemoved = new ArrayList<>();
+        resultList.forEach((result)->{
+
+            query.getQueryParameters().forEach((queryParameter)->{
+                if(result.get(queryParameter.getKey()) == null){
+                    resultsToBeRemoved.add(result);
+                }
+                switch (queryParameter.getKeyData().getValueType()) {
+                    case "String" -> {
+                        if(resultSatisfiesStringQueryParameter(queryParameter, queryParameter.getKey())){
+                            resultsToBeRemoved.remove(result);
+                        }
+                    }
+                    case "DateString" -> {
+                        if(resultSatisfiesDateStringQueryParameter(queryParameter, queryParameter.getKey())){
+                            resultsToBeRemoved.remove(result);
+                        }
+                    }
+                    case "WholeNumber", "DecimalNumber" -> {
+                        System.out.println("Wednesday");
+                    }
+                    case "Boolean" -> {
+                        System.out.println("Monday");
+                    }
+                    case "List" -> {
+                        System.out.println("Tuesday");
+                    }
+                    case "Map" -> {
+                        System.out.println("Wednesday");
+                    }
+                }
+            });
+
+        });
+        return resultsToBeRemoved;
+    }
+
+    private static boolean resultSatisfiesDateStringQueryParameter(QueryParameter queryParameter, String key) {
+        String operator = queryParameter.getOperator();
+        switch (operator) {
+            case "BEFORE_DATE" -> {
+                return DateChecker.isDateOneBeforeDateTwo(key, queryParameter.getValue().toString()) ? true : false;
+            }
+            case "AFTER_DATE" -> {
+                return DateChecker.isDateOneAfterDateTwo(key, queryParameter.getValue().toString()) ? true : false;
+            }
+            default -> {
+                throw new RuntimeException("Unrecognized datestring queryparameter operator: "+operator);
+            }
+        }
+    }
+
+    private static boolean resultSatisfiesStringQueryParameter(QueryParameter queryParameter, String resultProperty) {
+        String operator = queryParameter.getOperator();
+        switch (operator) {
+            case "EQUALS" -> {
+                return resultProperty.equals(queryParameter.getValue().toString()) ? true : false;
+            }
+            case "CONTAINS" -> {
+                return resultProperty.contains(queryParameter.getValue().toString()) ? true : false;
+            }
+            case "EXCLUDES" -> {
+                return !resultProperty.contains(queryParameter.getValue().toString()) ? true : false;
+            }
+            default -> {
+                throw new RuntimeException("Unrecognized string queryparameter operator: "+operator);
+            }
+        }
     }
 }
