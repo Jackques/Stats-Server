@@ -68,7 +68,7 @@ public class QueryParameter {
                 return this.operator.equals("LESS_THAN") || this.operator.equals("LESS_THAN_OR_EQUAL_TO") || this.operator.equals("EQUALS") || this.operator.equals("GREATER_THAN") || this.operator.equals("GREATER_THAN_OR_EQUAL_TO");
             }
             case "Boolean" -> {
-                return this.operator.equals("EQUALS_TRUE") || this.operator.equals("EQUALS_FALSE");
+                return this.operator.equals("EQUALS") || this.operator.equals("NOT_EQUALS");
             }
             case "List" -> {
                 return this.operator.equals("CONTAINS") || this.operator.equals("EXCLUDES");
