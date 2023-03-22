@@ -69,7 +69,7 @@ public class QuerySet {
         return new QueryMetaData(fromProfiles, graphType);
     }
 
-    public void processQueries(HashMap<String, HashMap> querySetResults, String dateKeyName) {
+    public void processQueriesResults(HashMap<String, HashMap> querySetResults, String dateKeyName) {
 
         this.queries.forEach((query)->{
             ArrayList<HashMap> resultList = new ArrayList<>();

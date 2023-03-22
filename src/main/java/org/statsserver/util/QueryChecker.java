@@ -72,41 +72,47 @@ public class QueryChecker {
                 if (resultProperty == null) {
                     resultsToBeRemoved.add(result);
                 } else {
-                    // TODO TODO TODO: does the resultListresultsToBeRemoved actually get 'refreshed' on every query? Otherwise i run the risk of queries taking results from previous runs of other queries
-                    switch (queryParameter.getKeyData().getValueType()) {
-                        case "String" -> {
-                            if (resultSatisfiesStringQueryParameter(queryParameter, resultProperty)) {
-                                //TODO TODO TODO: This now returns results WHICH DO satisfy the queryparam, but shouldn't it return results which DO NOT satisfy the query param?
-                                resultsToBeRemoved.remove(result);
-                            }
-                        }
-                        case "DateString" -> {
-                            if (resultSatisfiesDateStringQueryParameter(queryParameter, resultProperty)) {
-                                //TODO TODO TODO: This now returns results WHICH DO satisfy the queryparam, but shouldn't it return results which DO NOT satisfy the query param?
-                                resultsToBeRemoved.remove(result);
-                            }
-                        }
-                        case "WholeNumber", "DecimalNumber" -> {
-                            if (resultSatisfiesNumberQueryParameter(queryParameter, resultProperty)) {
-                                //TODO TODO TODO: This now returns results WHICH DO satisfy the queryparam, but shouldn't it return results which DO NOT satisfy the query param?
-                                resultsToBeRemoved.remove(result);
-                            }
-                        }
-                        case "Boolean" -> {
-                            if (resultSatisfiesBooleanQueryParameter(queryParameter, resultProperty)) {
-                                //TODO TODO TODO: This now returns results WHICH DO satisfy the queryparam, but shouldn't it return results which DO NOT satisfy the query param?
-                                resultsToBeRemoved.remove(result);
-                            }
-                        }
-                        case "List" -> {
-                            System.out.println("Tuesday");
-                            // regardless if the value is a string (which is mostly/always the case for now) or if the list contains numbers, dates etc.. I can always safely do a check IF the list contains this item
-                            // simply IF the queryparam has a sublist (e.g. ghost moments, which it should, otherwise throw error in QueryParam class check), use the sublist valuetype.. if not use this BUT this should already correctly be set!
+                    Boolean hasSubData = queryParameter.getKeySubData() != null;
+                    String valueType = hasSubData ? queryParameter.getKeySubData().getValueType() : queryParameter.getKeyData().getValueType();
 
+                    if (resultProperty.getClass().toString().equals("class java.util.ArrayList")) {
+                        ArrayList resultPropertyList = (ArrayList) resultProperty;
+                        if (resultPropertyList.size() == 0) {
+                            resultsToBeRemoved.add(result);
                         }
-                        case "Map" -> {
-                            System.out.println("Wednesday");
-                            // simply IF the queryparam has a sublist (which it should, otherwise throw error in QueryParam class check), use the sublist valuetype
+                    } else {
+
+                        switch (valueType) {
+                            case "String" -> {
+                                if (resultSatisfiesStringQueryParameter(queryParameter, resultProperty)) {
+                                    //TODO TODO TODO: This now returns results WHICH DO satisfy the queryparam, but shouldn't it return results which DO NOT satisfy the query param?
+                                    resultsToBeRemoved.remove(result);
+                                }
+                            }
+                            case "DateString" -> {
+                                if (resultSatisfiesDateStringQueryParameter(queryParameter, resultProperty)) {
+                                    //TODO TODO TODO: This now returns results WHICH DO satisfy the queryparam, but shouldn't it return results which DO NOT satisfy the query param?
+                                    resultsToBeRemoved.remove(result);
+                                }
+                            }
+                            case "WholeNumber", "DecimalNumber" -> {
+                                if (resultSatisfiesNumberQueryParameter(queryParameter, resultProperty)) {
+                                    //TODO TODO TODO: This now returns results WHICH DO satisfy the queryparam, but shouldn't it return results which DO NOT satisfy the query param?
+                                    resultsToBeRemoved.remove(result);
+                                }
+                            }
+                            case "Boolean" -> {
+                                if (resultSatisfiesBooleanQueryParameter(queryParameter, resultProperty)) {
+                                    //TODO TODO TODO: This now returns results WHICH DO satisfy the queryparam, but shouldn't it return results which DO NOT satisfy the query param?
+                                    resultsToBeRemoved.remove(result);
+                                }
+                            }
+                            case "List" -> {
+                                if (resultSatisfiesListQueryParameter(queryParameter, resultProperty)) {
+                                    //TODO TODO TODO: This now returns results WHICH DO satisfy the queryparam, but shouldn't it return results which DO NOT satisfy the query param?
+                                    resultsToBeRemoved.remove(result);
+                                }
+                            }
                         }
                     }
                 }
@@ -114,6 +120,28 @@ public class QueryChecker {
 
         });
         return resultsToBeRemoved;
+    }
+
+    private static boolean resultSatisfiesListQueryParameter(QueryParameter queryParameter, Object resultProperty) {
+        String operator = queryParameter.getOperator();
+        ArrayList<?> queryParamListValue = (ArrayList<?>) queryParameter.getValue();
+        ArrayList<?> resultListValue = (ArrayList<?>) resultProperty;
+
+        if (queryParamListValue.size() == 0) {
+            return true;
+        }
+
+        switch (operator) {
+            case "CONTAINS" -> {
+                return resultListValue.containsAll(queryParamListValue) ? true : false;
+            }
+            case "EXCLUDES" -> {
+                return resultListValue.stream().noneMatch((result) -> queryParamListValue.contains(result)) ? true : false;
+            }
+            default -> {
+                throw new RuntimeException("Unrecognized boolean queryparameter operator: " + operator);
+            }
+        }
     }
 
     private static boolean resultSatisfiesBooleanQueryParameter(QueryParameter queryParameter, Object resultProperty) {
@@ -136,7 +164,7 @@ public class QueryChecker {
 
     private static boolean resultSatisfiesNumberQueryParameter(QueryParameter queryParameter, Object resultProperty) {
         String operator = queryParameter.getOperator();
-        double queryParamNumericValue = (double) queryParameter.getValue();
+        double queryParamNumericValue = Double.parseDouble(queryParameter.getValue().toString());
         double numericKey = Double.parseDouble(resultProperty.toString());
 
         switch (operator) {

@@ -28,7 +28,7 @@ public class QueryService {
 //            this.projectsFakeDB.addQuerySet(newQuerySet, projectName); //TODO TODO TODO: Tijdelijk uitgecomment omdat ik niet duizend nieuwe records in db wil hebben
             return newQuerySet.getId();
         } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            throw new RuntimeException(e.getMessage()+""+e.getCause());
         }
     }
 
@@ -50,7 +50,7 @@ public class QueryService {
     }
     private void setQueryData(String projectName, QuerySet newQuerySet, String dateKeyName) {
         HashMap<String, HashMap> querySetResults = this.getResultsForQuerySet(projectName, newQuerySet);
-        newQuerySet.processQueries(querySetResults, dateKeyName);
+        newQuerySet.processQueriesResults(querySetResults, dateKeyName);
     }
     public Boolean updateQuery(String projectName, String queryId, HashMap<String, ?> query) {
         QuerySet updatedQuerySet;

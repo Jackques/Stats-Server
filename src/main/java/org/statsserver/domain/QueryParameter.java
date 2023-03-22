@@ -28,11 +28,6 @@ public class QueryParameter {
         this.subKey = (String) queryParameterMap.get("subKey");
         this.operator = (String) queryParameterMap.get("operator");
         this.value = (Object) queryParameterMap.get("value");
-        
-        // TODO TODO TODO:
-        // check if numbers, decimalnumbers, lists, boolean etc are NOT converted to strings when received! Otherwise everythingggg will be considered string!
-
-        // check if fromDate & toDate are valid string in Query class!
 
         this.projectName = projectName;
         if(!this.isKeyValid()){

@@ -16,8 +16,8 @@ import java.util.*;
 
 @RestController
 public class StatsController {
-    @Autowired private final ProjectService projectService; // todo todo todo: shouldn't this service be annotated thus automatically instantiated & provided?
-    private final QueryService queryService; // todo todo todo: shouldn't this service be annotated thus automatically instantiated & provided?
+    @Autowired private final ProjectService projectService; // todo: shouldn't this service be annotated thus automatically instantiated & provided?
+    private final QueryService queryService; // todo: shouldn't this service be annotated thus automatically instantiated & provided?
 
 
     public StatsController(ProjectService projectService, QueryService queryService) {
