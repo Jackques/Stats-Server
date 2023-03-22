@@ -16,6 +16,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.statsserver.services.NumberConverterFromString.getConvertedNumberFromString;
+import static org.statsserver.services.SPECIAL_CLASS_ONLY_FOR_FITNESS_STATS.setFitnessStatsKgFields;
 
 public class FileReader {
     public static LinkedHashMap<Integer, HashMap<String, Object>> readFile(FileInDirectory fileInDirectory, KeyDataList dataTypesList){
@@ -114,6 +115,7 @@ public class FileReader {
                     data.put(headerName, record.get(headerName));
                     dataTypesList.addKeyAndDataType(headerName, getConvertedNumberFromString(record.get(headerName)));
                 }
+                setFitnessStatsKgFields(data);
                 results.put(no, data);
                 no++;
             }
