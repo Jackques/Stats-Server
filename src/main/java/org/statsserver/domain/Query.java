@@ -140,9 +140,6 @@ public class Query {
                 }
                 case "queryParameters" -> {
                     ArrayList<HashMap<String, Object>> queryParametersValues = (ArrayList<HashMap<String, Object>>) value;
-                    if (queryParametersValues.size() == 0) {
-                        throw new RuntimeException("No values found in queryParametersValues");
-                    }
                     queryParametersValues.forEach(queryParameterValue -> this.queryParameters.add(new QueryParameter(queryParameterValue, projectName)));
                 }
                 default -> throw new RuntimeException("Key: '" + key + "' provided inside queryContent is invalid");
