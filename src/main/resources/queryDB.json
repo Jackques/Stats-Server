@@ -19,9 +19,7 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
-      "fromProfiles": [
-        "Jack-original", "Jack-updated"
-      ],
+      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
       "labelForThisQuery" : "firstQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -56,9 +54,7 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
-      "fromProfiles": [
-        "Jack-original", "Jack-updated"
-      ],
+      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
       "labelForThisQuery" : "secondQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -116,9 +112,7 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
-      "fromProfiles": [
-        "Jack-original", "Jack-updated"
-      ],
+      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
       "labelForThisQuery" : "firstQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -148,9 +142,7 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
-      "fromProfiles": [
-        "Jack-original", "Jack-updated"
-      ],
+      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
       "labelForThisQuery" : "secondQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -200,9 +192,7 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
-      "fromProfiles": [
-        "Jack-original", "Jack-updated"
-      ],
+      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
       "labelForThisQuery" : "myQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -232,9 +222,7 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
-      "fromProfiles": [
-        "Jack-original", "Jack-updated"
-      ],
+      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
       "labelForThisQuery" : "myQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -284,9 +272,7 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
-      "fromProfiles": [
-        "Jack-original", "Jack-updated"
-      ],
+      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
       "labelForThisQuery" : "myQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -316,9 +302,7 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
-      "fromProfiles": [
-        "Jack-original", "Jack-updated"
-      ],
+      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
       "labelForThisQuery" : "myQuery1",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -368,9 +352,7 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
-      "fromProfiles": [
-        "Jack-original", "Jack-updated"
-      ],
+      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
       "labelForThisQuery" : "firstQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -400,9 +382,7 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
-      "fromProfiles": [
-        "Jack-original", "Jack-updated"
-      ],
+      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
       "labelForThisQuery" : "secondQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -434,55 +414,43 @@
       } ]
     } ]
   }, {
-    "id" : "1db72371-88bf-4aaf-92ea-326560bcefb7",
+    "id" : "2e1e310f-f510-4e35-83b7-f8cbc2b5f9b1",
     "name" : "My eight query i posted",
     "description" : "My eight query just for testing",
     "projectName" : "T-Helper",
-    "querySetResults" : null,
+    "querySetResults" : {
+      "totalResults" : 4,
+      "amountOfQueries" : 2,
+      "queryResults" : [ {
+        "id" : "98c60c69-183c-4f3b-a644-647aa9f3db55",
+        "labelForThisQuery" : "myQuery",
+        "totalResults" : 4
+      }, {
+        "id" : "d0946a8a-1df1-424a-b612-1479a838ca1b",
+        "labelForThisQuery" : "myQuery1",
+        "totalResults" : 0
+      } ]
+    },
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-original","Jack-updated" ],
+      "affectedProfileNames" : [ "Jack-original", "Jack-updated" ],
       "graphType" : "COLUMN_CHART"
     },
     "queries" : [ {
-      "amountValue" : "ALL",
-      "fromDate" : "2021-01-27T14:26:11.339Z",
+      "amountValue" : "LAST_150",
+      "fromDate" : "2023-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
-      "fromProfiles": [
-        "Jack-original", "Jack-updated"
-      ],
+      "fromProfiles" : [ "Jack-original" ],
       "labelForThisQuery" : "myQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
-      "queryParameters" : [ {
-        "key" : "Age",
-        "subKey" : null,
-        "operator" : "EQUALS",
-        "value" : 30.0
-      }, {
-        "key" : "Interests",
-        "subKey" : null,
-        "operator" : "CONTAINS",
-        "value" : [ "Reizen" ]
-      }, {
-        "key" : "How-many-ghosts",
-        "subKey" : "number",
-        "operator" : "LESS_THAN_OR_EQUAL_TO",
-        "value" : 1
-      }, {
-        "key" : "System-no",
-        "subKey" : "tempId",
-        "operator" : "EQUALS",
-        "value" : "hi"
-      } ]
+      "queryParameters" : [ ]
     }, {
       "amountValue" : "ALL",
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
-      "fromProfiles": [
-        "Jack-original", "Jack-updated"
-      ],
+      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
       "labelForThisQuery" : "myQuery1",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -535,9 +503,7 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
-      "fromProfiles": [
-        "Jack-fitnes"
-      ],
+      "fromProfiles" : [ "Jack-fitnes" ],
       "labelForThisQuery" : "prachtige label",
       "visibilityQuery" : true,
       "returnFields" : [ "Gewicht in kg", "Spiermassa in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)", "Lichaamsvocht in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Vetpercentage in %" ],
@@ -557,9 +523,7 @@
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2021-04-09T14:26:11.339Z",
       "colorQuery" : "#ff8833",
-      "fromProfiles": [
-        "Jack-fitnes"
-      ],
+      "fromProfiles" : [ "Jack-fitnes" ],
       "labelForThisQuery" : "prachtige andere label",
       "visibilityQuery" : true,
       "returnFields" : [ "Gewicht in kg", "Spiermassa in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)", "Lichaamsvocht in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Vetpercentage in %" ],

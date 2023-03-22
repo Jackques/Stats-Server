@@ -32,6 +32,7 @@ public class QuerySet {
         });
 
         this.queryMetaData = this.generateQueryMetaData(usedProfiles, graphType);
+        this.querySetResults = new QuerySetResults(0, 0, new ArrayList<>());
     }
 
     @SuppressWarnings("unchecked")
@@ -83,6 +84,8 @@ public class QuerySet {
 
             resultList.removeAll(QueryChecker.getQueryParametersResultsToBeRemoved(query, resultList));
 
+            QueryResult queryResult = new QueryResult(UUID.randomUUID().toString(), query.getLabelForThisQuery(), resultList.size(), resultList);
+            this.getQuerySetResults().addQueryResult(queryResult);
         });
         //todo todo todo: don't forget to set the correct amounts on query and querySetResult after filtering these results and setting to to querySetResults
         //todo: in query options;

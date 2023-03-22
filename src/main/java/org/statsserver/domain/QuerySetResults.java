@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 public class QuerySetResults {
-    private int totalResults = 123456789;
-    private int amountOfQueries = 1132579486;
+    private int totalResults;
+    private int amountOfQueries;
     private ArrayList<QueryResult> queryResults = new ArrayList<>();
     public boolean isValidIds(ArrayList<String> queryIds) {
         return queryIds
@@ -29,5 +29,12 @@ public class QuerySetResults {
         return this.queryResults.stream()
                 .filter((queryResult)-> queryIds.contains(queryResult.getId()))
                 .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public void addQueryResult(QueryResult queryResult){
+        this.setTotalResults(this.getTotalResults() + queryResult.getTotalResults());
+        this.setAmountOfQueries(this.getAmountOfQueries() + 1);
+
+        this.queryResults.add(queryResult);
     }
 }
