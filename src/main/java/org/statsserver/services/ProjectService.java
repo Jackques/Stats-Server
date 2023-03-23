@@ -40,11 +40,11 @@ public class ProjectService {
         );
         this.loadedProjects.addProject(
                 new ProjectSetting(
-                        "Fitness-stats",
+                        "Fitness-stats", //todo: when changing the name, don't forget to also change the same name in FileReader accordingly!
                         new ArrayList<Profile>() {
                             {
 //                                add(new Profile("Jack-fitnes", "D:\\Projects\\Prive\\Stats-Server\\examples\\fitness-stats"));
-                                add(new Profile("Jack-fitnes", "F:\\Dropbox\\Sport\\Fitnis\\Fitnisstats"));
+                                add(new Profile("Jack-fitnes", "F:\\Dropbox\\Sport\\Fitnis\\Fitnisstats")); //todo: when changing the name, don't forget to also change the same name in FileReader accordingly!
                             }
                         },
                         "No",

@@ -115,7 +115,9 @@ public class FileReader {
                     data.put(headerName, record.get(headerName));
                     dataTypesList.addKeyAndDataType(headerName, getConvertedNumberFromString(record.get(headerName)));
                 }
-                setFitnessStatsKgFields(data);
+                if(csv.getName().contains("Fitnis-stats")){
+                    setFitnessStatsKgFields(data);
+                }
                 results.put(no, data);
                 no++;
             }

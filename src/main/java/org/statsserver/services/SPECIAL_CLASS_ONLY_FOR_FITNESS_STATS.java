@@ -24,14 +24,14 @@ public class SPECIAL_CLASS_ONLY_FOR_FITNESS_STATS {
                 String spierMassaInKg = getDoubleValueOfKgByFormula(spierMassaPercentage, gewichtInKg, currentSpierMassaInKg);
                 String lichaamsVochtInKg = getDoubleValueOfKgByFormula(lichaamsVochtPercentage, gewichtInKg, currentLichaamsVochtInKg);
                 String botMassaInKg = getDoubleValueOfKgByFormula(botMassaPercentage, gewichtInKg, currentBotMassaInKg);
-                System.out.println("=============================");
+//                System.out.println("=============================");
                 data.put("Spiermassa in KG", (spierMassaInKg != null ? spierMassaInKg : ""));
-                System.out.println("Spiermasssa KG: "+spierMassaInKg+ " van spierpercentage: "+spierMassaPercentage+" van original: "+data.get("Spiermassa in PERCENTAGE (nu met kommagetal!)"));
+//                System.out.println("Spiermasssa KG: "+spierMassaInKg+ " van spierpercentage: "+spierMassaPercentage+" van original: "+data.get("Spiermassa in PERCENTAGE (nu met kommagetal!)"));
                 data.put("Lichaamsvocht in KG", (lichaamsVochtInKg != null ? lichaamsVochtInKg : ""));
-                System.out.println("Lichaamsvocht in KG: "+lichaamsVochtInKg+" van lichaamsvochtpercentage: "+lichaamsVochtPercentage+" van original: "+data.get("Lichaamsvocht in PERCENTAGE (nu met kommagetal)"));
+//                System.out.println("Lichaamsvocht in KG: "+lichaamsVochtInKg+" van lichaamsvochtpercentage: "+lichaamsVochtPercentage+" van original: "+data.get("Lichaamsvocht in PERCENTAGE (nu met kommagetal)"));
                 data.put("Botmassa in KG", (botMassaInKg != null ? botMassaInKg : ""));
-                System.out.println("Botmassa in KG: "+botMassaInKg+" van botmassa percentage: "+botMassaPercentage+" van original: "+data.get("Botmassa in PERCENTAGE (nu met kommagetal)"));
-                System.out.println("=============================");
+//                System.out.println("Botmassa in KG: "+botMassaInKg+" van botmassa percentage: "+botMassaPercentage+" van original: "+data.get("Botmassa in PERCENTAGE (nu met kommagetal)"));
+//                System.out.println("=============================");
             }
         }
         return data;
