@@ -75,22 +75,19 @@ public class QuerySet {
         this.queries.forEach((query)->{
             ArrayList<HashMap> resultList = new ArrayList<>();
             resultList.addAll(QueryChecker.getProfileResults(query, querySetResults));
-            resultList.removeAll(QueryChecker.getAmountResultsToBeRemoved(query, resultList));
-            resultList.removeAll(QueryChecker.getFromOrToDateResultsToBeRemoved(query, resultList, dateKeyName, true));
-            resultList.removeAll(QueryChecker.getFromOrToDateResultsToBeRemoved(query, resultList, dateKeyName, false));
+
+            resultList = QueryChecker.getFromOrToDateResults(query, resultList, dateKeyName, true);
+            resultList = QueryChecker.getFromOrToDateResults(query, resultList, dateKeyName, false);
 
             System.out.println("So,.. what is the result we end up with so far with checking the amount, from & to-date & profiles?");
             System.out.println(resultList.size());
 
-            resultList.removeAll(QueryChecker.getQueryParametersResultsToBeRemoved(query, resultList));
+            resultList = QueryChecker.getQueryParametersResults(query, resultList);
+
+            resultList = QueryChecker.getAmountResults(query, resultList);
 
             QueryResult queryResult = new QueryResult(UUID.randomUUID().toString(), query.getLabelForThisQuery(), resultList.size(), resultList);
             this.getQuerySetResults().addQueryResult(queryResult);
         });
-        //todo todo todo: don't forget to set the correct amounts on query and querySetResult after filtering these results and setting to to querySetResults
-        //todo: in query options;
-        // fixed amount (e.g; 100; return 100 results WHICH satisfy the above params)
-        // last x amount; (e.g; LAST_50; return the last 50 results REGARDLESS wether they satisfy the above parameters)
-        // ALL; simply returns all REGARDLESS wether they satisfy the above parameters)
     }
 }

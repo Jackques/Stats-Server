@@ -16,45 +16,56 @@ public class QueryChecker {
         return resultList;
     }
 
-    public static ArrayList<HashMap> getAmountResultsToBeRemoved(Query query, ArrayList<HashMap> resultList) {
-        // needs to return the resultList of objects which need to be removed
+    public static ArrayList<HashMap> getAmountResults(Query query, ArrayList<HashMap> resultList) {
+        if (query.getSetAmountIsAll()) {
+            return resultList;
+        }
+
+        // get the last xxx results, starting with the last profile
         if (query.getSetAmountHasLast()) {
             if (query.getFromProfiles().size() > 1) {
                 throw new RuntimeException("Amount option 'LAST_xxx' cannot be set if multiple profiles are active");
             }
             int amount = query.getSetAmountValue();
-            return new ArrayList<>(resultList.subList(0, (resultList.size() - amount)));
+
+            if (resultList.size() > amount) {
+                int difference = resultList.size() - amount;
+                return new ArrayList<>(resultList.subList(difference, resultList.size()));
+            }
+            return resultList;
         }
-        if (query.getSetAmountIsAll()) {
-            return new ArrayList<>();
+
+        // get the first xxx results, starting with the first profile
+        if(resultList.size() > query.getSetAmountValue()){
+            return new ArrayList<>(resultList.subList(0, query.getSetAmountValue()));
         }
-        int resultAmount = resultList.size() - query.getSetAmountValue();
-        return new ArrayList<>(resultList.subList(0, resultAmount));
+        return resultList;
     }
 
-    public static ArrayList<HashMap> getFromOrToDateResultsToBeRemoved(Query query, ArrayList<HashMap> resultList, String dateKeyName, Boolean useBefore) {
+    public static ArrayList<HashMap> getFromOrToDateResults(Query query, ArrayList<HashMap> resultList, String dateKeyName, Boolean useBefore) {
         if (useBefore) {
             if (query.getSetFromDateIsAll()) {
-                return new ArrayList<>();
+                return resultList;
             }
         } else {
             if (query.isToDateIsAll()) {
-                return new ArrayList<>();
+                return resultList;
             }
         }
 
         ArrayList<HashMap> results = new ArrayList<>();
         resultList.forEach((result) -> {
             String dateKeyField = (String) result.get(dateKeyName);
-            if (dateKeyField == null) {
-                results.add(result); // results which are null do NOT SATISFY the request thus are not returned
-            } else {
+
+            // results which are null do NOT SATISFY the request thus are not returned
+            if (dateKeyField != null) {
+
                 if (useBefore) {
-                    if (!DateChecker.isDateOneBeforeDateTwo(query.getFromDate(), dateKeyField)) {
+                    if (DateChecker.isDateOneBeforeDateTwo(query.getFromDate(), dateKeyField)) {
                         results.add(result);
                     }
                 } else {
-                    if (!DateChecker.isDateOneAfterDateTwo(query.getToDateValue(), dateKeyField)) {
+                    if (DateChecker.isDateOneAfterDateTwo(query.getToDateValue(), dateKeyField)) {
                         results.add(result);
                     }
                 }
@@ -63,63 +74,56 @@ public class QueryChecker {
         return results;
     }
 
-    public static ArrayList<HashMap> getQueryParametersResultsToBeRemoved(Query query, ArrayList<HashMap> resultList) {
-        ArrayList<HashMap> resultsToBeRemoved = new ArrayList<>();
-        resultList.forEach((result) -> {
+    public static ArrayList<HashMap> getQueryParametersResults(Query query, ArrayList<HashMap> resultList) {
+        if(query.getQueryParameters().size() == 0){
+            return resultList;
+        }
 
+        ArrayList<HashMap> resultsToBeReturned = new ArrayList<>();
+        resultList.forEach((result) -> {
             query.getQueryParameters().forEach((queryParameter) -> {
                 Object resultProperty = result.get(queryParameter.getKey());
-                if (resultProperty == null) {
-                    resultsToBeRemoved.add(result);
-                } else {
                     Boolean hasSubData = queryParameter.getKeySubData() != null;
                     String valueType = hasSubData ? queryParameter.getKeySubData().getValueType() : queryParameter.getKeyData().getValueType();
 
                     if (resultProperty.getClass().toString().equals("class java.util.ArrayList")) {
-                        ArrayList resultPropertyList = (ArrayList) resultProperty;
-                        if (resultPropertyList.size() == 0) {
-                            resultsToBeRemoved.add(result);
-                        }
+                        // if result is an empty array (e.g. ghosts list),
+                        // skip this result
                     } else {
 
                         switch (valueType) {
                             case "String" -> {
                                 if (resultSatisfiesStringQueryParameter(queryParameter, resultProperty)) {
-                                    //TODO TODO TODO: This now returns results WHICH DO satisfy the queryparam, but shouldn't it return results which DO NOT satisfy the query param?
-                                    resultsToBeRemoved.remove(result);
+                                    resultsToBeReturned.add(result);
                                 }
                             }
                             case "DateString" -> {
                                 if (resultSatisfiesDateStringQueryParameter(queryParameter, resultProperty)) {
-                                    //TODO TODO TODO: This now returns results WHICH DO satisfy the queryparam, but shouldn't it return results which DO NOT satisfy the query param?
-                                    resultsToBeRemoved.remove(result);
+                                    resultsToBeReturned.add(result);
                                 }
                             }
                             case "WholeNumber", "DecimalNumber" -> {
                                 if (resultSatisfiesNumberQueryParameter(queryParameter, resultProperty)) {
-                                    //TODO TODO TODO: This now returns results WHICH DO satisfy the queryparam, but shouldn't it return results which DO NOT satisfy the query param?
-                                    resultsToBeRemoved.remove(result);
+                                    resultsToBeReturned.add(result);
                                 }
                             }
                             case "Boolean" -> {
                                 if (resultSatisfiesBooleanQueryParameter(queryParameter, resultProperty)) {
-                                    //TODO TODO TODO: This now returns results WHICH DO satisfy the queryparam, but shouldn't it return results which DO NOT satisfy the query param?
-                                    resultsToBeRemoved.remove(result);
+                                    resultsToBeReturned.add(result);
                                 }
                             }
                             case "List" -> {
                                 if (resultSatisfiesListQueryParameter(queryParameter, resultProperty)) {
-                                    //TODO TODO TODO: This now returns results WHICH DO satisfy the queryparam, but shouldn't it return results which DO NOT satisfy the query param?
-                                    resultsToBeRemoved.remove(result);
+                                    resultsToBeReturned.add(result);
                                 }
                             }
                         }
                     }
-                }
+
             });
 
         });
-        return resultsToBeRemoved;
+        return resultsToBeReturned;
     }
 
     private static boolean resultSatisfiesListQueryParameter(QueryParameter queryParameter, Object resultProperty) {
