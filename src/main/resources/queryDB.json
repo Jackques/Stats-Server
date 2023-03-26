@@ -414,31 +414,59 @@
       } ]
     } ]
   }, {
-    "id" : "2e1e310f-f510-4e35-83b7-f8cbc2b5f9b1",
+    "id" : "60104377-9f0a-499b-a389-859da21c21b7",
     "name" : "My eight query i posted",
     "description" : "My eight query just for testing",
     "projectName" : "T-Helper",
     "querySetResults" : {
-      "totalResults" : 4,
-      "amountOfQueries" : 2,
+      "totalResults" : 561,
+      "amountOfQueries" : 4,
       "queryResults" : [ {
-        "id" : "98c60c69-183c-4f3b-a644-647aa9f3db55",
-        "labelForThisQuery" : "myQuery",
-        "totalResults" : 4
+        "id" : "492691a0-69f9-4b43-91a6-edad73fa12d1",
+        "labelForThisQuery" : "myRealQuery",
+        "totalResults" : 50
       }, {
-        "id" : "d0946a8a-1df1-424a-b612-1479a838ca1b",
+        "id" : "be262d42-ca53-4b3b-9581-3239810082a8",
+        "labelForThisQuery" : "myReal2ndQuery",
+        "totalResults" : 510
+      }, {
+        "id" : "aa4fe420-a02c-4fec-9844-629ec9125945",
+        "labelForThisQuery" : "myQuery",
+        "totalResults" : 1
+      }, {
+        "id" : "5525b5f5-7660-4975-8bed-e4eed9eaf90e",
         "labelForThisQuery" : "myQuery1",
         "totalResults" : 0
       } ]
     },
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-original", "Jack-updated" ],
+      "affectedProfileNames" : [ "Jack-original" ],
       "graphType" : "COLUMN_CHART"
     },
     "queries" : [ {
-      "amountValue" : "LAST_150",
+      "amountValue" : "LAST_50",
+      "fromDate" : "2021-01-01T14:26:11.339Z",
+      "toDate" : "2023-03-19T01:20:54.117Z",
+      "colorQuery" : "#00ff00",
+      "fromProfiles" : [ "Jack-original" ],
+      "labelForThisQuery" : "myRealQuery",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Age", "Name" ],
+      "queryParameters" : [ ]
+    }, {
+      "amountValue" : "ALL",
+      "fromDate" : "2020-01-01T14:26:11.339Z",
+      "toDate" : "2023-03-19T01:20:54.117Z",
+      "colorQuery" : "#00ff00",
+      "fromProfiles" : [ "Jack-original" ],
+      "labelForThisQuery" : "myReal2ndQuery",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Age", "Name" ],
+      "queryParameters" : [ ]
+    }, {
+      "amountValue" : "100",
       "fromDate" : "2023-01-27T14:26:11.339Z",
-      "toDate" : "ALL",
+      "toDate" : "2023-03-19T01:20:54.117Z",
       "colorQuery" : "#ff3333",
       "fromProfiles" : [ "Jack-original" ],
       "labelForThisQuery" : "myQuery",
@@ -447,23 +475,18 @@
       "queryParameters" : [ ]
     }, {
       "amountValue" : "ALL",
-      "fromDate" : "2021-01-27T14:26:11.339Z",
-      "toDate" : "2022-02-03T14:26:11.339Z",
+      "fromDate" : "2021-01-01T14:26:11.339Z",
+      "toDate" : "2022-06-01T14:26:11.339Z",
       "colorQuery" : "#ff3311",
-      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
+      "fromProfiles" : [ "Jack-original" ],
       "labelForThisQuery" : "myQuery1",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
       "queryParameters" : [ {
         "key" : "Age",
         "subKey" : null,
-        "operator" : "EQUALS",
-        "value" : 30.0
-      }, {
-        "key" : "Age",
-        "subKey" : null,
         "operator" : "GREATER_THAN_OR_EQUAL_TO",
-        "value" : 35.0
+        "value" : 20.0
       }, {
         "key" : "Interests",
         "subKey" : null,
@@ -472,13 +495,8 @@
       }, {
         "key" : "How-many-ghosts",
         "subKey" : "number",
-        "operator" : "LESS_THAN_OR_EQUAL_TO",
-        "value" : 1
-      }, {
-        "key" : "System-no",
-        "subKey" : "tempId",
-        "operator" : "EQUALS",
-        "value" : "hi"
+        "operator" : "GREATER_THAN_OR_EQUAL_TO",
+        "value" : 0
       } ]
     } ]
   } ]

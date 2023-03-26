@@ -146,7 +146,7 @@ public class StatsController {
 
     }
     @GetMapping(path = "api/v1/getQuery/{projectName}/{querySetId}/detailResults")
-    public ResponseEntity<ArrayList<QueryResult>> getQueryDetailResults(@PathVariable String projectName, @PathVariable String querySetId, @RequestBody ArrayList<String> queryIds){
+    public ResponseEntity<ArrayList<HashMap<String, Object>>> getQueryDetailResults(@PathVariable String projectName, @PathVariable String querySetId, @RequestBody ArrayList<String> queryIds){
         System.out.println("GET MAPPING AANGESPROKEN getQuery, projectName is: " + projectName + "queryId is: " + querySetId);
 
         if(!this.projectService.getProjectNameExist(projectName)){
@@ -155,7 +155,7 @@ public class StatsController {
         if(queryIds.isEmpty()){
             return ResponseEntity.badRequest().body(null);
         }
-        ArrayList<QueryResult> result = this.queryService.getQueryDetailResults(querySetId, projectName, queryIds);
+        ArrayList<HashMap<String, Object>> result = this.queryService.getQueryDetailResults(querySetId, projectName, queryIds);
 
         return ResponseEntity
                 .ok()
