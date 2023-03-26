@@ -2,14 +2,12 @@ package org.statsserver.util;
 
 import org.springframework.stereotype.Service;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
-import java.util.Date;
 
 @Service
 public class DateChecker {
@@ -20,7 +18,8 @@ public class DateChecker {
             dateFormat.setLenient(true);
             dateFormat.parse(inDate);
             return true;
-        } catch(Exception e){ }
+        } catch (Exception e) {
+        }
 
         try {
             TemporalAccessor ta = DateTimeFormatter.ISO_INSTANT.parse(inDate);
@@ -31,17 +30,40 @@ public class DateChecker {
             return false;
         }
     }
-    public static boolean isDateOneBeforeDateTwo(String dateOne, String dateTwo){
-        if(!DateChecker.isValidDate(dateOne) || !DateChecker.isValidDate(dateTwo)){
+
+    public static boolean isDateOneBeforeDateTwo(String dateOne, String dateTwo) {
+        if (!DateChecker.isValidDate(dateOne) || !DateChecker.isValidDate(dateTwo)) {
             throw new RuntimeException("Provided date is invalid date");
         }
+        dateOne = convertDate(dateOne);
+        dateTwo = convertDate(dateTwo);
         return ZonedDateTime.parse(dateOne).isBefore(ZonedDateTime.parse(dateTwo));
     }
 
-    public static boolean isDateOneAfterDateTwo(String dateOne, String dateTwo){
-        if(!DateChecker.isValidDate(dateOne) || !DateChecker.isValidDate(dateTwo)){
+    public static boolean isDateOneAfterDateTwo(String dateOne, String dateTwo) {
+        if (!DateChecker.isValidDate(dateOne) || !DateChecker.isValidDate(dateTwo)) {
             throw new RuntimeException("Provided date is invalid date");
         }
+        dateOne = convertDate(dateOne);
+        dateTwo = convertDate(dateTwo);
         return ZonedDateTime.parse(dateOne).isAfter(ZonedDateTime.parse(dateTwo));
+    }
+
+    private static String convertDate(String dateInUnknownFormat) {
+        try {
+            ZonedDateTime zonedDate = ZonedDateTime.parse(dateInUnknownFormat);
+            return zonedDate.toString();
+        } catch (Exception e) {
+        }
+
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            simpleDateFormat.setLenient(true);
+            Instant instant = simpleDateFormat.parse(dateInUnknownFormat).toInstant();
+            return ZonedDateTime.ofInstant(instant, ZoneId.systemDefault()).toString();
+        } catch (Exception e) {
+        }
+
+        return dateInUnknownFormat;
     }
 }

@@ -502,7 +502,8 @@
   } ]
 }, {
   "projectName" : "Fitness-stats",
-  "querySets" : [ {
+  "querySets" : [
+    {
     "id" : "957c43f2-fa2e-42f9-bf75-6e3d5bb6960a",
     "name" : "Verloop fitnesresultaten 100 dagen",
     "description" : "Het verloop van de fitnesresultaten van de afgelopen 100 dagen",
@@ -555,6 +556,59 @@
         "subKey" : null,
         "operator" : "CONTAINS",
         "value" : "Better Bodies apparaat"
+      } ]
+    } ]
+  }, {
+    "id" : "7d0ffa08-9c41-4304-bbca-6b57cda7faf9",
+    "name" : "My first fitness query",
+    "description" : "Like the title said; this is my first fitness query",
+    "projectName" : "Fitness-stats",
+    "querySetResults" : {
+      "totalResults" : 134,
+      "amountOfQueries" : 2,
+      "queryResults" : [ {
+        "id" : "06744d3d-1e4f-4943-9cfb-5285e3c92b76",
+        "labelForThisQuery" : "Results from Better Bodies",
+        "totalResults" : 39
+      }, {
+        "id" : "9efcebd4-ba5a-4c16-acf6-2f5163f6fecb",
+        "labelForThisQuery" : "Results from Basicfit",
+        "totalResults" : 95
+      } ]
+    },
+    "queryMetaData" : {
+      "affectedProfileNames" : [ "Jack-fitnes" ],
+      "graphType" : "LINE_GRAPH"
+    },
+    "queries" : [ {
+      "amountValue" : "LAST_100",
+      "fromDate" : "2020-01-27T14:26:11.339Z",
+      "toDate" : "2023-03-19T01:20:54.117Z",
+      "colorQuery" : "#000080",
+      "fromProfiles" : [ "Jack-fitnes" ],
+      "labelForThisQuery" : "Results from Better Bodies",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Gewicht in kg", "Datum" ],
+      "queryParameters" : [ {
+        "key" : "Meting door:",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : "Better Bodies apparaat"
+      } ]
+    }, {
+      "amountValue" : "LAST_100",
+      "fromDate" : "2021-01-01T14:26:11.339Z",
+      "toDate" : "ALL",
+      "colorQuery" : "#7CFC00",
+      "fromProfiles" : [ "Jack-fitnes" ],
+      "labelForThisQuery" : "Results from Basicfit",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Gewicht in kg", "Datum" ],
+      "queryParameters" : [ {
+        "key" : "Meting door:",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : "BasicFit apparaat"
       } ]
     } ]
   } ]
