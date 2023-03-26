@@ -24,7 +24,7 @@ public class QueryService {
             QuerySet newQuerySet = new QuerySet((String) query.get("name"), (String) query.get("description"), projectName, (String) query.get("graphType"), fromProfiles, (List<HashMap<String, Object>>) query.get("queryList"));
 
             this.setQueryData(projectName, newQuerySet, this.getProjectDateKeyName(projectName));
-            this.projectsFakeDB.addQuerySet(newQuerySet, projectName); //TODO TODO TODO: Tijdelijk uitgecomment omdat ik niet duizend nieuwe records in db wil hebben, UPDATE: nu even weer aangezet
+            this.projectsFakeDB.addQuerySet(newQuerySet, projectName);
             return newQuerySet.getId();
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage()+""+e.getCause());
