@@ -26,14 +26,12 @@ public class QuerySetResults {
                 );
     };
 
-    public ArrayList<HashMap<String, Object>> getQueryResultsByQueryIds(ArrayList<String> queryIds) {
+    public ArrayList<QueryResultDetail> getQueryResultsByQueryIds(ArrayList<String> queryIds) {
         return this.queryResults.stream()
                 .filter((queryResult)-> queryIds.contains(queryResult.getId()))
                 .map((queryResult)->{
-                    HashMap<String, Object> resultMap = new HashMap<>();
-                    resultMap.put("queryResultId", queryResult.getId());
-                    resultMap.put("queryResultsList", queryResult.getQueryResults());
-                    return resultMap; //todo: there is probably a better way to do this
+                    QueryResultDetail queryResultDetail = new QueryResultDetail(queryResult.getId(), queryResult.readQueryResultsFromFakeDB());
+                    return queryResultDetail;
                 })
                 .collect(Collectors.toCollection(ArrayList::new));
     }

@@ -1,10 +1,12 @@
-package org.statsserver.domain;
+package org.statsserver.services;
 
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.statsserver.domain.ProjectDBDomain;
+import org.statsserver.domain.QuerySet;
 import org.statsserver.services.ProjectService;
 
 import javax.validation.ConstraintViolation;

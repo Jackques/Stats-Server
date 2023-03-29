@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.statsserver.domain.QueryResult;
+import org.statsserver.domain.QueryResultDetail;
 import org.statsserver.domain.QuerySet;
 import org.statsserver.services.KeyDataListStatic;
 import org.statsserver.services.ProjectService;
@@ -146,7 +147,7 @@ public class StatsController {
 
     }
     @GetMapping(path = "api/v1/getQuery/{projectName}/{querySetId}/detailResults")
-    public ResponseEntity<ArrayList<HashMap<String, Object>>> getQueryDetailResults(@PathVariable String projectName, @PathVariable String querySetId, @RequestBody ArrayList<String> queryIds){
+    public ResponseEntity<ArrayList<QueryResultDetail>> getQueryDetailResults(@PathVariable String projectName, @PathVariable String querySetId, @RequestBody ArrayList<String> queryIds){
         System.out.println("GET MAPPING AANGESPROKEN getQuery, projectName is: " + projectName + "queryId is: " + querySetId);
 
         if(!this.projectService.getProjectNameExist(projectName)){
@@ -155,7 +156,7 @@ public class StatsController {
         if(queryIds.isEmpty()){
             return ResponseEntity.badRequest().body(null);
         }
-        ArrayList<HashMap<String, Object>> result = this.queryService.getQueryDetailResults(querySetId, projectName, queryIds);
+        ArrayList<QueryResultDetail> result = this.queryService.getQueryDetailResults(querySetId, projectName, queryIds);
 
         return ResponseEntity
                 .ok()

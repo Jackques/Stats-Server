@@ -86,7 +86,7 @@ public class QuerySet {
 
             resultList = QueryChecker.getAmountResults(query, resultList);
 
-            QueryResult queryResult = new QueryResult(UUID.randomUUID().toString(), query.getLabelForThisQuery(), resultList.size(), resultList);
+            QueryResult queryResult = new QueryResult(UUID.randomUUID().toString(), query.getLabelForThisQuery(), resultList);
             this.getQuerySetResults().addQueryResult(queryResult);
         });
     }

@@ -502,8 +502,7 @@
   } ]
 }, {
   "projectName" : "Fitness-stats",
-  "querySets" : [
-    {
+  "querySets" : [ {
     "id" : "957c43f2-fa2e-42f9-bf75-6e3d5bb6960a",
     "name" : "Verloop fitnesresultaten 100 dagen",
     "description" : "Het verloop van de fitnesresultaten van de afgelopen 100 dagen",
@@ -537,29 +536,9 @@
         "operator" : "CONTAINS",
         "value" : "Better Bodies apparaat"
       } ]
-    }, {
-      "amountValue" : "100",
-      "fromDate" : "2021-01-27T14:26:11.339Z",
-      "toDate" : "2021-04-09T14:26:11.339Z",
-      "colorQuery" : "#ff8833",
-      "fromProfiles" : [ "Jack-fitnes" ],
-      "labelForThisQuery" : "prachtige andere label",
-      "visibilityQuery" : true,
-      "returnFields" : [ "Gewicht in kg", "Spiermassa in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)", "Lichaamsvocht in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Vetpercentage in %" ],
-      "queryParameters" : [ {
-        "key" : "Gewicht in kg",
-        "subKey" : null,
-        "operator" : "GREATER_THAN_OR_EQUAL_TO",
-        "value" : 10.0
-      }, {
-        "key" : "Meting door:",
-        "subKey" : null,
-        "operator" : "CONTAINS",
-        "value" : "Better Bodies apparaat"
-      } ]
     } ]
   }, {
-    "id" : "7d0ffa08-9c41-4304-bbca-6b57cda7faf9",
+    "id" : "99953fcd-7b7b-41ad-98ec-ac0b650ef58f",
     "name" : "My first fitness query",
     "description" : "Like the title said; this is my first fitness query",
     "projectName" : "Fitness-stats",
@@ -567,11 +546,11 @@
       "totalResults" : 134,
       "amountOfQueries" : 2,
       "queryResults" : [ {
-        "id" : "06744d3d-1e4f-4943-9cfb-5285e3c92b76",
+        "id" : "cb7c4612-4314-4118-8a56-6ec442b037b7",
         "labelForThisQuery" : "Results from Better Bodies",
         "totalResults" : 39
       }, {
-        "id" : "9efcebd4-ba5a-4c16-acf6-2f5163f6fecb",
+        "id" : "e26956a6-e714-4a3d-b3ad-59cf4e44ae19",
         "labelForThisQuery" : "Results from Basicfit",
         "totalResults" : 95
       } ]

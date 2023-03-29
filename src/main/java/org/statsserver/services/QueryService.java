@@ -80,7 +80,7 @@ public class QueryService {
         return fromProfilesValue;
     }
 
-    public ArrayList<HashMap<String, Object>> getQueryDetailResults(String querySetId, String projectName, ArrayList<String> queryIds) {
+    public ArrayList<QueryResultDetail> getQueryDetailResults(String querySetId, String projectName, ArrayList<String> queryIds) {
         Optional<QuerySet> querySet = this.projectsFakeDB.getQueryById(querySetId, projectName);
         if (querySet.isPresent()) {
             QuerySetResults querySetResults = querySet.get().getQuerySetResults();
