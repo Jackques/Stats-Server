@@ -75,7 +75,7 @@ public class QueryService {
 
     private ArrayList<String> getFromProfiles(String projectName, ArrayList<String> fromProfilesValue) {
         if (fromProfilesValue.size() != 0 && !this.projectService.getProfileNamesByProject(projectName).containsAll(fromProfilesValue)) {
-            throw new RuntimeException("Value provided in fromProfiles is not valid");
+            throw new RuntimeException("Value provided in fromProfiles does not exist in this project");
         }
         return fromProfilesValue;
     }
