@@ -1,5 +1,6 @@
 package org.statsserver.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,6 +24,14 @@ public class QueryResult {
 
         QueryResultDetailsFakeDB.writeQueryResultDetailsToFile(id, queryResults);
     }
+
+    @JsonProperty("id")
+    private void checkQueryDetailsResults(String id) {
+        if(!QueryResultDetailsFakeDB.doesFileExist(id)){
+            throw new RuntimeException("QueryDetailResult Fake DB file for queryResult with id: "+id+" not found.");
+        }
+    }
+
 
     public ArrayList<HashMap> readQueryResultsFromFakeDB() {
         try {

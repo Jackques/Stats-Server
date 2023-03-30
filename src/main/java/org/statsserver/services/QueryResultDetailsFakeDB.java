@@ -34,6 +34,14 @@ public class QueryResultDetailsFakeDB {
         throw new RuntimeException("File: " + fileName + ".json not found.");
     }
 
+    public static boolean doesFileExist(String fileName) {
+        File f = new File(pathToDBFiles, fileName + ".json");
+        if (f.exists() && f.isFile()) {
+            return true;
+        }
+        return false;
+    }
+
     private static boolean createNewQueryResultDetailsFile(String fileName) {
         File f = new File(pathToDBFiles, fileName + ".json");
         try {
@@ -44,14 +52,6 @@ public class QueryResultDetailsFakeDB {
             return false;
         }
         return true;
-    }
-
-    private static boolean doesFileExist(String fileName) {
-        File f = new File(pathToDBFiles, fileName + ".json");
-        if (f.exists() && f.isFile()) {
-            return true;
-        }
-        return false;
     }
 
     private static ArrayList<HashMap> readQueryResultDetailFromFile(String fileName) {

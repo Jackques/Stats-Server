@@ -539,6 +539,59 @@
     } ]
   }, {
     "id" : "99953fcd-7b7b-41ad-98ec-ac0b650ef58f",
+    "name" : "My first fitness query+",
+    "description" : "Like the title said; this is my first fitness query",
+    "projectName" : "Fitness-stats",
+    "querySetResults" : {
+      "totalResults" : 134,
+      "amountOfQueries" : 2,
+      "queryResults" : [ {
+        "id" : "be4ed327-d2e0-44c6-b05a-a3e37ca64d33",
+        "labelForThisQuery" : "Results from Better Bodies",
+        "totalResults" : 39
+      }, {
+        "id" : "f7dabf39-33da-4a05-8e66-1e2482f8c1a6",
+        "labelForThisQuery" : "Results from Basicfit",
+        "totalResults" : 95
+      } ]
+    },
+    "queryMetaData" : {
+      "affectedProfileNames" : [ "Jack-fitnes" ],
+      "graphType" : "LINE_GRAPH"
+    },
+    "queries" : [ {
+      "amountValue" : "LAST_100",
+      "fromDate" : "2020-01-27T14:26:11.339Z",
+      "toDate" : "2023-03-19T01:20:54.117Z",
+      "colorQuery" : "#000080",
+      "fromProfiles" : [ "Jack-fitnes" ],
+      "labelForThisQuery" : "Results from Better Bodies",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Gewicht in kg", "Datum" ],
+      "queryParameters" : [ {
+        "key" : "Meting door:",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : "Better Bodies apparaat"
+      } ]
+    }, {
+      "amountValue" : "LAST_100",
+      "fromDate" : "2021-01-01T14:26:11.339Z",
+      "toDate" : "ALL",
+      "colorQuery" : "#7CFC00",
+      "fromProfiles" : [ "Jack-fitnes" ],
+      "labelForThisQuery" : "Results from Basicfit",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Gewicht in kg", "Datum" ],
+      "queryParameters" : [ {
+        "key" : "Meting door:",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : "BasicFit apparaat"
+      } ]
+    } ]
+  }, {
+    "id" : "d5cd8e21-d0a8-49f2-91ad-c32ce9887aa6",
     "name" : "My first fitness query",
     "description" : "Like the title said; this is my first fitness query",
     "projectName" : "Fitness-stats",
@@ -546,11 +599,11 @@
       "totalResults" : 134,
       "amountOfQueries" : 2,
       "queryResults" : [ {
-        "id" : "cb7c4612-4314-4118-8a56-6ec442b037b7",
+        "id" : "55665dcf-df56-4a17-bbb6-a8eef1e9117a",
         "labelForThisQuery" : "Results from Better Bodies",
         "totalResults" : 39
       }, {
-        "id" : "e26956a6-e714-4a3d-b3ad-59cf4e44ae19",
+        "id" : "b0c9c1e8-ce70-4997-9073-b108e3099c4e",
         "labelForThisQuery" : "Results from Basicfit",
         "totalResults" : 95
       } ]
