@@ -27,6 +27,7 @@ public class QueryResult {
 
     @JsonProperty("id")
     private void checkQueryDetailsResults(String id) {
+        this.setId(id);
         if(!QueryResultDetailsFakeDB.doesFileExist(id)){
             throw new RuntimeException("QueryDetailResult Fake DB file for queryResult with id: "+id+" not found.");
         }
@@ -39,5 +40,9 @@ public class QueryResult {
         } catch (Exception e) {
             throw new RuntimeException("Could not read from file with id: " + id);
         }
+    }
+
+    public boolean removeQueryResultDBFile() {
+        return QueryResultDetailsFakeDB.removeFile(id);
     }
 }

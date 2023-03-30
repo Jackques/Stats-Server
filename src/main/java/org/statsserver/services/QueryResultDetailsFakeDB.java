@@ -75,4 +75,15 @@ public class QueryResultDetailsFakeDB {
             throw new RuntimeException(e);
         }
     }
+
+    public static boolean removeFile(String id) {
+        try {
+            if (doesFileExist(id)) {
+                return new File(pathToDBFiles, id + ".json").delete();
+            }
+            return false;
+        } catch(Exception e){
+            throw new RuntimeException("Unable to remove file");
+        }
+    }
 }

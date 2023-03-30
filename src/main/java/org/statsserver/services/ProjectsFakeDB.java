@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.statsserver.domain.ProjectDBDomain;
 import org.statsserver.domain.QuerySet;
-import org.statsserver.services.ProjectService;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -64,9 +63,10 @@ public class ProjectsFakeDB extends ArrayList<ProjectDBDomain> {
         return result;
     }
     public Boolean deleteQueryById(String id, String projectName){
-        Boolean result = this.getProjectDBDomainByProjectName(projectName).removeQuerySetById(id);
+        Boolean isRemovedQueryResults = this.getProjectDBDomainByProjectName(projectName).removeQuerySetResults(id);
+        Boolean isRemovedQuerySet = this.getProjectDBDomainByProjectName(projectName).removeQuerySetById(id);
         this.overwriteFakeDB(pathToDBFile);
-        return result;
+        return isRemovedQueryResults && isRemovedQuerySet;
     }
 
     private ProjectDBDomain getProjectDBDomainByProjectName(String projectName){

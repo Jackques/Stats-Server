@@ -90,4 +90,8 @@ public class QuerySet {
             this.getQuerySetResults().addQueryResult(queryResult);
         });
     }
+
+    public boolean removeQuerySetResults() {
+        return this.querySetResults.removeResults();
+    }
 }

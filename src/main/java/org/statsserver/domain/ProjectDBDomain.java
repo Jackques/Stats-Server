@@ -4,6 +4,7 @@ import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @Value
 @NoArgsConstructor
@@ -28,5 +29,13 @@ public class ProjectDBDomain {
 
     private boolean isQuerySetNameDuplicate(QuerySet querySet) {
         return this.querySets.stream().anyMatch((currentQuerySet) -> currentQuerySet.getName().equals(querySet.getName()));
+    }
+
+    public boolean removeQuerySetResults(String id) {
+        Optional<QuerySet> querySetResult = this.querySets.stream().filter((querySet) -> querySet.getId().toString().equals(id)).findFirst();
+        if(querySetResult.isPresent()){
+            return querySetResult.get().removeQuerySetResults();
+        }
+        return true;
     }
 }

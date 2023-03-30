@@ -42,4 +42,13 @@ public class QuerySetResults {
 
         this.queryResults.add(queryResult);
     }
+
+    public boolean removeResults() {
+        this.queryResults.forEach((queryResult)->{
+            if(!queryResult.removeQueryResultDBFile()){
+                throw new RuntimeException("File: " + queryResult.getId() + ".json could not be removed.");
+            }
+        });
+        return true;
+    }
 }
