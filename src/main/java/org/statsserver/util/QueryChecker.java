@@ -169,7 +169,7 @@ public class QueryChecker {
     private static boolean resultSatisfiesNumberQueryParameter(QueryParameter queryParameter, Object resultProperty) {
         String operator = queryParameter.getOperator();
         double queryParamNumericValue = Double.parseDouble(queryParameter.getValue().toString());
-        double numericKey = Double.parseDouble(resultProperty.toString());
+        double numericKey = Double.parseDouble(resultProperty.toString().replace(",", "."));
 
         switch (operator) {
             case "LESS_THAN" -> {
