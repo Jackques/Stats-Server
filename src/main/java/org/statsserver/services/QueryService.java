@@ -25,7 +25,7 @@ public class QueryService {
             throw new RuntimeException("Invalid query name");
         }
 
-        if(this.getQueryByName(projectName, queryName).isPresent()){
+        if(this.getQuerySetByName(projectName, queryName).isPresent()){
             throw new RuntimeException("Query in project: "+projectName+" with name: "+queryName+" already exists.");
         }
 
@@ -42,7 +42,7 @@ public class QueryService {
 
     }
 
-    private Optional<QuerySet> getQueryByName(String projectName, String queryName) {
+    private Optional<QuerySet> getQuerySetByName(String projectName, String queryName) {
         return this.projectsFakeDB.getQueryByName(queryName, projectName);
     }
 
@@ -64,6 +64,17 @@ public class QueryService {
         newQuerySet.processQueriesResults(querySetResults, dateKeyName);
     }
     public Boolean updateQuery(String projectName, String queryId, HashMap<String, ?> query) {
+        String newQueryName = (String) query.get("name");
+
+        if(newQueryName.isEmpty() || newQueryName.isBlank()){
+            throw new RuntimeException("Invalid query name");
+        }
+
+        Optional<QuerySet> currentQueryById = this.getQuerySetById(queryId, projectName);
+        if(!currentQueryById.isPresent()){
+            throw new RuntimeException("Query in project: "+projectName+" with id: "+queryId+" not found.");
+        }
+
         QuerySet updatedQuerySet;
         try {
             ArrayList<String> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("usedProfiles"));
