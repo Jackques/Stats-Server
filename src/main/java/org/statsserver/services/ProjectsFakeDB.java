@@ -114,4 +114,8 @@ public class ProjectsFakeDB extends ArrayList<ProjectDBDomain> {
             throw new RuntimeException(e);
         }
     }
+
+    public Optional<QuerySet> getQueryByName(String queryName, String projectName) {
+        return this.getProjectDBDomainByProjectName(projectName).getQuerySets().stream().filter((querySet)-> querySet.getName().toString().equals(queryName)).findFirst();
+    }
 }

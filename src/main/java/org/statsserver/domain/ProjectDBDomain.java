@@ -36,6 +36,6 @@ public class ProjectDBDomain {
         if(querySetResult.isPresent()){
             return querySetResult.get().removeQuerySetResults();
         }
-        return true;
+        return false;
     }
 }

@@ -19,6 +19,16 @@ public class QueryService {
     }
 
     public UUID createQuery(String projectName, HashMap<String, ?> query) {
+        String queryName = (String) query.get("name");
+
+        if(queryName.isEmpty() || queryName.isBlank()){
+            throw new RuntimeException("Invalid query name");
+        }
+
+        if(this.getQueryByName(projectName, queryName).isPresent()){
+            throw new RuntimeException("Query in project: "+projectName+" with name: "+queryName+" already exists.");
+        }
+
         try {
             ArrayList<String> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("usedProfiles"));
             QuerySet newQuerySet = new QuerySet((String) query.get("name"), (String) query.get("description"), projectName, (String) query.get("graphType"), fromProfiles, (List<HashMap<String, Object>>) query.get("queryList"));
@@ -29,6 +39,11 @@ public class QueryService {
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage()+""+e.getCause());
         }
+
+    }
+
+    private Optional<QuerySet> getQueryByName(String projectName, String queryName) {
+        return this.projectsFakeDB.getQueryByName(queryName, projectName);
     }
 
     private String getProjectDateKeyName(String projectName) {
