@@ -46,6 +46,8 @@ public class QueryResultDetailsFakeDB {
         File f = new File(pathToDBFiles, fileName + ".json");
         try {
             FileWriter fw = new FileWriter(f.getAbsoluteFile());
+            fw.flush();
+            fw.close();
         } catch (IOException e) {
             e.printStackTrace();
 //            System.exit(-1);
@@ -79,7 +81,8 @@ public class QueryResultDetailsFakeDB {
     public static boolean removeFile(String id) {
         try {
             if (doesFileExist(id)) {
-                return new File(pathToDBFiles, id + ".json").delete();
+                boolean result = new File(pathToDBFiles, id + ".json").delete();
+                return result;
             }
             return false;
         } catch(Exception e){
