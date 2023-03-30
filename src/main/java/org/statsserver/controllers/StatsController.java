@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.statsserver.domain.QueryResult;
 import org.statsserver.domain.QueryResultDetail;
 import org.statsserver.domain.QuerySet;
 import org.statsserver.services.KeyDataListStatic;
@@ -101,7 +100,7 @@ public class StatsController {
 
         return ResponseEntity
                 .ok()
-                .body(this.queryService.getAllQueries(projectName));
+                .body(this.queryService.getAllQuerySets(projectName));
     }
 
     @PostMapping(path = "api/v1/postQuery/{projectName}",
@@ -135,7 +134,7 @@ public class StatsController {
         if(!this.projectService.getProjectNameExist(projectName)){
             return ResponseEntity.badRequest().body(null);
         }
-        Optional<QuerySet> result = this.queryService.getQueryById(queryId, projectName);
+        Optional<QuerySet> result = this.queryService.getQuerySetById(queryId, projectName);
 
         if(result.isPresent()){
             return ResponseEntity
@@ -194,7 +193,7 @@ public class StatsController {
             return ResponseEntity.badRequest().body(null);
         }
 
-        Boolean result = this.queryService.removeQuery(queryId, projectName);
+        Boolean result = this.queryService.removeSetQuery(queryId, projectName);
 
         if(result){
             return ResponseEntity

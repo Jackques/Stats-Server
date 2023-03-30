@@ -76,15 +76,15 @@ public class QueryService {
         return this.projectsFakeDB.updateQueryById(updatedQuerySet, queryId, projectName);
     }
 
-    public List<QuerySet> getAllQueries(String projectName) {
+    public List<QuerySet> getAllQuerySets(String projectName) {
         return this.projectsFakeDB.getAllQueries(projectName);
     }
 
-    public Optional<QuerySet> getQueryById(String id, String projectName) {
+    public Optional<QuerySet> getQuerySetById(String id, String projectName) {
         return this.projectsFakeDB.getQueryById(id, projectName);
     }
 
-    public Boolean removeQuery(String id, String projectName) {
+    public Boolean removeSetQuery(String id, String projectName) {
         return this.projectsFakeDB.deleteQueryById(id, projectName);
     }
 
