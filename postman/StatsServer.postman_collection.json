@@ -128,7 +128,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"my fourth query i posted\",\r\n    \"description\": \"My fourth query just for testing\",\r\n    \"fromProfiles\": [\r\n        \"Jack-updated\"\r\n    ],\r\n    \"graphType\": \"COLUMN_CHART\",\r\n    \"queryList\": [\r\n        {\r\n            \"amount\": \"ALL\",\r\n            \"fromDate\": \"2021-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"ALL\",\r\n            \"labelForThisQuery\": \"firstQuery\",\r\n            \"colorForThisQuery\": \"#ff3333\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Name\",\r\n                \"Age\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Age\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": 30.0\r\n                },\r\n                {\r\n                    \"key\": \"Interests\",\r\n                    \"operator\": \"CONTAINS\",\r\n                    \"value\": [\r\n                        \"Reizen\"\r\n                    ]\r\n                },\r\n                {\r\n                    \"key\": \"How-many-ghosts\",\r\n                    \"subKey\": \"number\",\r\n                    \"operator\": \"LESS_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 1\r\n                },\r\n                {\r\n                    \"key\": \"System-no\",\r\n                    \"subKey\": \"tempId\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"hi\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"amount\": \"ALL\",\r\n            \"fromDate\": \"2021-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"2022-02-03T14:26:11.339Z\",\r\n            \"labelForThisQuery\": \"secondQuery\",\r\n            \"colorForThisQuery\": \"#ff3311\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Name\",\r\n                \"Age\",\r\n                \"City\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Age\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": 30.0\r\n                },\r\n                {\r\n                    \"key\": \"Age\",\r\n                    \"operator\": \"GREATER_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 35.0\r\n                },\r\n                {\r\n                    \"key\": \"Interests\",\r\n                    \"operator\": \"CONTAINS\",\r\n                    \"value\": [\r\n                        \"Reizen\"\r\n                    ]\r\n                },\r\n                {\r\n                    \"key\": \"How-many-ghosts\",\r\n                    \"subKey\": \"number\",\r\n                    \"operator\": \"LESS_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 1\r\n                },\r\n                {\r\n                    \"key\": \"System-no\",\r\n                    \"subKey\": \"tempId\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"hi\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"name\": \"My eight query i posted\",\r\n    \"description\": \"My eight query just for testing\",\r\n    \"usedProfiles\": [\r\n        \"Jack-original\", \"Jack-updated\"\r\n    ],\r\n    \"graphType\": \"COLUMN_CHART\",\r\n    \"queryList\": [\r\n        {\r\n            \"amount\": \"100\",\r\n            \"fromDate\": \"2020-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"2023-03-19T01:20:54.117Z\",\r\n            \"fromProfiles\": [\r\n                \"Jack-original\"\r\n            ],\r\n            \"labelForThisQuery\": \"myQuery\",\r\n            \"colorForThisQuery\": \"#ff3333\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Name\",\r\n                \"Age\"\r\n            ],\r\n            \"queryParameters\": [\r\n                \r\n            ]\r\n        },\r\n        {\r\n            \"amount\": \"ALL\",\r\n            \"fromDate\": \"2021-01-01T14:26:11.339Z\",\r\n            \"toDate\": \"2022-06-01T14:26:11.339Z\",\r\n            \"fromProfiles\": [\r\n                \"Jack-original\", \"Jack-updated\"\r\n            ],\r\n            \"labelForThisQuery\": \"myQuery1\",\r\n            \"colorForThisQuery\": \"#ff3311\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Name\",\r\n                \"Age\",\r\n                \"City\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Age\",\r\n                    \"operator\": \"GREATER_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 20.0\r\n                },\r\n                {\r\n                    \"key\": \"Interests\",\r\n                    \"operator\": \"CONTAINS\",\r\n                    \"value\": [\r\n                        \"Reizen\"\r\n                    ]\r\n                },\r\n                {\r\n                    \"key\": \"How-many-ghosts\",\r\n                    \"subKey\": \"number\",\r\n                    \"operator\": \"GREATER_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 0\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -165,7 +165,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"my fourth query i posted\",\r\n    \"description\": \"My fourth query just for testing\",\r\n    \"fromProfiles\": [\r\n        \"Jack-updated\",\r\n        \"Jack-original\"\r\n    ],\r\n    \"graphType\": \"LINE_GRAPH\",\r\n    \"queryList\": [\r\n        {\r\n            \"amount\": \"ALL\",\r\n            \"fromDate\": \"2021-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"ALL\",\r\n            \"labelForThisQuery\": \"firstQuery\",\r\n            \"colorForThisQuery\": \"#ff3333\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Name\",\r\n                \"Age\",\r\n                \"Notes\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Age\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": 30.0\r\n                },\r\n                {\r\n                    \"key\": \"Interests\",\r\n                    \"operator\": \"CONTAINS\",\r\n                    \"value\": [\r\n                        \"Reizen\"\r\n                    ]\r\n                },\r\n                {\r\n                    \"key\": \"How-many-ghosts\",\r\n                    \"subKey\": \"number\",\r\n                    \"operator\": \"LESS_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 1\r\n                },\r\n                {\r\n                    \"key\": \"System-no\",\r\n                    \"subKey\": \"tempId\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"hi\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"amount\": \"ALL\",\r\n            \"fromDate\": \"2021-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"2022-02-03T14:26:11.339Z\",\r\n            \"labelForThisQuery\": \"secondQuery\",\r\n            \"colorForThisQuery\": \"#ff3311\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Name\",\r\n                \"Age\",\r\n                \"City\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Age\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": 30.0\r\n                },\r\n                {\r\n                    \"key\": \"Age\",\r\n                    \"operator\": \"GREATER_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 35.0\r\n                },\r\n                {\r\n                    \"key\": \"Interests\",\r\n                    \"operator\": \"CONTAINS\",\r\n                    \"value\": [\r\n                        \"Reizen\"\r\n                    ]\r\n                },\r\n                {\r\n                    \"key\": \"How-many-ghosts\",\r\n                    \"subKey\": \"number\",\r\n                    \"operator\": \"LESS_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 1\r\n                },\r\n                {\r\n                    \"key\": \"System-no\",\r\n                    \"subKey\": \"tempId\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"hi\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"name\": \"My eight query i posted\",\r\n    \"description\": \"My eight query just for testing\",\r\n    \"usedProfiles\": [\r\n        \"Jack-original\"\r\n    ],\r\n    \"graphType\": \"COLUMN_CHART\",\r\n    \"queryList\": [\r\n        {\r\n            \"amount\": \"LAST_50\",\r\n            \"fromDate\": \"2021-01-01T14:26:11.339Z\",\r\n            \"toDate\": \"2023-03-19T01:20:54.117Z\",\r\n            \"fromProfiles\": [\r\n                \"Jack-original\"\r\n            ],\r\n            \"labelForThisQuery\": \"myRealQuery\",\r\n            \"colorForThisQuery\": \"#00ff00\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Name\",\r\n                \"Age\"\r\n            ],\r\n            \"queryParameters\": [\r\n                \r\n            ]\r\n        },\r\n        {\r\n            \"amount\": \"ALL\",\r\n            \"fromDate\": \"2020-01-01T14:26:11.339Z\",\r\n            \"toDate\": \"2023-03-19T01:20:54.117Z\",\r\n            \"fromProfiles\": [\r\n                \"Jack-original\"\r\n            ],\r\n            \"labelForThisQuery\": \"myReal2ndQuery\",\r\n            \"colorForThisQuery\": \"#00ff00\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Name\",\r\n                \"Age\"\r\n            ],\r\n            \"queryParameters\": [\r\n                \r\n            ]\r\n        },\r\n        {\r\n            \"amount\": \"100\",\r\n            \"fromDate\": \"2023-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"2023-03-19T01:20:54.117Z\",\r\n            \"fromProfiles\": [\r\n                \"Jack-original\"\r\n            ],\r\n            \"labelForThisQuery\": \"myQuery\",\r\n            \"colorForThisQuery\": \"#ff3333\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Name\",\r\n                \"Age\"\r\n            ],\r\n            \"queryParameters\": [\r\n                \r\n            ]\r\n        },\r\n        {\r\n            \"amount\": \"ALL\",\r\n            \"fromDate\": \"2021-01-01T14:26:11.339Z\",\r\n            \"toDate\": \"2022-06-01T14:26:11.339Z\",\r\n            \"fromProfiles\": [\r\n                \"Jack-original\"\r\n            ],\r\n            \"labelForThisQuery\": \"myQuery1\",\r\n            \"colorForThisQuery\": \"#ff3311\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Name\",\r\n                \"Age\",\r\n                \"City\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Age\",\r\n                    \"operator\": \"GREATER_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 20.0\r\n                },\r\n                {\r\n                    \"key\": \"Interests\",\r\n                    \"operator\": \"CONTAINS\",\r\n                    \"value\": [\r\n                        \"Reizen\"\r\n                    ]\r\n                },\r\n                {\r\n                    \"key\": \"How-many-ghosts\",\r\n                    \"subKey\": \"number\",\r\n                    \"operator\": \"GREATER_THAN_OR_EQUAL_TO\",\r\n                    \"value\": 0\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -173,7 +173,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/putQuery/T-Helper/fecb27ae-df76-4d78-8987-58d425781ec4",
+					"raw": "http://localhost:8080/api/v1/putQuery/T-Helper/60104377-9f0a-499b-a389-859da21c21b7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -184,7 +184,30 @@
 						"v1",
 						"putQuery",
 						"T-Helper",
-						"fecb27ae-df76-4d78-8987-58d425781ec4"
+						"60104377-9f0a-499b-a389-859da21c21b7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteQuery",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/deleteQuery/T-Helper/ccfba96f-1ee8-472a-a8a0-4fe2bf6b1bf7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"deleteQuery",
+						"T-Helper",
+						"ccfba96f-1ee8-472a-a8a0-4fe2bf6b1bf7"
 					]
 				}
 			},
@@ -214,12 +237,204 @@
 			"response": []
 		},
 		{
-			"name": "deleteQuery",
+			"name": "getQuery (fitness)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getQuery/Fitness-stats/cc67dbfc-bac6-4455-a581-01d0c2aa3f07",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getQuery",
+						"Fitness-stats",
+						"cc67dbfc-bac6-4455-a581-01d0c2aa3f07"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getQueryDetailResults",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    \"492691a0-69f9-4b43-91a6-edad73fa12d1\",\r\n    \"be262d42-ca53-4b3b-9581-3239810082a8\",\r\n    \"aa4fe420-a02c-4fec-9844-629ec9125945\",\r\n    \"5525b5f5-7660-4975-8bed-e4eed9eaf90e\"\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getQuery/T-Helper/60104377-9f0a-499b-a389-859da21c21b7/detailResults",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getQuery",
+						"T-Helper",
+						"60104377-9f0a-499b-a389-859da21c21b7",
+						"detailResults"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllQueriesFromProject (fitness)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getAllQueriesFromProject/Fitness-stats",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getAllQueriesFromProject",
+						"Fitness-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getQueryDetailResults (fitness)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    \"0dc6b881-2d7e-459c-ae4e-3eef8e2d43ff\"\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getQuery/Fitness-stats/cc67dbfc-bac6-4455-a581-01d0c2aa3f07/detailResults",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getQuery",
+						"Fitness-stats",
+						"cc67dbfc-bac6-4455-a581-01d0c2aa3f07",
+						"detailResults"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "postQuery (fitness)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"My first fitness query\",\r\n    \"description\": \"Like the title said; this is my first fitness query\",\r\n    \"usedProfiles\": [\r\n        \"Jack-fitnes\"\r\n    ],\r\n    \"graphType\": \"LINE_GRAPH\",\r\n    \"queryList\": [\r\n        {\r\n            \"amount\": \"LAST_100\",\r\n            \"fromDate\": \"2020-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"2023-03-19T01:20:54.117Z\",\r\n            \"fromProfiles\": [\r\n                \"Jack-fitnes\"\r\n            ],\r\n            \"labelForThisQuery\": \"Results from Better Bodies\",\r\n            \"colorForThisQuery\": \"#000080\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Datum\",\r\n                \"Gewicht in kg\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Meting door:\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"Better Bodies apparaat\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"amount\": \"LAST_100\",\r\n            \"fromDate\": \"2021-01-01T14:26:11.339Z\",\r\n            \"toDate\": \"ALL\",\r\n            \"fromProfiles\": [\r\n                \"Jack-fitnes\"\r\n            ],\r\n            \"labelForThisQuery\": \"Results from Basicfit\",\r\n            \"colorForThisQuery\": \"#7CFC00\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Datum\",\r\n                \"Gewicht in kg\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Meting door:\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"BasicFit apparaat\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/postQuery/Fitness-stats",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"postQuery",
+						"Fitness-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putQuery (fitness)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"My first fitness query+++\",\r\n    \"description\": \"Like the title said; this is my first fitness query.\",\r\n    \"usedProfiles\": [\r\n        \"Jack-fitnes\"\r\n    ],\r\n    \"graphType\": \"LINE_GRAPH\",\r\n    \"queryList\": [\r\n        {\r\n            \"amount\": \"LAST_5\",\r\n            \"fromDate\": \"2020-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"2023-03-19T01:20:54.117Z\",\r\n            \"fromProfiles\": [\r\n                \"Jack-fitnes\"\r\n            ],\r\n            \"labelForThisQuery\": \"Results from Better Bodies\",\r\n            \"colorForThisQuery\": \"#000080\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Datum\",\r\n                \"Gewicht in kg\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Meting door:\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"Better Bodies apparaat\"\r\n                },\r\n                {\r\n                    \"key\": \"Gewicht in kg\",\r\n                    \"operator\": \"GREATER_THAN\",\r\n                    \"value\": 10.0\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"amount\": \"LAST_10\",\r\n            \"fromDate\": \"2021-01-01T14:26:11.339Z\",\r\n            \"toDate\": \"ALL\",\r\n            \"fromProfiles\": [\r\n                \"Jack-fitnes\"\r\n            ],\r\n            \"labelForThisQuery\": \"Results from Basicfit\",\r\n            \"colorForThisQuery\": \"#7CFC00\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Datum\",\r\n                \"Gewicht in kg\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Meting door:\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"BasicFit apparaat\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/putQuery/Fitness-stats/a6429210-23f3-4d17-bb45-12da2eed0702",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"putQuery",
+						"Fitness-stats",
+						"a6429210-23f3-4d17-bb45-12da2eed0702"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteQuery (fitness)",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/deleteQuery/T-Helper/f4f46ad8-dfa5-409e-b193-d57ddf87cd73",
+					"raw": "http://localhost:8080/api/v1/deleteQuery/Fitness-stats/01396b01-dab0-4ca9-a605-7dd5fca1b93e",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -229,8 +444,8 @@
 						"api",
 						"v1",
 						"deleteQuery",
-						"T-Helper",
-						"f4f46ad8-dfa5-409e-b193-d57ddf87cd73"
+						"Fitness-stats",
+						"01396b01-dab0-4ca9-a605-7dd5fca1b93e"
 					]
 				}
 			},
