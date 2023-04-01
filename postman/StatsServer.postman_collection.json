@@ -237,29 +237,6 @@
 			"response": []
 		},
 		{
-			"name": "getQuery (fitness)",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/api/v1/getQuery/Fitness-stats/cc67dbfc-bac6-4455-a581-01d0c2aa3f07",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"getQuery",
-						"Fitness-stats",
-						"cc67dbfc-bac6-4455-a581-01d0c2aa3f07"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "getQueryDetailResults",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -290,6 +267,51 @@
 						"T-Helper",
 						"60104377-9f0a-499b-a389-859da21c21b7",
 						"detailResults"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProfileNamesFromProject (fitness)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getProfileNamesFromProject/Fitness-stats",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getProfileNamesFromProject",
+						"Fitness-stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getQuery (fitness)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/getQuery/Fitness-stats/cc67dbfc-bac6-4455-a581-01d0c2aa3f07",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"getQuery",
+						"Fitness-stats",
+						"cc67dbfc-bac6-4455-a581-01d0c2aa3f07"
 					]
 				}
 			},
@@ -327,7 +349,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[\r\n    \"0dc6b881-2d7e-459c-ae4e-3eef8e2d43ff\"\r\n]",
+					"raw": "[\r\n    \"91c840fa-a469-4f19-b2e7-272e15b4d946\"\r\n]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -335,7 +357,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/getQuery/Fitness-stats/cc67dbfc-bac6-4455-a581-01d0c2aa3f07/detailResults",
+					"raw": "http://localhost:8080/api/v1/getQuery/Fitness-stats/a6429210-23f3-4d17-bb45-12da2eed0702/detailResults",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -346,7 +368,7 @@
 						"v1",
 						"getQuery",
 						"Fitness-stats",
-						"cc67dbfc-bac6-4455-a581-01d0c2aa3f07",
+						"a6429210-23f3-4d17-bb45-12da2eed0702",
 						"detailResults"
 					]
 				}
@@ -366,7 +388,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"My first fitness query\",\r\n    \"description\": \"Like the title said; this is my first fitness query\",\r\n    \"usedProfiles\": [\r\n        \"Jack-fitnes\"\r\n    ],\r\n    \"graphType\": \"LINE_GRAPH\",\r\n    \"queryList\": [\r\n        {\r\n            \"amount\": \"LAST_100\",\r\n            \"fromDate\": \"2020-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"2023-03-19T01:20:54.117Z\",\r\n            \"fromProfiles\": [\r\n                \"Jack-fitnes\"\r\n            ],\r\n            \"labelForThisQuery\": \"Results from Better Bodies\",\r\n            \"colorForThisQuery\": \"#000080\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Datum\",\r\n                \"Gewicht in kg\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Meting door:\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"Better Bodies apparaat\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"amount\": \"LAST_100\",\r\n            \"fromDate\": \"2021-01-01T14:26:11.339Z\",\r\n            \"toDate\": \"ALL\",\r\n            \"fromProfiles\": [\r\n                \"Jack-fitnes\"\r\n            ],\r\n            \"labelForThisQuery\": \"Results from Basicfit\",\r\n            \"colorForThisQuery\": \"#7CFC00\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Datum\",\r\n                \"Gewicht in kg\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Meting door:\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"BasicFit apparaat\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"name\": \"My third fitness query\",\r\n    \"description\": \"Like the title said; this is my third fitness query BUT with results of 26-02-2023\",\r\n    \"usedProfiles\": [\r\n        \"Jack-fitnes\"\r\n    ],\r\n    \"graphType\": \"LINE_GRAPH\",\r\n    \"queryList\": [\r\n        {\r\n            \"amount\": \"LAST_100\",\r\n            \"fromDate\": \"2020-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"2023-03-19T01:20:54.117Z\",\r\n            \"fromProfiles\": [\r\n                \"Jack-fitnes\"\r\n            ],\r\n            \"labelForThisQuery\": \"Results from Better Bodies\",\r\n            \"colorQuery\": \"#000080\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Datum\",\r\n                \"Gewicht in kg\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Meting door:\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"Better Bodies apparaat\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"amount\": \"LAST_100\",\r\n            \"fromDate\": \"2021-01-01T14:26:11.339Z\",\r\n            \"toDate\": \"ALL\",\r\n            \"fromProfiles\": [\r\n                \"Jack-fitnes\"\r\n            ],\r\n            \"labelForThisQuery\": \"Results from Basicfit\",\r\n            \"colorQuery\": \"#7CFC00\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Datum\",\r\n                \"Gewicht in kg\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Meting door:\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"BasicFit apparaat\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -394,16 +416,10 @@
 			"name": "putQuery (fitness)",
 			"request": {
 				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "default"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"My first fitness query+++\",\r\n    \"description\": \"Like the title said; this is my first fitness query.\",\r\n    \"usedProfiles\": [\r\n        \"Jack-fitnes\"\r\n    ],\r\n    \"graphType\": \"LINE_GRAPH\",\r\n    \"queryList\": [\r\n        {\r\n            \"amount\": \"LAST_5\",\r\n            \"fromDate\": \"2020-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"2023-03-19T01:20:54.117Z\",\r\n            \"fromProfiles\": [\r\n                \"Jack-fitnes\"\r\n            ],\r\n            \"labelForThisQuery\": \"Results from Better Bodies\",\r\n            \"colorForThisQuery\": \"#000080\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Datum\",\r\n                \"Gewicht in kg\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Meting door:\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"Better Bodies apparaat\"\r\n                },\r\n                {\r\n                    \"key\": \"Gewicht in kg\",\r\n                    \"operator\": \"GREATER_THAN\",\r\n                    \"value\": 10.0\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"amount\": \"LAST_10\",\r\n            \"fromDate\": \"2021-01-01T14:26:11.339Z\",\r\n            \"toDate\": \"ALL\",\r\n            \"fromProfiles\": [\r\n                \"Jack-fitnes\"\r\n            ],\r\n            \"labelForThisQuery\": \"Results from Basicfit\",\r\n            \"colorForThisQuery\": \"#7CFC00\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Datum\",\r\n                \"Gewicht in kg\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Meting door:\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"BasicFit apparaat\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+					"raw": "{\r\n    \"name\": \"My third query!!!\",\r\n    \"description\": \"Like the title said; this is my third query. formerly with results from 26-02-2023 but now with updated results from 30-03-2023\",\r\n    \"usedProfiles\": [\r\n        \"Jack-fitnes\"\r\n    ],\r\n    \"graphType\": \"LINE_GRAPH\",\r\n    \"queryList\": [\r\n        {\r\n            \"amount\": \"LAST_100\",\r\n            \"fromDate\": \"2020-01-27T14:26:11.339Z\",\r\n            \"toDate\": \"2023-03-19T01:20:54.117Z\",\r\n            \"fromProfiles\": [\r\n                \"Jack-fitnes\"\r\n            ],\r\n            \"labelForThisQuery\": \"Results from Better Bodies\",\r\n            \"colorQuery\": \"#000080\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Datum\",\r\n                \"Gewicht in kg\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Meting door:\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"Better Bodies apparaat\"\r\n                },\r\n                {\r\n                    \"key\": \"Gewicht in kg\",\r\n                    \"operator\": \"GREATER_THAN\",\r\n                    \"value\": 10.0\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"amount\": \"LAST_100\",\r\n            \"fromDate\": \"2021-01-01T14:26:11.339Z\",\r\n            \"toDate\": \"ALL\",\r\n            \"fromProfiles\": [\r\n                \"Jack-fitnes\"\r\n            ],\r\n            \"labelForThisQuery\": \"Results from Basicfit\",\r\n            \"colorQuery\": \"#7CFC00\",\r\n            \"visibilityQuery\": true,\r\n            \"returnFields\": [\r\n                \"Datum\",\r\n                \"Gewicht in kg\"\r\n            ],\r\n            \"queryParameters\": [\r\n                {\r\n                    \"key\": \"Meting door:\",\r\n                    \"operator\": \"EQUALS\",\r\n                    \"value\": \"BasicFit apparaat\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -411,7 +427,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/putQuery/Fitness-stats/a6429210-23f3-4d17-bb45-12da2eed0702",
+					"raw": "http://localhost:8080/api/v1/putQuery/Fitness-stats/7677ce08-d6e7-445f-b74a-1d5587508531",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -422,7 +438,7 @@
 						"v1",
 						"putQuery",
 						"Fitness-stats",
-						"a6429210-23f3-4d17-bb45-12da2eed0702"
+						"7677ce08-d6e7-445f-b74a-1d5587508531"
 					]
 				}
 			},
@@ -434,7 +450,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/deleteQuery/Fitness-stats/01396b01-dab0-4ca9-a605-7dd5fca1b93e",
+					"raw": "http://localhost:8080/api/v1/deleteQuery/Fitness-stats/7b6f01a2-bec5-4918-b45f-3f6ffeaae4b7",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -445,7 +461,7 @@
 						"v1",
 						"deleteQuery",
 						"Fitness-stats",
-						"01396b01-dab0-4ca9-a605-7dd5fca1b93e"
+						"7b6f01a2-bec5-4918-b45f-3f6ffeaae4b7"
 					]
 				}
 			},
