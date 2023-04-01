@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.statsserver.util.QueryChecker;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -20,7 +21,7 @@ public class QuerySet {
     private QueryMetaData queryMetaData;
     private ArrayList<Query> queries = new ArrayList<>();
 
-    public QuerySet(String name, String description, String projectName, String graphType, ArrayList<String> usedProfiles, List<HashMap<String, Object>> queryList) throws Exception {
+    public QuerySet(String name, String description, String projectName, String graphType, ArrayList<Profile> usedProfiles, List<HashMap<String, Object>> queryList) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.description = description;
@@ -40,12 +41,17 @@ public class QuerySet {
     private void unpackNestedQueryMetaData(Map<String, Object> queryMetaData) {
         System.out.println("here is my query meta data:");
         System.out.println(queryMetaData);
-        this.queryMetaData = new QueryMetaData((ArrayList<String>) queryMetaData.get("affectedProfileNames"), (String) queryMetaData.get("graphType"));
-        System.out.println("will this bed executed?");
+        ArrayList<LinkedHashMap> affectedProfileNames = (ArrayList<LinkedHashMap>) queryMetaData.get("affectedProfileNames");
+        ArrayList<Profile> profileList = affectedProfileNames.stream().map((affectedProfileName)->{
+            Profile profile = new Profile((String) affectedProfileName.get("name"), "");
+            profile.setDateTimeLatestResourceLong((Long) affectedProfileName.get("dateTimeLatestResource"));
+            return profile;
+        }).collect(Collectors.toCollection(ArrayList::new));
+        this.queryMetaData = new QueryMetaData(profileList, (String) queryMetaData.get("graphType"));
     }
 
     @SuppressWarnings("unchecked")
-    @JsonProperty("queryList")
+    @JsonProperty("queries")
     private void unpackNestedqueryList(List<HashMap<String, Object>> queryList) {
         System.out.println("here is my queryList:");
         System.out.println(queryList);
@@ -66,7 +72,7 @@ public class QuerySet {
         });
     }
 
-    private QueryMetaData generateQueryMetaData(ArrayList<String> fromProfiles, String graphType) {
+    private QueryMetaData generateQueryMetaData(ArrayList<Profile> fromProfiles, String graphType) {
         return new QueryMetaData(fromProfiles, graphType);
     }
 

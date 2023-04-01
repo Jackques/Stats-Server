@@ -8,17 +8,15 @@ import org.statsserver.services.KeyDataListStatic;
 import org.statsserver.util.DateChecker;
 import org.statsserver.util.HexValidatorWebColor;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class Query {
 
-    private String amountValue;
+    private String amount;
     @JsonIgnore
     private Boolean setAmountIsAll = false;
     @JsonIgnore
@@ -36,12 +34,13 @@ public class Query {
     @JsonIgnore
     private String toDateValue = null;
     private String colorQuery;
-    private ArrayList<String> fromProfiles;
+    private ArrayList<Profile> fromProfiles;
     private String labelForThisQuery = "";
     private Boolean visibilityQuery = true;
     private Set<String> returnFields = new HashSet<>();
     private final ArrayList<QueryParameter> queryParameters = new ArrayList<>();
-    public Query(HashMap<String, Object> queryContent, String projectName, ArrayList<String> usedProfiles) {
+
+    public Query(HashMap<String, Object> queryContent, String projectName, ArrayList<Profile> usedProfiles) {
         queryContent.forEach((key, value) -> {
 
             if (value == null) {
@@ -51,7 +50,7 @@ public class Query {
             switch (key) {
                 case "amount" -> {
                     String amountValue = (String) value;
-                    this.amountValue = amountValue;
+                    this.amount = amountValue;
                     if (amountValue.equals("ALL")) {
                         this.setAmountIsAll = true;
                     } else {
@@ -106,20 +105,31 @@ public class Query {
                     }
                 }
                 case "fromProfiles" -> {
-                    ArrayList<String> fromProfiles = (ArrayList<String>) value;
 
-                    if(usedProfiles != null){
-                        if(!usedProfiles.containsAll(fromProfiles)){
+                    if (usedProfiles != null) {
+                        ArrayList<String> fromProfiles = (ArrayList<String>) value;
+                        ArrayList<Profile> profilesUsedInQuery = usedProfiles.stream()
+                                .filter((usedProfile) -> fromProfiles.contains(usedProfile.getName()))
+                                .collect(Collectors.toCollection(ArrayList::new));
+                        if (profilesUsedInQuery.size() == 0) {
                             throw new RuntimeException("Query does not posses profile listed in affected profiles");
                         }
+
+                        this.fromProfiles = profilesUsedInQuery;
+                    } else {
+                        ArrayList<LinkedHashMap> fromProfiles = (ArrayList<LinkedHashMap>) value;
+                        this.fromProfiles = fromProfiles.stream().map((fromProfile) -> {
+                                Profile profile = new Profile((String) fromProfile.get("name"), "");
+                                profile.setDateTimeLatestResource(new Date((Long) fromProfile.get("dateTimeLatestResource")));
+                                return profile;
+                        }).collect(Collectors.toCollection(ArrayList::new));
                     }
-                    this.fromProfiles = fromProfiles;
                 }
                 case "labelForThisQuery" -> {
                     String queryLabel = (String) value;
                     this.labelForThisQuery = queryLabel;
                 }
-                case "colorForThisQuery" -> {
+                case "colorQuery" -> {
                     String queryColorCode = (String) value;
                     if (this.isQueryColorCodeValid(queryColorCode)) {
                         this.colorQuery = queryColorCode;

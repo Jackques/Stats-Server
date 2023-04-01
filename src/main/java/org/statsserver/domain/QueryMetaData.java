@@ -5,16 +5,13 @@ import lombok.Setter;
 import org.statsserver.enums.GraphType;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
 @Getter
 @Setter
 public class QueryMetaData {
-    private Set<String> affectedProfileNames = new HashSet<>();
+    private ArrayList<Profile> affectedProfileNames = new ArrayList<>();
     private Enum<GraphType> graphType;
 
-    public QueryMetaData(ArrayList<String> affectedProfileNames, String graph) {
+    public QueryMetaData(ArrayList<Profile> affectedProfileNames, String graph) {
         this.affectedProfileNames.addAll(affectedProfileNames);
         this.graphType = GraphType.valueOf(graph);
     }

@@ -11,7 +11,7 @@ public class QueryChecker {
     public static ArrayList<HashMap> getProfileResults(Query query, HashMap<String, HashMap> querySetResults) {
         ArrayList<HashMap> resultList = new ArrayList<>();
         query.getFromProfiles().forEach((profile) -> {
-            resultList.addAll(querySetResults.get(profile).values());
+            resultList.addAll(querySetResults.get(profile.getName()).values());
         });
         return resultList;
     }

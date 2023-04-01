@@ -3,8 +3,10 @@ package org.statsserver.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.statsserver.domain.*;
+import org.statsserver.domain.Profile;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class QueryService {
@@ -30,7 +32,7 @@ public class QueryService {
         }
 
         try {
-            ArrayList<String> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("usedProfiles"));
+            ArrayList<Profile> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("usedProfiles"), this.projectService.getProfilesByProject(projectName));
             QuerySet newQuerySet = new QuerySet((String) query.get("name"), (String) query.get("description"), projectName, (String) query.get("graphType"), fromProfiles, (List<HashMap<String, Object>>) query.get("queryList"));
 
             this.setQueryData(projectName, newQuerySet, this.getProjectDateKeyName(projectName));
@@ -54,8 +56,8 @@ public class QueryService {
         HashMap<String, HashMap> querySetResultsProfile = new HashMap<>();
         newQuerySet.getQueryMetaData().getAffectedProfileNames().forEach((profileName)->{
             Optional<ProjectSetting> projectSetting = this.projectService.loadedProjects.getProjectSettings(Optional.of(projectName)).stream().findFirst();
-            LinkedHashMap<Integer, HashMap<String, ?>> profileData = projectSetting.get().getDataFromProfileName(profileName);
-            querySetResultsProfile.put(profileName, profileData);
+            LinkedHashMap<Integer, HashMap<String, ?>> profileData = projectSetting.get().getDataFromProfileName(profileName.getName());
+            querySetResultsProfile.put(profileName.getName(), profileData);
         });
         return querySetResultsProfile;
     }
@@ -77,7 +79,7 @@ public class QueryService {
 
         QuerySet updatedQuerySet;
         try {
-            ArrayList<String> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("usedProfiles"));
+            ArrayList<Profile> fromProfiles = getFromProfiles(projectName, (ArrayList<String>) query.get("usedProfiles"), this.projectService.getProfilesByProject(projectName));
             updatedQuerySet = new QuerySet((String) query.get("name"), (String) query.get("description"), projectName, (String) query.get("graphType"), fromProfiles, (List<HashMap<String, Object>>) query.get("queryList"));
             this.setQueryData(projectName, updatedQuerySet, this.getProjectDateKeyName(projectName));
             updatedQuerySet.setId(UUID.fromString(queryId));
@@ -99,11 +101,16 @@ public class QueryService {
         return this.projectsFakeDB.deleteQueryById(id, projectName);
     }
 
-    private ArrayList<String> getFromProfiles(String projectName, ArrayList<String> fromProfilesValue) {
+    private ArrayList<Profile> getFromProfiles(String projectName, ArrayList<String> fromProfilesValue, ArrayList<Profile> loadedProfilesList) {
         if (fromProfilesValue.size() != 0 && !this.projectService.getProfileNamesByProject(projectName).containsAll(fromProfilesValue)) {
             throw new RuntimeException("Value provided in fromProfiles does not exist in this project");
         }
-        return fromProfilesValue;
+        ArrayList<Profile> loadedProfiles = loadedProfilesList.stream()
+                .filter((profile)-> fromProfilesValue.contains(profile.getName())).collect(Collectors.toCollection(ArrayList::new));
+        if(loadedProfiles.size() == 0){
+            throw new RuntimeException("No value in usedProfiles matches the current profiles loaded.");
+        }
+        return loadedProfiles;
     }
 
     public ArrayList<QueryResultDetail> getQueryDetailResults(String querySetId, String projectName, ArrayList<String> queryIds) {

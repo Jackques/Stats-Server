@@ -3,7 +3,7 @@ package org.statsserver.settings;
 import lombok.Getter;
 import org.statsserver.domain.FileInDirectory;
 import org.statsserver.domain.ProjectSetting;
-import org.statsserver.records.Profile;
+import org.statsserver.domain.Profile;
 import org.statsserver.services.FileReader;
 import org.statsserver.util.FormattedDateMatcher;
 
@@ -33,6 +33,7 @@ public class ProjectSettings {
 
         latestFiles.forEach((key, value) -> {
             projectSetting.addLatestFileContents(value, FileReader.readFile(value, projectSetting.getDataTypesList()));
+            value.getAssociatedProfile().setDateTimeLatestResource(value.formattedDateTime);
         });
 
         // inplement other logic for importing projects
@@ -53,7 +54,7 @@ public class ProjectSettings {
 
         for (int i = 0; i < projectSetting.projectFilesPaths.size(); i++) {
             Profile currentProfile = projectSetting.projectFilesPaths.get(0);
-            String currentProjectFilePath = currentProfile.directoryPath();
+            String currentProjectFilePath = currentProfile.getDirectoryPath();
 //            System.out.println("NOW CHECKING FILE PATH NO: "+i+" PATH: "+currentProjectFilePath);
 
             if(Files.isDirectory(Path.of(currentProjectFilePath))){
@@ -73,7 +74,7 @@ public class ProjectSettings {
         HashMap<String, FileInDirectory> latestFilesInDirectories = new HashMap<String, FileInDirectory>();
 
         for (Profile profile : profiles) {
-            String directoryPath = profile.directoryPath();
+            String directoryPath = profile.getDirectoryPath();
             try {
                 Set<String> filesInDirectory = this.listFilesUsingDirectoryStream(directoryPath);
                 if (filesInDirectory.size() <= 0) {
@@ -94,7 +95,7 @@ public class ProjectSettings {
                     return null;
                 }
 
-                System.out.println("This is the latest file path: " + filteredFilesInDirectory.get(0).fullFileName + " of a file for directory: " + profile.directoryPath());
+                System.out.println("This is the latest file path: " + filteredFilesInDirectory.get(0).fullFileName + " of a file for directory: " + profile.getDirectoryPath());
 
                 latestFilesInDirectories.put(directoryPath, filteredFilesInDirectory.get(0));
 

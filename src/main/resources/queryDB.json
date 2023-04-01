@@ -11,15 +11,27 @@
       "queryResults" : [ ]
     },
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-original", "Jack-updated" ],
+      "affectedProfileNames" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "graphType" : "COLUMN_CHART"
     },
     "queries" : [ {
-      "amountValue" : "ALL",
+      "amount" : "ALL",
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
-      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "firstQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -50,11 +62,17 @@
         "value" : "hi"
       } ]
     }, {
-      "amountValue" : "ALL",
+      "amount" : "ALL",
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
-      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "secondQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -104,15 +122,27 @@
       } ]
     },
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-updated", "Jack-original" ],
+      "affectedProfileNames" : [ {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "graphType" : "LINE_GRAPH"
     },
     "queries" : [ {
-      "amountValue" : "ALL",
+      "amount" : "ALL",
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
-      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "firstQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -138,11 +168,17 @@
         "value" : "hi"
       } ]
     }, {
-      "amountValue" : "ALL",
+      "amount" : "ALL",
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
-      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "secondQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -184,16 +220,28 @@
       "queryResults" : [ ]
     },
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-original", "Jack-updated" ],
+      "affectedProfileNames" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "graphType" : "COLUMN_CHART"
     },
     "queries" : [ {
-      "amountValue" : "ALL",
+      "amount" : "ALL",
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
-      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
-      "labelForThisQuery" : "myQuery",
+      "fromProfiles" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
+      "labelForThisQuery" : "myQuery9",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
       "queryParameters" : [ {
@@ -218,11 +266,17 @@
         "value" : "hi"
       } ]
     }, {
-      "amountValue" : "ALL",
+      "amount" : "ALL",
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
-      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "myQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -264,15 +318,27 @@
       "queryResults" : [ ]
     },
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-original", "Jack-updated" ],
+      "affectedProfileNames" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "graphType" : "COLUMN_CHART"
     },
     "queries" : [ {
-      "amountValue" : "ALL",
+      "amount" : "ALL",
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
-      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "myQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -298,11 +364,17 @@
         "value" : "hi"
       } ]
     }, {
-      "amountValue" : "ALL",
+      "amount" : "ALL",
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
-      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "myQuery1",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -344,15 +416,27 @@
       "queryResults" : [ ]
     },
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-updated", "Jack-original" ],
+      "affectedProfileNames" : [ {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "graphType" : "LINE_GRAPH"
     },
     "queries" : [ {
-      "amountValue" : "ALL",
+      "amount" : "ALL",
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#ff3333",
-      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "firstQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
@@ -378,11 +462,17 @@
         "value" : "hi"
       } ]
     }, {
-      "amountValue" : "ALL",
+      "amount" : "ALL",
       "fromDate" : "2021-01-27T14:26:11.339Z",
       "toDate" : "2022-02-03T14:26:11.339Z",
       "colorQuery" : "#ff3311",
-      "fromProfiles" : [ "Jack-original", "Jack-updated" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      }, {
+        "name" : "Jack-updated",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "secondQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -440,45 +530,60 @@
       } ]
     },
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-original" ],
+      "affectedProfileNames" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "graphType" : "COLUMN_CHART"
     },
     "queries" : [ {
-      "amountValue" : "LAST_50",
+      "amount" : "LAST_50",
       "fromDate" : "2021-01-01T14:26:11.339Z",
       "toDate" : "2023-03-19T01:20:54.117Z",
       "colorQuery" : "#00ff00",
-      "fromProfiles" : [ "Jack-original" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "myRealQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
       "queryParameters" : [ ]
     }, {
-      "amountValue" : "ALL",
+      "amount" : "ALL",
       "fromDate" : "2020-01-01T14:26:11.339Z",
       "toDate" : "2023-03-19T01:20:54.117Z",
       "colorQuery" : "#00ff00",
-      "fromProfiles" : [ "Jack-original" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "myReal2ndQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
       "queryParameters" : [ ]
     }, {
-      "amountValue" : "100",
+      "amount" : "100",
       "fromDate" : "2023-01-27T14:26:11.339Z",
       "toDate" : "2023-03-19T01:20:54.117Z",
       "colorQuery" : "#ff3333",
-      "fromProfiles" : [ "Jack-original" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "myQuery",
       "visibilityQuery" : true,
       "returnFields" : [ "Age", "Name" ],
       "queryParameters" : [ ]
     }, {
-      "amountValue" : "ALL",
+      "amount" : "ALL",
       "fromDate" : "2021-01-01T14:26:11.339Z",
       "toDate" : "2022-06-01T14:26:11.339Z",
       "colorQuery" : "#ff3311",
-      "fromProfiles" : [ "Jack-original" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-original",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "myQuery1",
       "visibilityQuery" : true,
       "returnFields" : [ "City", "Age", "Name" ],
@@ -503,68 +608,39 @@
 }, {
   "projectName" : "Fitness-stats",
   "querySets" : [ {
-    "id" : "957c43f2-fa2e-42f9-bf75-6e3d5bb6960a",
-    "name" : "Verloop fitnesresultaten 100 dagen",
-    "description" : "Het verloop van de fitnesresultaten van de afgelopen 100 dagen",
+    "id" : "a6429210-23f3-4d17-bb45-12da2eed0702",
+    "name" : "My first fitness query+++",
+    "description" : "Like the title said; this is my first fitness query.",
     "projectName" : "Fitness-stats",
     "querySetResults" : {
-      "totalResults" : 123456789,
-      "amountOfQueries" : 1132579486,
-      "queryResults" : [ ]
-    },
-    "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-fitnes" ],
-      "graphType" : "LINE_GRAPH"
-    },
-    "queries" : [ {
-      "amountValue" : "ALL",
-      "fromDate" : "2021-01-27T14:26:11.339Z",
-      "toDate" : "ALL",
-      "colorQuery" : "#ff3333",
-      "fromProfiles" : [ "Jack-fitnes" ],
-      "labelForThisQuery" : "prachtige label",
-      "visibilityQuery" : true,
-      "returnFields" : [ "Gewicht in kg", "Spiermassa in KG", "Lichaamsvocht in PERCENTAGE (nu met kommagetal)", "Lichaamsvocht in KG", "Spiermassa in PERCENTAGE (nu met kommagetal!)", "Vetpercentage in %" ],
-      "queryParameters" : [ {
-        "key" : "Gewicht in kg",
-        "subKey" : null,
-        "operator" : "GREATER_THAN_OR_EQUAL_TO",
-        "value" : 10.0
-      }, {
-        "key" : "Meting door:",
-        "subKey" : null,
-        "operator" : "CONTAINS",
-        "value" : "Better Bodies apparaat"
-      } ]
-    } ]
-  }, {
-    "id" : "99953fcd-7b7b-41ad-98ec-ac0b650ef58f",
-    "name" : "My first fitness query+",
-    "description" : "Like the title said; this is my first fitness query",
-    "projectName" : "Fitness-stats",
-    "querySetResults" : {
-      "totalResults" : 134,
+      "totalResults" : 15,
       "amountOfQueries" : 2,
       "queryResults" : [ {
-        "id" : "be4ed327-d2e0-44c6-b05a-a3e37ca64d33",
+        "id" : "91c840fa-a469-4f19-b2e7-272e15b4d946",
         "labelForThisQuery" : "Results from Better Bodies",
-        "totalResults" : 39
+        "totalResults" : 5
       }, {
-        "id" : "f7dabf39-33da-4a05-8e66-1e2482f8c1a6",
+        "id" : "8b89d534-1c46-494b-a4c4-48f79fd7c738",
         "labelForThisQuery" : "Results from Basicfit",
-        "totalResults" : 95
+        "totalResults" : 10
       } ]
     },
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-fitnes" ],
+      "affectedProfileNames" : [ {
+        "name" : "Jack-fitnes",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "graphType" : "LINE_GRAPH"
     },
     "queries" : [ {
-      "amountValue" : "LAST_100",
+      "amount" : "LAST_5",
       "fromDate" : "2020-01-27T14:26:11.339Z",
       "toDate" : "2023-03-19T01:20:54.117Z",
       "colorQuery" : "#000080",
-      "fromProfiles" : [ "Jack-fitnes" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-fitnes",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "Results from Better Bodies",
       "visibilityQuery" : true,
       "returnFields" : [ "Gewicht in kg", "Datum" ],
@@ -573,13 +649,21 @@
         "subKey" : null,
         "operator" : "EQUALS",
         "value" : "Better Bodies apparaat"
+      }, {
+        "key" : "Gewicht in kg",
+        "subKey" : null,
+        "operator" : "GREATER_THAN",
+        "value" : 10.0
       } ]
     }, {
-      "amountValue" : "LAST_100",
+      "amount" : "LAST_10",
       "fromDate" : "2021-01-01T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#7CFC00",
-      "fromProfiles" : [ "Jack-fitnes" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-fitnes",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "Results from Basicfit",
       "visibilityQuery" : true,
       "returnFields" : [ "Gewicht in kg", "Datum" ],
@@ -591,33 +675,39 @@
       } ]
     } ]
   }, {
-    "id" : "d5cd8e21-d0a8-49f2-91ad-c32ce9887aa6",
-    "name" : "My first fitness query",
-    "description" : "Like the title said; this is my first fitness query",
+    "id" : "a31337de-323c-41e2-b707-f30a5d24d75e",
+    "name" : "My second fitness query!!!",
+    "description" : "Like the title said; this is my second fitness query.",
     "projectName" : "Fitness-stats",
     "querySetResults" : {
       "totalResults" : 134,
       "amountOfQueries" : 2,
       "queryResults" : [ {
-        "id" : "55665dcf-df56-4a17-bbb6-a8eef1e9117a",
+        "id" : "acf60971-11aa-4d42-bf87-58be33bb2b4a",
         "labelForThisQuery" : "Results from Better Bodies",
         "totalResults" : 39
       }, {
-        "id" : "b0c9c1e8-ce70-4997-9073-b108e3099c4e",
+        "id" : "a5000b9a-7fa6-4ef7-8591-51a532de379e",
         "labelForThisQuery" : "Results from Basicfit",
         "totalResults" : 95
       } ]
     },
     "queryMetaData" : {
-      "affectedProfileNames" : [ "Jack-fitnes" ],
+      "affectedProfileNames" : [ {
+        "name" : "Jack-fitnes",
+        "dateTimeLatestResource" : 1677366000000
+      } ],
       "graphType" : "LINE_GRAPH"
     },
     "queries" : [ {
-      "amountValue" : "LAST_100",
+      "amount" : "LAST_100",
       "fromDate" : "2020-01-27T14:26:11.339Z",
       "toDate" : "2023-03-19T01:20:54.117Z",
       "colorQuery" : "#000080",
-      "fromProfiles" : [ "Jack-fitnes" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-fitnes",
+        "dateTimeLatestResource" : 1677366000000
+      } ],
       "labelForThisQuery" : "Results from Better Bodies",
       "visibilityQuery" : true,
       "returnFields" : [ "Gewicht in kg", "Datum" ],
@@ -626,13 +716,88 @@
         "subKey" : null,
         "operator" : "EQUALS",
         "value" : "Better Bodies apparaat"
+      }, {
+        "key" : "Gewicht in kg",
+        "subKey" : null,
+        "operator" : "GREATER_THAN",
+        "value" : 10.0
       } ]
     }, {
-      "amountValue" : "LAST_100",
+      "amount" : "LAST_100",
       "fromDate" : "2021-01-01T14:26:11.339Z",
       "toDate" : "ALL",
       "colorQuery" : "#7CFC00",
-      "fromProfiles" : [ "Jack-fitnes" ],
+      "fromProfiles" : [ {
+        "name" : "Jack-fitnes",
+        "dateTimeLatestResource" : 1677366000000
+      } ],
+      "labelForThisQuery" : "Results from Basicfit",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Gewicht in kg", "Datum" ],
+      "queryParameters" : [ {
+        "key" : "Meting door:",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : "BasicFit apparaat"
+      } ]
+    } ]
+  }, {
+    "id" : "7677ce08-d6e7-445f-b74a-1d5587508531",
+    "name" : "My third query!!!",
+    "description" : "Like the title said; this is my third query. formerly with results from 26-02-2023 but now with updated results from 30-03-2023",
+    "projectName" : "Fitness-stats",
+    "querySetResults" : {
+      "totalResults" : 138,
+      "amountOfQueries" : 2,
+      "queryResults" : [ {
+        "id" : "bc6991eb-eaae-40cb-8491-7fbb3e5c0cb3",
+        "labelForThisQuery" : "Results from Better Bodies",
+        "totalResults" : 41
+      }, {
+        "id" : "ed00c956-9861-4169-9ab9-416fc01cadf9",
+        "labelForThisQuery" : "Results from Basicfit",
+        "totalResults" : 97
+      } ]
+    },
+    "queryMetaData" : {
+      "affectedProfileNames" : [ {
+        "name" : "Jack-fitnes",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
+      "graphType" : "LINE_GRAPH"
+    },
+    "queries" : [ {
+      "amount" : "LAST_100",
+      "fromDate" : "2020-01-27T14:26:11.339Z",
+      "toDate" : "2023-03-19T01:20:54.117Z",
+      "colorQuery" : "#000080",
+      "fromProfiles" : [ {
+        "name" : "Jack-fitnes",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
+      "labelForThisQuery" : "Results from Better Bodies",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Gewicht in kg", "Datum" ],
+      "queryParameters" : [ {
+        "key" : "Meting door:",
+        "subKey" : null,
+        "operator" : "EQUALS",
+        "value" : "Better Bodies apparaat"
+      }, {
+        "key" : "Gewicht in kg",
+        "subKey" : null,
+        "operator" : "GREATER_THAN",
+        "value" : 10.0
+      } ]
+    }, {
+      "amount" : "LAST_100",
+      "fromDate" : "2021-01-01T14:26:11.339Z",
+      "toDate" : "ALL",
+      "colorQuery" : "#7CFC00",
+      "fromProfiles" : [ {
+        "name" : "Jack-fitnes",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
       "labelForThisQuery" : "Results from Basicfit",
       "visibilityQuery" : true,
       "returnFields" : [ "Gewicht in kg", "Datum" ],

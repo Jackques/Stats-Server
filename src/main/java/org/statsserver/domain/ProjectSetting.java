@@ -1,10 +1,7 @@
 package org.statsserver.domain;
 
-import org.statsserver.records.Profile;
-
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ProjectSetting {
     private final String projectName;
@@ -32,7 +29,7 @@ public class ProjectSetting {
 
     public List<String> getProfileNames(){
         return projectFilesPaths.stream()
-                .map(projectFilesPath -> projectFilesPath.name())
+                .map(projectFilesPath -> projectFilesPath.getName())
                 .collect(Collectors.toList());
     }
 
@@ -42,7 +39,7 @@ public class ProjectSetting {
     }
 
     public LinkedHashMap<Integer, HashMap<String, ?>> getDataFromProfileName(String profileName){
-        Optional<Map.Entry<FileInDirectory, LinkedHashMap>> dataProfile = this.latestFilePaths.entrySet().stream().filter((latestFilePath)-> latestFilePath.getKey().getAssociatedProfile().name().equals(profileName)).findFirst();
+        Optional<Map.Entry<FileInDirectory, LinkedHashMap>> dataProfile = this.latestFilePaths.entrySet().stream().filter((latestFilePath)-> latestFilePath.getKey().getAssociatedProfile().getName().equals(profileName)).findFirst();
         if(dataProfile.isPresent()){
             return dataProfile.get().getValue();
         }

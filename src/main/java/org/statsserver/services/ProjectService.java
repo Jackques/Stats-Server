@@ -3,7 +3,7 @@ package org.statsserver.services;
 import org.springframework.stereotype.Service;
 import org.statsserver.domain.KeyData;
 import org.statsserver.domain.ProjectSetting;
-import org.statsserver.records.Profile;
+import org.statsserver.domain.Profile;
 import org.statsserver.settings.ProjectSettings;
 
 import java.util.*;
@@ -68,6 +68,16 @@ public class ProjectService {
                 .stream()
                 .map(ProjectSetting::getProfileNames)//todo: getProfileNames is not a static method, but isn't :: only used when accessing static methods?
                 .findFirst().orElse(null);
+    }
+
+    public ArrayList<Profile> getProfilesByProject(String projectName){
+        Optional<ArrayList<Profile>> profilesList = this.loadedProjects.getProjectSettings().stream()
+                .filter((projectSetting)-> projectSetting.getProjectName().equals(projectName))
+                .map((projectSetting)-> projectSetting.projectFilesPaths).findFirst();
+        if(!profilesList.isPresent()){
+            throw new RuntimeException("No set profiles found with projectName: "+projectName);
+        }
+        return profilesList.get();
     }
 
     public boolean getProjectNameExist(String projectName){

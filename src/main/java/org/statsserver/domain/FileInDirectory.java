@@ -2,7 +2,6 @@ package org.statsserver.domain;
 
 import lombok.Getter;
 import org.statsserver.enums.FileExtension;
-import org.statsserver.records.Profile;
 import org.statsserver.util.FileNameChecker;
 
 import java.text.ParseException;
