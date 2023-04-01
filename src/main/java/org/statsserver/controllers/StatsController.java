@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.statsserver.domain.Profile;
 import org.statsserver.domain.QueryResultDetail;
 import org.statsserver.domain.QuerySet;
 import org.statsserver.services.KeyDataListStatic;
@@ -45,8 +46,8 @@ public class StatsController {
                 .body(this.projectService.getLoadedProjectNames());
     }
     @RequestMapping(path = "api/v1/getProfileNamesFromProject/{projectName}")
-    public ResponseEntity<List<String>> getProfileNamesFromProject(@PathVariable("projectName") String projectName){
-        System.out.println("GET MAPPING AANGESPROKEN getProfileNamesFromProject: "+this.projectService.getProfileNamesByProject(projectName)+", and the projectName provided is: "+projectName);
+    public ResponseEntity<ArrayList<Profile>> getProfilesFromProject(@PathVariable("projectName") String projectName){
+        System.out.println("GET MAPPING AANGESPROKEN getProfileNamesFromProject: "+this.projectService.getProfilesByProject(projectName)+", and the projectName provided is: "+projectName);
 
         if(!this.projectService.getProjectNameExist(projectName)){
             return ResponseEntity.badRequest().body(null);
@@ -54,7 +55,7 @@ public class StatsController {
 
         return ResponseEntity
                 .ok()
-                .body(this.projectService.getProfileNamesByProject(projectName));
+                .body(this.projectService.getProfilesByProject(projectName));
     }
 
     @RequestMapping(path = "api/v1/getKeysFromProject/{projectName}")
