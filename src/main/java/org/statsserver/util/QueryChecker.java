@@ -8,10 +8,11 @@ import java.util.HashMap;
 
 public class QueryChecker {
 
-    public static ArrayList<HashMap> getProfileResults(Query query, HashMap<String, HashMap> querySetResults) {
+    public static ArrayList<HashMap> getProfileResults(Query query, HashMap<String, Object> querySetResults) {
         ArrayList<HashMap> resultList = new ArrayList<>();
         query.getFromProfiles().forEach((profile) -> {
-            resultList.addAll(querySetResults.get(profile.getName()).values());
+            HashMap profileSetResults = (HashMap) querySetResults.get(profile.getName());
+            resultList.addAll(profileSetResults.values());
         });
         return resultList;
     }

@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class KeyDataListStatic {
-    private static final HashMap<String, HashMap<String, KeyData>> keyDataMap = new HashMap<String, HashMap<String, KeyData>>();
+    private static HashMap<String, HashMap<String, KeyData>> keyDataMap = new HashMap<String, HashMap<String, KeyData>>();
     public static void addKeyDataMap(String projectName, HashMap<String, KeyData> keyDataMap){
         KeyDataListStatic.keyDataMap.put(projectName, keyDataMap);
     }
@@ -56,5 +56,11 @@ public class KeyDataListStatic {
             throw new RuntimeException("Key: '"+keyName+"' does not exist in project '"+projectName+"'");
         }
         return keyData.getListValues();
+    }
+
+    // Method below only exists for (unit-)testing purposes
+    // It allows manual external filling of the internal keyDataMap
+    public static void FILL_KEYDATAMAP(HashMap<String, HashMap<String, KeyData>> newKeyDataMap){
+        keyDataMap = newKeyDataMap;
     }
 }

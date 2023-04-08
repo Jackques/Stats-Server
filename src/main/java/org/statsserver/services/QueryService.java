@@ -52,8 +52,8 @@ public class QueryService {
         return this.projectService.getProjectDateKey(projectName);
     }
 
-    private HashMap<String, HashMap> getResultsForQuerySet(String projectName, QuerySet newQuerySet) {
-        HashMap<String, HashMap> querySetResultsProfile = new HashMap<>();
+    private HashMap<String, Object> getResultsForQuerySet(String projectName, QuerySet newQuerySet) {
+        HashMap<String, Object> querySetResultsProfile = new HashMap<>();
         newQuerySet.getQueryMetaData().getAffectedProfileNames().forEach((profileName)->{
             Optional<ProjectSetting> projectSetting = this.projectService.loadedProjects.getProjectSettings(Optional.of(projectName)).stream().findFirst();
             LinkedHashMap<Integer, HashMap<String, ?>> profileData = projectSetting.get().getDataFromProfileName(profileName.getName());
@@ -62,7 +62,7 @@ public class QueryService {
         return querySetResultsProfile;
     }
     private void setQueryData(String projectName, QuerySet newQuerySet, String dateKeyName) {
-        HashMap<String, HashMap> querySetResults = this.getResultsForQuerySet(projectName, newQuerySet);
+        HashMap<String, Object> querySetResults = this.getResultsForQuerySet(projectName, newQuerySet);
         newQuerySet.processQueriesResults(querySetResults, dateKeyName);
     }
     public Boolean updateQuery(String projectName, String queryId, HashMap<String, ?> query) {
