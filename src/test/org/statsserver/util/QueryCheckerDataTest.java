@@ -1,11 +1,33 @@
 package org.statsserver.util;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Getter
 public class QueryCheckerDataTest {
 
-    private final String fourResultsJson = "[{\n" +
+    public static LinkedHashMap<String, Object> getTHelperMockDataSet(String dummyProjectName) throws JsonProcessingException {
+        LinkedHashMap<String, Object> result = new LinkedHashMap<String, Object>();
+        LinkedHashMap<Integer, Object> resultMap = new LinkedHashMap<Integer, Object>();
+
+        ArrayList<HashMap> rawData = new ObjectMapper()
+                .readerFor(Object.class)
+                .readValue(fourResultsJson);
+        AtomicInteger index = new AtomicInteger();
+        rawData.forEach((rawDataItem)->{
+            resultMap.put(index.getAndIncrement(), rawDataItem);
+        });
+
+        result.put(dummyProjectName, resultMap);
+        return result;
+    }
+    private static final String fourResultsJson = "[{\n" +
             "        \"System-no\": {\n" +
             "            \"appType\": \"tinder\",\n" +
             "            \"id\": \"528ce2770640a14b0f00007c529313f0e8ed4f6c0e00002a\",\n" +
