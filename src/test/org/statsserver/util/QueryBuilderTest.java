@@ -8,20 +8,21 @@ import java.util.HashMap;
 
 public class QueryBuilderTest {
 
-    public static Query getQuery(ArrayList<Profile> profileList, ArrayList<HashMap> queryParamsList){
+    public static Query getQuery(ArrayList<Profile> profileList, String amount, String fromDate, String toDate, String labelForThisQuery, String colorQuery, Boolean visibilityQuery, ArrayList<HashMap> queryParamsList){
         HashMap<String, Object> query = new HashMap();
 
-        query.put("amount", "LAST_100");
-        query.put("fromDate", "ALL");
-        query.put("toDate", "ALL");
+//        query.put("amount", "LAST_100");
+        query.put("amount", amount);
+        query.put("fromDate", fromDate);
+        query.put("toDate", toDate);
 
         ArrayList<String> profiles = new ArrayList<>();
         profiles.add("Jack");
 
         query.put("fromProfiles", profiles);
-        query.put("labelForThisQuery", "jacklabel");
-        query.put("colorQuery", "#000080");
-        query.put("visibilityQuery", true);
+        query.put("labelForThisQuery", labelForThisQuery);
+        query.put("colorQuery", colorQuery);
+        query.put("visibilityQuery", visibilityQuery);
 
         ArrayList<String> returnFields = new ArrayList<>();
         returnFields.add("No");
@@ -32,11 +33,11 @@ public class QueryBuilderTest {
         return new Query(query, "T-Helper", profileList);
     }
 
-    public static HashMap<String, Object> getQueryParam(){
+    public static HashMap<String, Object> getQueryParam(String key, String operator, Object value){
         HashMap<String, Object> queryParam = new HashMap();
-        queryParam.put("key", "No");
-        queryParam.put("operator", "EQUALS");
-        queryParam.put("value", 1);
+        queryParam.put("key", key);
+        queryParam.put("operator", operator);
+        queryParam.put("value", value);
 
         return queryParam;
     }

@@ -35,7 +35,11 @@ class QueryCheckerTest {
     @Test
     public void secondTest() {
         // Get the profiles as list as domain Profile
-        ArrayList<Profile> profileList = new ArrayList<>(Arrays.asList(new Profile("Jack", "./")));
+        ArrayList<Profile> profileList = new ArrayList<>(
+                Arrays.asList(
+                        new Profile("Jack", "./")
+                )
+        );
 
         // Set up querySet and fill it with query & params
         QuerySet querySetDomain = new QuerySet(
@@ -45,8 +49,21 @@ class QueryCheckerTest {
                 "LINE_GRAPH",
                 profileList,
                 new ArrayList<>());
-        ArrayList<HashMap> queryParamsList = new ArrayList<>(Arrays.asList(getQueryParam()));
-        Query query = getQuery(profileList, queryParamsList);
+        ArrayList<HashMap> queryParamsList = new ArrayList<>(
+                Arrays.asList(
+                        getQueryParam("No", "EQUALS", 1),
+                        getQueryParam("No", "EQUALS", 1))
+        );
+        Query query = getQuery(
+                profileList,
+                "LAST_100",
+                "ALL",
+                "ALL",
+                "jacklabel",
+                "#000080",
+                true,
+                queryParamsList
+        );
         querySetDomain.setQueries(new ArrayList<>(Arrays.asList(query)));
 
         // Process the queries & mockData in order to be able to get QuerySetResults
