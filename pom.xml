@@ -27,6 +27,7 @@
         2. Spring Data JPA? (only once I get to actually saving & getting the queries from a database)
         3. PostgreSQL Driver (is a driver/provides usefull api's for connecting with a postgreSQL database)?
 
+
      -->
 
     <dependencies>
