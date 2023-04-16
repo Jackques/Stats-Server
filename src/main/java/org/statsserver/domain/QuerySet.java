@@ -85,8 +85,7 @@ public class QuerySet {
             resultList = QueryChecker.getFromOrToDateResults(query, resultList, dateKeyName, true);
             resultList = QueryChecker.getFromOrToDateResults(query, resultList, dateKeyName, false);
 
-            System.out.println("So,.. what is the result we end up with so far with checking the amount, from & to-date & profiles?");
-            System.out.println(resultList.size());
+            //System.out.println(resultList.size());
 
             resultList = QueryChecker.getQueryParametersResults(query, resultList);
 

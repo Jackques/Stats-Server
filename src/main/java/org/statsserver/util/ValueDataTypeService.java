@@ -36,7 +36,7 @@ public class ValueDataTypeService {
       //            System.out.println("Map");
       return "Map";
     }
-    System.out.println("DEBUG: OTHER");
+//    System.out.println("DEBUG: OTHER");
     return "OTHER";
   }
 
