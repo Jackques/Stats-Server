@@ -291,7 +291,7 @@ class QueryCheckerTest {
     }
 
     @Test
-    public void amount5_fromDate01_02_2020_toDateALL() {
+    public void amountALL_fromDate01_10_2017_toDateALL() {
         // Get the profiles as list as domain Profile
         ArrayList<Profile> profileList = new ArrayList<>(
                 Arrays.asList(
@@ -310,8 +310,8 @@ class QueryCheckerTest {
         ArrayList<HashMap> queryParamsList = new ArrayList<>();
         Query query = getQuery(
                 profileList,
-                "5",
                 "ALL",
+                "2017-10-01T14:26:11.339Z",
                 "ALL",
                 "jacklabel1",
                 "#990080",
@@ -335,11 +335,20 @@ class QueryCheckerTest {
         Assertions.assertEquals(querySetDomain.getQueryMetaData().getGraphType().name(), "COLUMN_CHART");
 
         ArrayList<HashMap> resultDetails = queryResults.get(0).readQueryResultsFromFakeDB();
-        Assertions.assertEquals("Daphne123", resultDetails.get(0).get("Name"));
-        Assertions.assertEquals("Cindy123", resultDetails.get(1).get("Name"));
-        Assertions.assertEquals("Priscilla123", resultDetails.get(2).get("Name"));
-        Assertions.assertEquals("VerzorgendeMeid123", resultDetails.get(3).get("Name"));
-        Assertions.assertEquals("SnelleReageerder123", resultDetails.get(4).get("Name"));
+        Assertions.assertEquals("TopPickGhosting123", resultDetails.get(0).get("Name"));
+        Assertions.assertEquals("2018-09-08T12:53:23.385Z", resultDetails.get(0).get("Date-liked-or-passed"));
+
+        Assertions.assertEquals("GhostingGirl123", resultDetails.get(1).get("Name"));
+        Assertions.assertEquals("2019-09-08T12:53:23.385Z", resultDetails.get(1).get("Date-liked-or-passed"));
+
+        Assertions.assertEquals("AnotherNiceGirl123", resultDetails.get(2).get("Name"));
+        Assertions.assertEquals("2020-09-08T12:53:23.385Z", resultDetails.get(2).get("Date-liked-or-passed"));
+
+        Assertions.assertEquals("SpiritualGirl123", resultDetails.get(3).get("Name"));
+        Assertions.assertEquals("2022-09-08T12:53:23.385Z", resultDetails.get(3).get("Date-liked-or-passed"));
+
+        Assertions.assertEquals("PhotographyGirl123", resultDetails.get(4).get("Name"));
+        Assertions.assertEquals("2021-09-08T12:53:23.385Z", resultDetails.get(4).get("Date-liked-or-passed"));
 
 
         // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
