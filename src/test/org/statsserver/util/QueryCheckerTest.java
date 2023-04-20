@@ -350,9 +350,239 @@ class QueryCheckerTest {
         Assertions.assertEquals("PhotographyGirl123", resultDetails.get(4).get("Name"));
         Assertions.assertEquals("2021-09-08T12:53:23.385Z", resultDetails.get(4).get("Date-liked-or-passed"));
 
+        // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
+        querySetDomain.removeQuerySetResults();
+    }
+
+    @Test
+    public void amountALL_fromDateALL_toDate01_10_2018() {
+        // Get the profiles as list as domain Profile
+        ArrayList<Profile> profileList = new ArrayList<>(
+                Arrays.asList(
+                        new Profile("Jack", "./")
+                )
+        );
+
+        // Set up querySet and fill it with query & params
+        QuerySet querySetDomain = new QuerySet(
+                "test2",
+                "testdescription2",
+                "T-Helper",
+                "COLUMN_CHART",
+                profileList,
+                new ArrayList<>());
+        ArrayList<HashMap> queryParamsList = new ArrayList<>();
+        Query query = getQuery(
+                profileList,
+                "ALL",
+                "ALL",
+                "2018-09-08T12:53:23.386Z",
+                "jacklabel1",
+                "#990080",
+                false,
+                queryParamsList
+        );
+        querySetDomain.setQueries(new ArrayList<>(Arrays.asList(query)));
+
+        // Process the queries & mockData in order to be able to get QuerySetResults
+        querySetDomain.processQueriesResults(this.mockData, "Date-liked-or-passed");
+
+
+        // Assert
+        Assertions.assertEquals(
+                6, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+
+        ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
+        Assertions.assertEquals(queryResults.get(0).getLabelForThisQuery(), "jacklabel1");
+        Assertions.assertEquals(querySetDomain.getQueries().get(0).getColorQuery(), "#990080");
+        Assertions.assertEquals(querySetDomain.getQueries().get(0).getVisibilityQuery(), false);
+        Assertions.assertEquals(querySetDomain.getQueryMetaData().getGraphType().name(), "COLUMN_CHART");
+
+        ArrayList<HashMap> resultDetails = queryResults.get(0).readQueryResultsFromFakeDB();
+        Assertions.assertEquals("Daphne123", resultDetails.get(0).get("Name"));
+        Assertions.assertEquals("2015-09-08T12:53:23.385Z", resultDetails.get(0).get("Date-liked-or-passed"));
+
+        Assertions.assertEquals("Cindy123", resultDetails.get(1).get("Name"));
+        Assertions.assertEquals("2016-09-08T12:53:23.385Z", resultDetails.get(1).get("Date-liked-or-passed"));
+
+        Assertions.assertEquals("Priscilla123", resultDetails.get(2).get("Name"));
+        Assertions.assertEquals("2016-09-08T12:53:23.385Z", resultDetails.get(2).get("Date-liked-or-passed"));
+
+        Assertions.assertEquals("VerzorgendeMeid123", resultDetails.get(3).get("Name"));
+        Assertions.assertEquals("2017-09-08T12:53:23.385Z", resultDetails.get(3).get("Date-liked-or-passed"));
+
+        Assertions.assertEquals("SnelleReageerder123", resultDetails.get(4).get("Name"));
+        Assertions.assertEquals("2017-09-08T12:53:23.385Z", resultDetails.get(4).get("Date-liked-or-passed"));
+
+        Assertions.assertEquals("TopPickGhosting123", resultDetails.get(5).get("Name"));
+        Assertions.assertEquals("2018-09-08T12:53:23.385Z", resultDetails.get(5).get("Date-liked-or-passed"));
 
         // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
-        String detailResultId = querySetDomain.getQuerySetResults().getQueryResults().get(0).getId();
+        querySetDomain.removeQuerySetResults();
+    }
+
+    @Test
+    public void amountALL_fromDate08_09_2019_toDate08_09_2020() {
+        // Get the profiles as list as domain Profile
+        ArrayList<Profile> profileList = new ArrayList<>(
+                Arrays.asList(
+                        new Profile("Jack", "./")
+                )
+        );
+
+        // Set up querySet and fill it with query & params
+        QuerySet querySetDomain = new QuerySet(
+                "test2",
+                "testdescription2",
+                "T-Helper",
+                "COLUMN_CHART",
+                profileList,
+                new ArrayList<>());
+        ArrayList<HashMap> queryParamsList = new ArrayList<>();
+        Query query = getQuery(
+                profileList,
+                "ALL",
+                "2019-09-08T12:53:23.384Z",
+                "2020-09-08T12:53:23.386Z",
+                "jacklabel1",
+                "#990080",
+                false,
+                queryParamsList
+        );
+        querySetDomain.setQueries(new ArrayList<>(Arrays.asList(query)));
+
+        // Process the queries & mockData in order to be able to get QuerySetResults
+        querySetDomain.processQueriesResults(this.mockData, "Date-liked-or-passed");
+
+
+        // Assert
+        Assertions.assertEquals(
+                2, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+
+        ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
+        Assertions.assertEquals(queryResults.get(0).getLabelForThisQuery(), "jacklabel1");
+        Assertions.assertEquals(querySetDomain.getQueries().get(0).getColorQuery(), "#990080");
+        Assertions.assertEquals(querySetDomain.getQueries().get(0).getVisibilityQuery(), false);
+        Assertions.assertEquals(querySetDomain.getQueryMetaData().getGraphType().name(), "COLUMN_CHART");
+
+        ArrayList<HashMap> resultDetails = queryResults.get(0).readQueryResultsFromFakeDB();
+        Assertions.assertEquals("GhostingGirl123", resultDetails.get(0).get("Name"));
+        Assertions.assertEquals("2019-09-08T12:53:23.385Z", resultDetails.get(0).get("Date-liked-or-passed"));
+
+        Assertions.assertEquals("AnotherNiceGirl123", resultDetails.get(1).get("Name"));
+        Assertions.assertEquals("2020-09-08T12:53:23.385Z", resultDetails.get(1).get("Date-liked-or-passed"));
+
+        // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
+        querySetDomain.removeQuerySetResults();
+    }
+
+    @Test
+    public void amountLAST_1_fromDate08_09_2019_toDate08_09_2020() {
+        // Get the profiles as list as domain Profile
+        ArrayList<Profile> profileList = new ArrayList<>(
+                Arrays.asList(
+                        new Profile("Jack", "./")
+                )
+        );
+
+        // Set up querySet and fill it with query & params
+        QuerySet querySetDomain = new QuerySet(
+                "test2",
+                "testdescription2",
+                "T-Helper",
+                "COLUMN_CHART",
+                profileList,
+                new ArrayList<>());
+        ArrayList<HashMap> queryParamsList = new ArrayList<>();
+        Query query = getQuery(
+                profileList,
+                "LAST_1",
+                "2019-09-08T12:53:23.384Z",
+                "2020-09-08T12:53:23.386Z",
+                "jacklabel1",
+                "#990080",
+                false,
+                queryParamsList
+        );
+        querySetDomain.setQueries(new ArrayList<>(Arrays.asList(query)));
+
+        // Process the queries & mockData in order to be able to get QuerySetResults
+        querySetDomain.processQueriesResults(this.mockData, "Date-liked-or-passed");
+
+
+        // Assert
+        Assertions.assertEquals(
+                1, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+
+        ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
+        Assertions.assertEquals(queryResults.get(0).getLabelForThisQuery(), "jacklabel1");
+        Assertions.assertEquals(querySetDomain.getQueries().get(0).getColorQuery(), "#990080");
+        Assertions.assertEquals(querySetDomain.getQueries().get(0).getVisibilityQuery(), false);
+        Assertions.assertEquals(querySetDomain.getQueryMetaData().getGraphType().name(), "COLUMN_CHART");
+
+        ArrayList<HashMap> resultDetails = queryResults.get(0).readQueryResultsFromFakeDB();
+        Assertions.assertNotEquals("GhostingGirl123", resultDetails.get(0).get("Name"));
+        Assertions.assertNotEquals("2019-09-08T12:53:23.385Z", resultDetails.get(0).get("Date-liked-or-passed"));
+
+        Assertions.assertEquals("AnotherNiceGirl123", resultDetails.get(0).get("Name"));
+        Assertions.assertEquals("2020-09-08T12:53:23.385Z", resultDetails.get(0).get("Date-liked-or-passed"));
+
+        // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
+        querySetDomain.removeQuerySetResults();
+    }
+
+    @Test
+    public void amount1_fromDate08_09_2019_toDate08_09_2020() {
+        // Get the profiles as list as domain Profile
+        ArrayList<Profile> profileList = new ArrayList<>(
+                Arrays.asList(
+                        new Profile("Jack", "./")
+                )
+        );
+
+        // Set up querySet and fill it with query & params
+        QuerySet querySetDomain = new QuerySet(
+                "test2",
+                "testdescription2",
+                "T-Helper",
+                "COLUMN_CHART",
+                profileList,
+                new ArrayList<>());
+        ArrayList<HashMap> queryParamsList = new ArrayList<>();
+        Query query = getQuery(
+                profileList,
+                "1",
+                "2019-09-08T12:53:23.384Z",
+                "2020-09-08T12:53:23.386Z",
+                "jacklabel1",
+                "#990080",
+                false,
+                queryParamsList
+        );
+        querySetDomain.setQueries(new ArrayList<>(Arrays.asList(query)));
+
+        // Process the queries & mockData in order to be able to get QuerySetResults
+        querySetDomain.processQueriesResults(this.mockData, "Date-liked-or-passed");
+
+
+        // Assert
+        Assertions.assertEquals(
+                1, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+
+        ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
+        Assertions.assertEquals(queryResults.get(0).getLabelForThisQuery(), "jacklabel1");
+        Assertions.assertEquals(querySetDomain.getQueries().get(0).getColorQuery(), "#990080");
+        Assertions.assertEquals(querySetDomain.getQueries().get(0).getVisibilityQuery(), false);
+        Assertions.assertEquals(querySetDomain.getQueryMetaData().getGraphType().name(), "COLUMN_CHART");
+
+        ArrayList<HashMap> resultDetails = queryResults.get(0).readQueryResultsFromFakeDB();
+        Assertions.assertEquals("GhostingGirl123", resultDetails.get(0).get("Name"));
+        Assertions.assertEquals("2019-09-08T12:53:23.385Z", resultDetails.get(0).get("Date-liked-or-passed"));
+
+        Assertions.assertNotEquals("AnotherNiceGirl123", resultDetails.get(0).get("Name"));
+        Assertions.assertNotEquals("2020-09-08T12:53:23.385Z", resultDetails.get(0).get("Date-liked-or-passed"));
+
+        // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
         querySetDomain.removeQuerySetResults();
     }
 }
