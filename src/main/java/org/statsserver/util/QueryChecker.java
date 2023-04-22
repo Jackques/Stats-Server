@@ -174,19 +174,19 @@ public class QueryChecker {
 
         switch (operator) {
             case "LESS_THAN" -> {
-                return queryParamNumericValue < numericKey ? true : false;
+                return numericKey < queryParamNumericValue ? true : false;
             }
             case "LESS_THAN_OR_EQUAL_TO" -> {
-                return queryParamNumericValue <= numericKey ? true : false;
+                return numericKey <= queryParamNumericValue ? true : false;
             }
             case "EQUALS" -> {
-                return queryParamNumericValue == numericKey ? true : false;
+                return numericKey == queryParamNumericValue ? true : false;
             }
             case "GREATER_THAN" -> {
-                return queryParamNumericValue > numericKey ? true : false;
+                return numericKey > queryParamNumericValue ? true : false;
             }
             case "GREATER_THAN_OR_EQUAL_TO" -> {
-                return queryParamNumericValue >= numericKey ? true : false;
+                return numericKey >= queryParamNumericValue ? true : false;
             }
             default -> {
                 throw new RuntimeException("Unrecognized number queryparameter operator: " + operator);
