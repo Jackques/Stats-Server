@@ -221,6 +221,24 @@ class QueryParameterDecimalNumberCheckerTest {
     }
 
     @Test
+    public void amountALL_fromDateALL_toDateALL_queryParam_No_Greater_than_and_Less_than() {
+        ArrayList<HashMap> queryParamsList = new ArrayList<>(
+                Arrays.asList(
+                        getQueryParam("Age", "GREATER_THAN", 26.0),
+                        getQueryParam("Age", "LESS_THAN", 26.0)
+                )
+        );
+        setupQuerySetDomainWithQueryParams(queryParamsList);
+
+        // Assert
+        Assertions.assertEquals(
+                0, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+
+        // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
+        querySetDomain.removeQuerySetResults();
+    }
+
+    @Test
     public void amountALL_fromDateALL_toDateALL_queryParam_No_invalidValue() {
         // 23 is invalid since it is an integer, NOT a decimal number!
         ArrayList<HashMap> queryParamsList = new ArrayList<>(
