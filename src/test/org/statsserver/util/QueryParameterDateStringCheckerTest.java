@@ -207,39 +207,104 @@ class QueryParameterDateStringCheckerTest {
     }
 
     @Test
+    public void amountALL_fromDate2015_toDateALL_queryParam_LastUpdated_beforeDate_with2015() {
+        ArrayList<HashMap> queryParamsList = new ArrayList<>(
+                Arrays.asList(
+                        getQueryParam("Last-updated", "BEFORE_DATE", "2015-11-11T12:53:23.385Z")
+                )
+        );
+        query = getQuery(
+                profileList,
+                "ALL",
+                "2015-11-11T23:53:23.385Z",
+                "ALL",
+                "jacklabel",
+                "#000080",
+                true,
+                queryParamsList
+        );
+        querySetDomain.setQueries(new ArrayList<>(Arrays.asList(query)));
+
+        // Process the queries & mockData in order to be able to get QuerySetResults
+        querySetDomain.processQueriesResults(this.mockData, "Date-liked-or-passed");
+
+        // Assert
+        Assertions.assertEquals(
+                0, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+
+        // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
+        querySetDomain.removeQuerySetResults();
+    }
+
+    @Test
     public void amountALL_fromDateALL_toDate2020_queryParam_LastUpdated_afterDate_with2020() {
-//        ArrayList<HashMap> queryParamsList = new ArrayList<>(
-//                Arrays.asList(
-//                        getQueryParam("Last-updated", "BEFORE_DATE", "2016-10-22T12:53:23.386Z")
-//                )
-//        );
-//        query = getQuery(
-//                profileList,
-//                "ALL",
-//                "2015-11-11T12:53:23.385Z",
-//                "ALL",
-//                "jacklabel",
-//                "#000080",
-//                true,
-//                queryParamsList
-//        );
-//        querySetDomain.setQueries(new ArrayList<>(Arrays.asList(query)));
-//
-//        // Process the queries & mockData in order to be able to get QuerySetResults
-//        querySetDomain.processQueriesResults(this.mockData, "Date-liked-or-passed");
-//
-//        // Assert
-//        Assertions.assertEquals(
-//                2, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
-//
-//        ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
-//
-//        ArrayList<HashMap> resultDetails = queryResults.get(0).readQueryResultsFromFakeDB();
-//        Assertions.assertEquals(resultDetails.get(0).get("Name"), "Cindy123");
-//        Assertions.assertEquals(resultDetails.get(1).get("Name"), "Priscilla123");
-//
-//        // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
-//        querySetDomain.removeQuerySetResults();
+        ArrayList<HashMap> queryParamsList = new ArrayList<>(
+                Arrays.asList(
+                        getQueryParam("Last-updated", "AFTER_DATE", "2020-10-10T12:53:23.386Z")
+                )
+        );
+        query = getQuery(
+                profileList,
+                "ALL",
+                "ALL",
+                "2020-12-12T12:53:23.385Z",
+                "jacklabel",
+                "#000080",
+                true,
+                queryParamsList
+        );
+        querySetDomain.setQueries(new ArrayList<>(Arrays.asList(query)));
+
+        // Process the queries & mockData in order to be able to get QuerySetResults
+        querySetDomain.processQueriesResults(this.mockData, "Date-liked-or-passed");
+
+        // Assert
+        Assertions.assertEquals(
+                1, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+
+        ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
+
+        ArrayList<HashMap> resultDetails = queryResults.get(0).readQueryResultsFromFakeDB();
+        Assertions.assertEquals(resultDetails.get(0).get("Name"), "AnotherNiceGirl123");
+
+        // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
+        querySetDomain.removeQuerySetResults();
+    }
+
+    @Test
+    public void amountALL_fromDate2020_toDate2020_queryParam_LastUpdated_beforeDate_with2020_afterDate_with2020() {
+        ArrayList<HashMap> queryParamsList = new ArrayList<>(
+                Arrays.asList(
+                        getQueryParam("Last-updated", "AFTER_DATE", "2020-10-10T12:53:23.386Z"),
+                        getQueryParam("Last-updated", "BEFORE_DATE", "2020-10-12T12:53:23.386Z")
+                )
+        );
+        query = getQuery(
+                profileList,
+                "ALL",
+                "2015-01-01T12:53:23.385Z",
+                "2023-12-30T12:53:23.385Z",
+                "jacklabel",
+                "#000080",
+                true,
+                queryParamsList
+        );
+        querySetDomain.setQueries(new ArrayList<>(Arrays.asList(query)));
+
+        // Process the queries & mockData in order to be able to get QuerySetResults
+        querySetDomain.processQueriesResults(this.mockData, "Date-liked-or-passed");
+
+        // Assert
+        Assertions.assertEquals(
+                1, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+
+        ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
+
+        ArrayList<HashMap> resultDetails = queryResults.get(0).readQueryResultsFromFakeDB();
+        Assertions.assertEquals(resultDetails.get(0).get("Name"), "AnotherNiceGirl123");
+
+        // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
+        querySetDomain.removeQuerySetResults();
     }
 
     @Test
