@@ -37,7 +37,7 @@ public class QueryChecker {
         }
 
         // get the first xxx results, starting with the first profile
-        if(resultList.size() > query.getSetAmountValue()){
+        if (resultList.size() > query.getSetAmountValue()) {
             return new ArrayList<>(resultList.subList(0, query.getSetAmountValue()));
         }
         return resultList;
@@ -76,14 +76,18 @@ public class QueryChecker {
     }
 
     public static ArrayList<HashMap> getQueryParametersResults(Query query, ArrayList<HashMap> resultList) {
-        if(query.getQueryParameters().size() == 0){
+        if (query.getQueryParameters().size() == 0) {
             return resultList;
         }
 
-        ArrayList<HashMap> resultsToBeReturned = new ArrayList<>();
+        ArrayList<HashMap> resultsToBeReturned = new ArrayList<>(resultList);
         resultList.forEach((result) -> {
+
             query.getQueryParameters().forEach((queryParameter) -> {
-                Object resultProperty = result.get(queryParameter.getKey());
+
+                if (resultsToBeReturned.contains(result)) {
+
+                    Object resultProperty = result.get(queryParameter.getKey());
                     Boolean hasSubData = queryParameter.getKeySubData() != null;
                     String valueType = hasSubData ? queryParameter.getKeySubData().getValueType() : queryParameter.getKeyData().getValueType();
 
@@ -94,33 +98,33 @@ public class QueryChecker {
 
                         switch (valueType) {
                             case "String" -> {
-                                if (resultSatisfiesStringQueryParameter(queryParameter, resultProperty)) {
-                                    resultsToBeReturned.add(result);
+                                if (!resultSatisfiesStringQueryParameter(queryParameter, resultProperty)) {
+                                    resultsToBeReturned.remove(result);
                                 }
                             }
                             case "DateString" -> {
-                                if (resultSatisfiesDateStringQueryParameter(queryParameter, resultProperty)) {
-                                    resultsToBeReturned.add(result);
+                                if (!resultSatisfiesDateStringQueryParameter(queryParameter, resultProperty)) {
+                                    resultsToBeReturned.remove(result);
                                 }
                             }
                             case "WholeNumber", "DecimalNumber" -> {
-                                if (resultSatisfiesNumberQueryParameter(queryParameter, resultProperty)) {
-                                    resultsToBeReturned.add(result);
+                                if (!resultSatisfiesNumberQueryParameter(queryParameter, resultProperty)) {
+                                    resultsToBeReturned.remove(result);
                                 }
                             }
                             case "Boolean" -> {
-                                if (resultSatisfiesBooleanQueryParameter(queryParameter, resultProperty)) {
-                                    resultsToBeReturned.add(result);
+                                if (!resultSatisfiesBooleanQueryParameter(queryParameter, resultProperty)) {
+                                    resultsToBeReturned.remove(result);
                                 }
                             }
                             case "List" -> {
-                                if (resultSatisfiesListQueryParameter(queryParameter, resultProperty)) {
-                                    resultsToBeReturned.add(result);
+                                if (!resultSatisfiesListQueryParameter(queryParameter, resultProperty)) {
+                                    resultsToBeReturned.remove(result);
                                 }
                             }
                         }
                     }
-
+                }
             });
 
         });
