@@ -26,6 +26,7 @@ public class KeyDataMockClass {
         THelperData.put("No", new KeyData("No", 1));
         THelperData.put("City", new KeyData("City", "Tilburg"));
         THelperData.put("Last-updated", new KeyData("Last-updated", "2016-10-22T12:53:23.386Z"));
+        THelperData.put("Age", new KeyData("Age", 30.023));
 
         HashMap THelperDataResult = new HashMap();
         THelperDataResult.put("T-Helper", THelperData);
