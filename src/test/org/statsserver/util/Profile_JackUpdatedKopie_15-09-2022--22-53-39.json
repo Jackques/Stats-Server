@@ -222,10 +222,7 @@
     "Gender": "Female",
     "Interests": [
       "Bioscoop",
-      "Bordspellen",
-      "Lezen",
-      "Disney",
-      "Gamer"
+      "Lezen"
     ],
     "Type-of-match-or-like": [],
     "Is-verified": true,
@@ -336,10 +333,8 @@
     "Gender": "Female",
     "Interests": [
       "Bioscoop",
-      "Bordspellen",
-      "Lezen",
-      "Disney",
-      "Gamer"
+      "Fotografie",
+      "Disney"
     ],
     "Type-of-match-or-like": [],
     "Is-verified": true,
@@ -831,7 +826,7 @@
     "Gender": "Female",
     "Interests": [
       "Borrelen",
-      "Bordspelletjes",
+      "Bordspellen",
       "Tv kijken"
     ],
     "Type-of-match-or-like": [
