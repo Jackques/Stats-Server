@@ -8,7 +8,9 @@ import org.statsserver.services.KeyDataListStatic;
 import org.statsserver.services.ProjectService;
 import org.statsserver.util.ValueDataTypeService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Getter
 @Setter
@@ -43,7 +45,11 @@ public class QueryParameter {
         }
 
         if(!this.valueMatchesKeyValue(providedkeyData)){
-            throw new RuntimeException("Value: '"+this.operator+"' provided in: '"+this.key+"' is invalid. Expected value of type: "+this.keyData.getValueType());
+            String requiredValueType = this.keyData.getValueType();
+            if(this.keyData.getValueType().equals("List")){
+                requiredValueType = this.keyData.getTypeInnervalues();
+            }
+            throw new RuntimeException("Value: '"+this.value+"' provided in: '"+this.key+"' is invalid, with operator: "+this.operator+". Expected value of type: "+requiredValueType);
         }
 
     }
@@ -79,7 +85,33 @@ public class QueryParameter {
 
     private boolean valueMatchesKeyValue(KeyData providedkeyData) {
         String valueTypeReceivedData = ValueDataTypeService.getValueDataType(this.value);
+        if(providedkeyData.getValueType().equals("List") && valueTypeReceivedData.equals("List")){
+            ArrayList<?> receivedList = (ArrayList<?>)this.value;
+
+            if(receivedList.size() == 0){
+                throw new RuntimeException("Provided list value may not be empty: "+this.value);
+            }
+
+            if(!isReceivedListValuesSameValueType(receivedList)){
+                throw new RuntimeException("Not all values in the provided list are of the same type: "+this.value);
+            }
+
+            String valueTypeKeyData = providedkeyData.getTypeInnervalues();
+            String valueTypeReceivedListValue = ValueDataTypeService.getValueDataType(((ArrayList<?>) this.value).get(0));
+            return valueTypeKeyData.equals(valueTypeReceivedListValue);
+        }
         return providedkeyData.getValueType().equals(valueTypeReceivedData);
+    }
+
+    private boolean isReceivedListValuesSameValueType(ArrayList<?> receivedList) {
+        String firstItemValueType = ValueDataTypeService.getValueDataType(receivedList.get(0));
+        AtomicReference<Boolean> isAllValuesSameValue = new AtomicReference<>(true);
+        receivedList.forEach(value -> {
+            if(!ValueDataTypeService.getValueDataType(value).equals(firstItemValueType)){
+                isAllValuesSameValue.set(false);
+            }
+        });
+        return isAllValuesSameValue.get();
     }
 
     private KeyData getSubKeyData() {

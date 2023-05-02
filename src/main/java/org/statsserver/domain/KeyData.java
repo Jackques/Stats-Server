@@ -14,6 +14,7 @@ public class KeyData {
     @Getter
     private String valueType; //todo: refactor to enum
     private Boolean hasInnerValues = null;
+    @Getter
     private String typeInnervalues = null;
     // todo 1; vervangen door enum?
     // todo 2; bij hoofdobject type object is deze waarde null?

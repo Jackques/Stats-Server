@@ -91,7 +91,7 @@ public class QueryChecker {
                     Boolean hasSubData = queryParameter.getKeySubData() != null;
                     String valueType = hasSubData ? queryParameter.getKeySubData().getValueType() : queryParameter.getKeyData().getValueType();
 
-                    if (resultProperty.getClass().toString().equals("class java.util.ArrayList")) {
+                    if (isEmptyList(resultProperty)) {
                         // if result is an empty array (e.g. ghosts list),
                         // skip this result
                     } else {
@@ -129,6 +129,14 @@ public class QueryChecker {
 
         });
         return resultsToBeReturned;
+    }
+
+    private static boolean isEmptyList(Object resultProperty) {
+        if(resultProperty.getClass().toString().equals("class java.util.ArrayList")){
+            ArrayList<?> test = (ArrayList<?>) resultProperty;
+            return test.size() == 0;
+        }
+        return false;
     }
 
     private static boolean resultSatisfiesListQueryParameter(QueryParameter queryParameter, Object resultProperty) {

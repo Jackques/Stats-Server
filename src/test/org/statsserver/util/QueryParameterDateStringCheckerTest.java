@@ -321,7 +321,7 @@ class QueryParameterDateStringCheckerTest {
 
         // Assert
         assertThat(raisedException).isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("'AFTER_DATE' provided in: 'Last-updated' is invalid. Expected value of type: DateString");
+                .hasMessageContaining("Value: '2' provided in: 'Last-updated' is invalid, with operator: AFTER_DATE. Expected value of type: DateString");
 
         // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
         querySetDomain.removeQuerySetResults();

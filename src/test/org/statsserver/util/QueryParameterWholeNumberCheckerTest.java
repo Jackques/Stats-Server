@@ -200,7 +200,7 @@ class QueryParameterWholeNumberCheckerTest {
 
         // Assert
         assertThat(raisedException).isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("'GREATER_THAN_OR_EQUAL_TO' provided in: 'No' is invalid. Expected value of type: WholeNumber");
+                .hasMessageContaining("Value: '[]' provided in: 'No' is invalid, with operator: GREATER_THAN_OR_EQUAL_TO. Expected value of type: WholeNumber");
 
         // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
         querySetDomain.removeQuerySetResults();

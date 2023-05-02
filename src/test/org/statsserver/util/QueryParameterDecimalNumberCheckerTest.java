@@ -253,7 +253,7 @@ class QueryParameterDecimalNumberCheckerTest {
 
         // Assert
         assertThat(raisedException).isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("'GREATER_THAN_OR_EQUAL_TO' provided in: 'Age' is invalid. Expected value of type: DecimalNumber");
+                .hasMessageContaining("Value: '23' provided in: 'Age' is invalid, with operator: GREATER_THAN_OR_EQUAL_TO. Expected value of type: DecimalNumber");
 
         // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
         querySetDomain.removeQuerySetResults();

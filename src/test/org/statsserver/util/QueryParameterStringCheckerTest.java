@@ -165,7 +165,7 @@ class QueryParameterStringCheckerTest {
 
         // Assert
         assertThat(raisedException).isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("'CONTAINS' provided in: 'City' is invalid. Expected value of type: String");
+                .hasMessageContaining("Value: '[]' provided in: 'City' is invalid, with operator: CONTAINS. Expected value of type: String");
 
         // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
         querySetDomain.removeQuerySetResults();

@@ -195,7 +195,7 @@ class QueryParameterBooleanCheckerTest {
 
         // Assert
         assertThat(raisedException).isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("'EQUALS' provided in: 'Seems-toppick' is invalid. Expected value of type: Boolean");
+                .hasMessageContaining("Value: '1.0' provided in: 'Seems-toppick' is invalid, with operator: EQUALS. Expected value of type: Boolean");
 
         // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
         querySetDomain.removeQuerySetResults();

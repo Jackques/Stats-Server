@@ -28,8 +28,6 @@ public class QueryCheckerDataTest {
                     new TypeReference<ArrayList<HashMap>>() {
                     });
 
-            System.out.println("test");
-
         } catch (Exception e) {
             System.out.println("Could not read data from mock JSON file. Please check if the mock test file is correct");
             throw new RuntimeException(e);
