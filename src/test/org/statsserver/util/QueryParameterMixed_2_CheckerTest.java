@@ -143,7 +143,7 @@ class QueryParameterMixed_2_CheckerTest {
     }
 
     @Test
-    public void amountLAST2_fromDate2019_toDate2020_queryParam_MixedWholeNumberBooleanDateString22() {
+    public void amountLAST2_fromDate2019_toDate2020_queryParam_MixedWholeNumberBooleanDateString() {
         ArrayList<HashMap> queryParamsList = new ArrayList<>(
                 Arrays.asList(
                         getQueryParam("Attractiveness-score", "GREATER_THAN_OR_EQUAL_TO", 7),
@@ -183,7 +183,7 @@ class QueryParameterMixed_2_CheckerTest {
     }
 
     @Test
-    public void amountLASTAll_fromDateALL_toDateALL_queryParam_MixedWholeNumberBooleanDateString33() {
+    public void amountLASTAll_fromDateALL_toDateALL_queryParam_MixedWholeNumberBooleanDateString() {
         ArrayList<HashMap> queryParamsList = new ArrayList<>(
                 Arrays.asList(
                         getQueryParam("Attractiveness-score", "GREATER_THAN_OR_EQUAL_TO", 7),
