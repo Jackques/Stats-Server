@@ -27,11 +27,14 @@ public class KeyDataMockClass {
         THelperData.put("System-no", new KeyData("System-no", systemNo));
 
         THelperData.put("No", new KeyData("No", 1));
+        THelperData.put("Vibe-conversation", new KeyData("Vibe-conversation", 1));
         THelperData.put("City", new KeyData("City", "Tilburg"));
+        THelperData.put("Job", new KeyData("Job", "Docente"));
         THelperData.put("Last-updated", new KeyData("Last-updated", "2016-10-22T12:53:23.386Z"));
         THelperData.put("Date-match", new KeyData("Date-match", "2016-10-22T12:53:23.386Z"));
         THelperData.put("Age", new KeyData("Age", 30.023));
         THelperData.put("Seems-toppick", new KeyData("Seems-toppick", true));
+        THelperData.put("Has-profiletext", new KeyData("Has-profiletext", true));
         THelperData.put("Is-verified", new KeyData("Is-verified", true));
         THelperData.put("Attractiveness-score", new KeyData("Attractiveness-score", 7));
 
