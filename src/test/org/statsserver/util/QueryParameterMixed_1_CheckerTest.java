@@ -11,13 +11,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 import static org.statsserver.util.QueryBuilderTest.getQuery;
 import static org.statsserver.util.QueryBuilderTest.getQueryParam;
 import static org.statsserver.util.QueryCheckerDataTest.getTHelperMockDataSet;
 
-class QueryParameterStringCheckerTest {
+class QueryParameterMixed_1_CheckerTest {
 
     private final static ArrayList<String> queryDetailsResultsFileNames = new ArrayList<String>();
     private LinkedHashMap<String, Object> mockData;
@@ -78,10 +76,37 @@ class QueryParameterStringCheckerTest {
     }
 
     @Test
-    public void amountALL_fromDateALL_toDateALL_queryParam_City_equals() {
+    public void amountALL_fromDateALL_toDateALL_queryParam_MixedCityAgeInterests() {
         ArrayList<HashMap> queryParamsList = new ArrayList<>(
                 Arrays.asList(
-                        getQueryParam("City", "EQUALS", "Tilburg")
+                        getQueryParam("City", "EQUALS", "Rotterdam"),
+                        getQueryParam("Age", "GREATER_THAN", 23.0),
+                        getQueryParam("Interests", "CONTAINS", new ArrayList<>(Arrays.asList("Hardlopen")))
+                )
+        );
+        setupQuerySetDomainWithQueryParams(queryParamsList);
+
+        // Assert
+        Assertions.assertEquals(
+                2, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+
+        ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
+
+        ArrayList<HashMap> resultDetails = queryResults.get(0).readQueryResultsFromFakeDB();
+        Assertions.assertEquals(resultDetails.get(0).get("Name"), "SnelleReageerder123");
+        Assertions.assertEquals(resultDetails.get(1).get("Name"), "PhotographyGirl123");
+
+        // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
+        querySetDomain.removeQuerySetResults();
+    }
+
+    @Test
+    public void amountALL_fromDateALL_toDateALL_queryParam_MixedCityAgeInterests2() {
+        ArrayList<HashMap> queryParamsList = new ArrayList<>(
+                Arrays.asList(
+                        getQueryParam("City", "EQUALS", "Rotterdam"),
+                        getQueryParam("Age", "GREATER_THAN", 25.0),
+                        getQueryParam("Interests", "CONTAINS", new ArrayList<>(Arrays.asList("Hardlopen")))
                 )
         );
         setupQuerySetDomainWithQueryParams(queryParamsList);
@@ -93,79 +118,46 @@ class QueryParameterStringCheckerTest {
         ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
 
         ArrayList<HashMap> resultDetails = queryResults.get(0).readQueryResultsFromFakeDB();
-        Assertions.assertEquals(resultDetails.get(0).get("Name"), "AnotherNiceGirl123");
+        Assertions.assertEquals(resultDetails.get(0).get("Name"), "PhotographyGirl123");
 
         // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
         querySetDomain.removeQuerySetResults();
     }
 
     @Test
-    public void amountALL_fromDateALL_toDateALL_queryParam_City_contains() {
+    public void amount1_fromDateALL_toDateALL_queryParam_MixedCityAgeInterests() {
+
         ArrayList<HashMap> queryParamsList = new ArrayList<>(
                 Arrays.asList(
-                        getQueryParam("City", "CONTAINS", "dam")
+                        getQueryParam("City", "EQUALS", "Rotterdam"),
+                        getQueryParam("Age", "GREATER_THAN", 23.0),
+                        getQueryParam("Interests", "CONTAINS", new ArrayList<>(Arrays.asList("Hardlopen")))
                 )
         );
-        setupQuerySetDomainWithQueryParams(queryParamsList);
+        query = getQuery(
+                profileList,
+                "1",
+                "ALL",
+                "ALL",
+                "jacklabel",
+                "#000080",
+                true,
+                queryParamsList
+        );
+
+        querySetDomain.setQueries(new ArrayList<>(Arrays.asList(query)));
+
+        // Process the queries & mockData in order to be able to get QuerySetResults
+        querySetDomain.processQueriesResults(this.mockData, "Date-liked-or-passed");
 
         // Assert
         Assertions.assertEquals(
-                5, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+                1, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
 
         ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
 
         ArrayList<HashMap> resultDetails = queryResults.get(0).readQueryResultsFromFakeDB();
-        Assertions.assertEquals(resultDetails.get(0).get("Name"), "Cindy123");
-        Assertions.assertEquals(resultDetails.get(1).get("Name"), "Priscilla123");
-        Assertions.assertEquals(resultDetails.get(2).get("Name"), "SnelleReageerder123");
-        Assertions.assertEquals(resultDetails.get(3).get("Name"), "GhostingGirl123");
-        Assertions.assertEquals(resultDetails.get(4).get("Name"), "PhotographyGirl123");
-
-        // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
-        querySetDomain.removeQuerySetResults();
-    }
-
-    @Test
-    public void amountALL_fromDateALL_toDateALL_queryParam_City_excludes() {
-        ArrayList<HashMap> queryParamsList = new ArrayList<>(
-                Arrays.asList(
-                        getQueryParam("City", "EXCLUDES", "dam")
-                )
-        );
-        setupQuerySetDomainWithQueryParams(queryParamsList);
-
-        // Assert
-        Assertions.assertEquals(
-                5, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
-
-        ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
-
-        ArrayList<HashMap> resultDetails = queryResults.get(0).readQueryResultsFromFakeDB();
-        Assertions.assertEquals(resultDetails.get(0).get("Name"), "Daphne123");
-        Assertions.assertEquals(resultDetails.get(1).get("Name"), "VerzorgendeMeid123");
-        Assertions.assertEquals(resultDetails.get(2).get("Name"), "TopPickGhosting123");
-        Assertions.assertEquals(resultDetails.get(3).get("Name"), "AnotherNiceGirl123");
-        Assertions.assertEquals(resultDetails.get(4).get("Name"), "SpiritualGirl123");
-
-        // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
-        querySetDomain.removeQuerySetResults();
-    }
-
-    @Test
-    public void amountALL_fromDateALL_toDateALL_queryParam_No_invalidValue() {
-        ArrayList<HashMap> queryParamsList = new ArrayList<>(
-                Arrays.asList(
-                        getQueryParam("City", "CONTAINS", new ArrayList<>())
-                )
-        );
-
-        Throwable raisedException = catchThrowable(() ->
-                setupQuerySetDomainWithQueryParams(queryParamsList)
-        );
-
-        // Assert
-        assertThat(raisedException).isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("Value: '[]' provided in: 'City' is invalid, with operator: CONTAINS. Expected value of type: String");
+        Assertions.assertEquals(resultDetails.get(0).get("Name"), "SnelleReageerder123");
 
         // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
         querySetDomain.removeQuerySetResults();
