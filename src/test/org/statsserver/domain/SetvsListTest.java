@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.catchThrowable;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -48,12 +50,18 @@ public class SetvsListTest {
         mylist.add("one");
         mylist.add("two");
         mylist.add("three");
-        mylist.forEach((mylistItem)->{
-            System.out.println("myListItem is: "+mylistItem);
-            System.out.println(mylist); // but yes i can access mylist from within this foreach!
-            if(mylistItem.equals("two")){
-               mylist.add("four"); // answer: nope.. throw currentModificationException!
-            }
-        });
+
+        Throwable raisedException = catchThrowable(() ->
+                mylist.forEach((mylistItem)->{
+                    System.out.println("myListItem is: "+mylistItem);
+                    System.out.println(mylist); // but yes i can access mylist from within this foreach!
+                    if(mylistItem.equals("two")){
+                        mylist.add("four"); // answer: nope.. throw currentModificationException!
+                    }
+                })
+        );
+
+        // Assert
+        assertThat(raisedException).isInstanceOf(ConcurrentModificationException.class);
     }
 }
