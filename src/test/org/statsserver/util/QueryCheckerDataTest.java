@@ -16,15 +16,17 @@ public class QueryCheckerDataTest {
 
     static ObjectMapper mapper = new ObjectMapper();
 
-    public static LinkedHashMap<String, Object> getTHelperMockDataSet(String dummyProjectName) throws JsonProcessingException {
+    public static LinkedHashMap<String, Object> getTHelperMockDataSet(String dummyProjectName, String alternativeProfileDataPath) throws JsonProcessingException {
         LinkedHashMap<String, Object> result = new LinkedHashMap<String, Object>();
         LinkedHashMap<Integer, Object> resultMap = new LinkedHashMap<Integer, Object>();
 
         List<HashMap> jsonDataResultList;
+        
+        String dataPath = alternativeProfileDataPath == null ? "./src/test/org/statsserver/util/Profile_JackUpdatedKopie_15-09-2022--22-53-39.json" : alternativeProfileDataPath;
 
         try {
             jsonDataResultList = mapper.readValue(
-                    new File("./src/test/org/statsserver/util/Profile_JackUpdatedKopie_15-09-2022--22-53-39.json"),
+                    new File(dataPath),
                     new TypeReference<ArrayList<HashMap>>() {
                     });
 

@@ -38,7 +38,7 @@ class QueryCheckerTest {
         // Get the Mockdata
         // HINT: In Profile_JackUpdatedKopie_15-09-2022--22-53-39.json I keep the same in json format for easy copy & pasting
         // HINT 2: https://jsoneditoronline.org/
-        this.mockData = getTHelperMockDataSet("Jack");
+        this.mockData = getTHelperMockDataSet("Jack", null);
     }
     @AfterAll
     static void afterAll(){

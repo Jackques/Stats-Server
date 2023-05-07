@@ -11,13 +11,14 @@ public class QueryBuilderTest {
     public static Query getQuery(ArrayList<Profile> profileList, String amount, String fromDate, String toDate, String labelForThisQuery, String colorQuery, Boolean visibilityQuery, ArrayList<HashMap> queryParamsList){
         HashMap<String, Object> query = new HashMap();
 
-//        query.put("amount", "LAST_100");
         query.put("amount", amount);
         query.put("fromDate", fromDate);
         query.put("toDate", toDate);
 
         ArrayList<String> profiles = new ArrayList<>();
-        profiles.add("Jack");
+        profileList.forEach(profileListItem -> {
+            profiles.add(profileListItem.getName());
+        });
 
         query.put("fromProfiles", profiles);
         query.put("labelForThisQuery", labelForThisQuery);
