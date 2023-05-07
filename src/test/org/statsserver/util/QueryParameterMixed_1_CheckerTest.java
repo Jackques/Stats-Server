@@ -97,7 +97,7 @@ class QueryParameterMixed_1_CheckerTest {
 
         // Assert
         Assertions.assertEquals(
-                4, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+                5, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
 
         ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
 
@@ -106,6 +106,7 @@ class QueryParameterMixed_1_CheckerTest {
         Assertions.assertEquals(resultDetails.get(1).get("Name"), "PhotographyGirl123");
         Assertions.assertEquals(resultDetails.get(2).get("Name"), "SnelleReageerder123-Jack2");
         Assertions.assertEquals(resultDetails.get(3).get("Name"), "PhotographyGirl123-Jack2");
+        Assertions.assertEquals(resultDetails.get(4).get("Name"), "SnelleReageerderDeTweede123-Jack2");
 
 
         // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
@@ -221,7 +222,7 @@ class QueryParameterMixed_1_CheckerTest {
 
         // Assert
         Assertions.assertEquals(
-                4, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+                5, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
 
         ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
 
@@ -230,6 +231,7 @@ class QueryParameterMixed_1_CheckerTest {
         Assertions.assertEquals(resultDetails.get(1).get("Name"), "PhotographyGirl123");
         Assertions.assertEquals(resultDetails.get(2).get("Name"), "SnelleReageerder123-Jack2");
         Assertions.assertEquals(resultDetails.get(3).get("Name"), "PhotographyGirl123-Jack2");
+        Assertions.assertEquals(resultDetails.get(4).get("Name"), "SnelleReageerderDeTweede123-Jack2");
 
         // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
         querySetDomain.removeQuerySetResults();

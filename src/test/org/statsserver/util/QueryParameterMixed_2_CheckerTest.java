@@ -97,7 +97,7 @@ class QueryParameterMixed_2_CheckerTest {
 
         // Assert
         Assertions.assertEquals(
-                10, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+                11, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
 
         ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
 
@@ -113,6 +113,8 @@ class QueryParameterMixed_2_CheckerTest {
         Assertions.assertEquals(resultDetails.get(7).get("Name"), "SnelleReageerder123-Jack2");
         Assertions.assertEquals(resultDetails.get(8).get("Name"), "GhostingGirl123-Jack2");
         Assertions.assertEquals(resultDetails.get(9).get("Name"), "AnotherNiceGirl123-Jack2");
+
+        Assertions.assertEquals(resultDetails.get(10).get("Name"), "SnelleReageerderDeTweede123-Jack2");
 
         // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
         querySetDomain.removeQuerySetResults();
