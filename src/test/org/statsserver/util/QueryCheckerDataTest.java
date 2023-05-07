@@ -21,7 +21,7 @@ public class QueryCheckerDataTest {
         LinkedHashMap<Integer, Object> resultMap = new LinkedHashMap<Integer, Object>();
 
         List<HashMap> jsonDataResultList;
-        
+
         String dataPath = alternativeProfileDataPath == null ? "./src/test/org/statsserver/util/Profile_JackUpdatedKopie_15-09-2022--22-53-39.json" : alternativeProfileDataPath;
 
         try {
