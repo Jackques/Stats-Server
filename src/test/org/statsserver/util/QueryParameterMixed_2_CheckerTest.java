@@ -19,6 +19,7 @@ class QueryParameterMixed_2_CheckerTest {
 
     private final static ArrayList<String> queryDetailsResultsFileNames = new ArrayList<String>();
     private LinkedHashMap<String, Object> mockData;
+    private LinkedHashMap<String, Object> mockData2;
     private QuerySet querySetDomain;
     private Query query;
     private ArrayList<Profile> profileList;
@@ -42,6 +43,7 @@ class QueryParameterMixed_2_CheckerTest {
         // HINT: In Profile_JackUpdatedKopie_15-09-2022--22-53-39.json I keep the same in json format for easy copy & pasting
         // HINT 2: https://jsoneditoronline.org/
         this.mockData = getTHelperMockDataSet("Jack", null);
+        this.mockData2 = getTHelperMockDataSet("Jack2", "./src/test/org/statsserver/util/Profile_Jack2UpdatedKopie_15-09-2022--22-53-39.json");
 
         // Get the profiles as list as domain Profile
         profileList = new ArrayList<>(
@@ -77,6 +79,13 @@ class QueryParameterMixed_2_CheckerTest {
 
     @Test
     public void amountALL_fromDateALL_toDateALL_queryParam_MixedWholeNumberBooleanDateString() {
+        profileList = new ArrayList<>(
+                Arrays.asList(
+                        new Profile("Jack", "./"),
+                        new Profile("Jack2", "./")
+                )
+        );
+
         ArrayList<HashMap> queryParamsList = new ArrayList<>(
                 Arrays.asList(
                         getQueryParam("Attractiveness-score", "GREATER_THAN_OR_EQUAL_TO", 7),
@@ -88,7 +97,7 @@ class QueryParameterMixed_2_CheckerTest {
 
         // Assert
         Assertions.assertEquals(
-                5, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+                10, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
 
         ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
 
@@ -97,6 +106,13 @@ class QueryParameterMixed_2_CheckerTest {
         Assertions.assertEquals(resultDetails.get(1).get("Name"), "Cindy123");
         Assertions.assertEquals(resultDetails.get(2).get("Name"), "SnelleReageerder123");
         Assertions.assertEquals(resultDetails.get(3).get("Name"), "GhostingGirl123");
+        Assertions.assertEquals(resultDetails.get(4).get("Name"), "AnotherNiceGirl123");
+
+        Assertions.assertEquals(resultDetails.get(5).get("Name"), "Daphne123-Jack2");
+        Assertions.assertEquals(resultDetails.get(6).get("Name"), "Cindy123-Jack2");
+        Assertions.assertEquals(resultDetails.get(7).get("Name"), "SnelleReageerder123-Jack2");
+        Assertions.assertEquals(resultDetails.get(8).get("Name"), "GhostingGirl123-Jack2");
+        Assertions.assertEquals(resultDetails.get(9).get("Name"), "AnotherNiceGirl123-Jack2");
 
         // manually remove the produced queryDetailsResults file or call endpoint to remove it (if latter; check if removed succedfully)
         querySetDomain.removeQuerySetResults();
@@ -224,7 +240,15 @@ class QueryParameterMixed_2_CheckerTest {
     }
 
     @Test
-    public void amountLAST2_fromDate2017_toDate2022_queryParam_MixedWholeNumberBooleanDateString() {
+    public void amountLAST2_fromDate2017_toDate2022_queryParam_MixedWholeNumberBooleanDateString_doubleProfiles() {
+        // Overwrite the profileList because I want to use both profiles in my query here
+        profileList = new ArrayList<>(
+                Arrays.asList(
+                        new Profile("Jack", "./"),
+                        new Profile("Jack2", "./")
+                )
+        );
+
         ArrayList<HashMap> queryParamsList = new ArrayList<>(
                 Arrays.asList(
                         getQueryParam("Attractiveness-score", "GREATER_THAN_OR_EQUAL_TO", 7),
@@ -232,6 +256,8 @@ class QueryParameterMixed_2_CheckerTest {
                         getQueryParam("Date-match", "BEFORE_DATE", "2020-10-12T12:53:23.386Z")
                 )
         );
+
+        // despite having multiple profiles set, I only want to see the first 2 results which come from the first profile set
         query = getQuery(
                 profileList,
                 "2",
@@ -244,6 +270,9 @@ class QueryParameterMixed_2_CheckerTest {
         );
 
         querySetDomain.setQueries(new ArrayList<>(Arrays.asList(query)));
+
+        // set the mocked data for profile Jack2
+        this.mockData.putAll(this.mockData2);
 
         // Process the queries & mockData in order to be able to get QuerySetResults
         querySetDomain.processQueriesResults(this.mockData, "Date-liked-or-passed");
@@ -263,6 +292,58 @@ class QueryParameterMixed_2_CheckerTest {
         querySetDomain.removeQuerySetResults();
     }
 
+    @Test
+    public void amountLAST2_fromDate2017_toDate2022_queryParam_MixedWholeNumberBooleanDateString_doubleProfilesWithResults() {
+        // Overwrite the profileList because I want to use both profiles in my query here
+        profileList = new ArrayList<>(
+                Arrays.asList(
+                        new Profile("Jack", "./"),
+                        new Profile("Jack2", "./")
+                )
+        );
+
+        ArrayList<HashMap> queryParamsList = new ArrayList<>(
+                Arrays.asList(
+                        getQueryParam("Attractiveness-score", "GREATER_THAN_OR_EQUAL_TO", 7),
+                        getQueryParam("Is-verified", "EQUALS", true),
+                        getQueryParam("Date-match", "BEFORE_DATE", "2020-10-12T12:53:23.386Z")
+                )
+        );
+
+        // Now I want to see more results (6 max) because I have two profiles set like
+        query = getQuery(
+                profileList,
+                "6",
+                "2017-09-07T12:53:23.385Z",
+                "2022-10-12T12:53:23.385Z",
+                "jacklabel",
+                "#000080",
+                true,
+                queryParamsList
+        );
+
+        querySetDomain.setQueries(new ArrayList<>(Arrays.asList(query)));
+
+        // set the mocked data for profile Jack2
+        this.mockData.putAll(this.mockData2);
+
+        // Process the queries & mockData in order to be able to get QuerySetResults
+        querySetDomain.processQueriesResults(this.mockData, "Date-liked-or-passed");
+        // Assert
+        Assertions.assertEquals(
+                6, querySetDomain.getQuerySetResults().getQueryResults().get(0).getTotalResults());
+
+        ArrayList<QueryResult> queryResults = querySetDomain.getQuerySetResults().getQueryResults();
+
+        ArrayList<HashMap> resultDetails = queryResults.get(0).readQueryResultsFromFakeDB();
+        Assertions.assertEquals(resultDetails.get(0).get("Name"), "SnelleReageerder123");
+        Assertions.assertEquals(resultDetails.get(1).get("Name"), "GhostingGirl123");
+        Assertions.assertEquals(resultDetails.get(2).get("Name"), "AnotherNiceGirl123");
+        Assertions.assertEquals(resultDetails.get(3).get("Name"), "SnelleReageerder123-Jack2");
+        Assertions.assertEquals(resultDetails.get(4).get("Name"), "GhostingGirl123-Jack2");
+        Assertions.assertEquals(resultDetails.get(5).get("Name"), "AnotherNiceGirl123-Jack2");
+    }
+
     private void setupQuerySetDomainWithQueryParams(ArrayList<HashMap> queryParamsList) {
         query = getQuery(
                 profileList,
@@ -275,6 +356,9 @@ class QueryParameterMixed_2_CheckerTest {
                 queryParamsList
         );
         querySetDomain.setQueries(new ArrayList<>(Arrays.asList(query)));
+
+        // set the mocked data for profile Jack2
+        this.mockData.putAll(this.mockData2);
 
         // Process the queries & mockData in order to be able to get QuerySetResults
         querySetDomain.processQueriesResults(this.mockData, "Date-liked-or-passed");
