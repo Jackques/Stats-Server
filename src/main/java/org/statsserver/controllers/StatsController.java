@@ -16,6 +16,7 @@ import java.net.URI;
 import java.util.*;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class StatsController {
     @Autowired private final ProjectService projectService; // todo: shouldn't this service be annotated thus automatically instantiated & provided?
     private final QueryService queryService; // todo: shouldn't this service be annotated thus automatically instantiated & provided?
