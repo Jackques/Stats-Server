@@ -147,17 +147,22 @@ public class StatsController {
         }
 
     }
-    @GetMapping(path = "api/v1/getQuery/{projectName}/{querySetId}/detailResults")
-    public ResponseEntity<ArrayList<QueryResultDetail>> getQueryDetailResults(@PathVariable String projectName, @PathVariable String querySetId, @RequestBody ArrayList<String> queryIds){
+    @GetMapping(path = "api/v1/getQuery/{projectName}/{querySetId}/detailResults/{queryId}")
+//    public ResponseEntity<ArrayList<QueryResultDetail>> getQueryDetailResults(@PathVariable String projectName, @PathVariable String querySetId, @RequestBody ArrayList<String> queryIds){
+    public ResponseEntity<ArrayList<QueryResultDetail>> getQueryDetailResults(@PathVariable String projectName, @PathVariable String querySetId, @PathVariable String queryId){
         System.out.println("GET MAPPING AANGESPROKEN getQuery, projectName is: " + projectName + "queryId is: " + querySetId);
 
         if(!this.projectService.getProjectNameExist(projectName)){
             return ResponseEntity.badRequest().body(null);
         }
-        if(queryIds.isEmpty()){
+        if(queryId.isEmpty()){
             return ResponseEntity.badRequest().body(null);
         }
-        ArrayList<QueryResultDetail> result = this.queryService.getQueryDetailResults(querySetId, projectName, queryIds);
+
+        ArrayList<String> queryIdList = new ArrayList<>(Arrays.asList(queryId));
+
+        ArrayList<QueryResultDetail> result = this.queryService.getQueryDetailResults(querySetId, projectName, queryIdList);
+//        ArrayList<QueryResultDetail> result = this.queryService.getQueryDetailResults(querySetId, projectName, queryIds);
 
         return ResponseEntity
                 .ok()
