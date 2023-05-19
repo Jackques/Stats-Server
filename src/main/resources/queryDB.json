@@ -273,5 +273,40 @@
         "value" : "BasicFit apparaat"
       } ]
     } ]
+  }, {
+    "id" : "18b78e0b-a86c-4355-9810-43f0e2b64917",
+    "name" : "My 90-day fitness query",
+    "description" : "My 90-day fitness query in which I want to see all the stats for the past 90 days",
+    "projectName" : "Fitness-stats",
+    "querySetResults" : {
+      "totalResults" : 100,
+      "amountOfQueries" : 1,
+      "queryResults" : [ {
+        "id" : "d9ee4820-f160-436e-9e7d-6acebba3136e",
+        "labelForThisQuery" : "Results",
+        "totalResults" : 100
+      } ]
+    },
+    "queryMetaData" : {
+      "affectedProfileNames" : [ {
+        "name" : "Jack-fitnes",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
+      "graphType" : "LINE_GRAPH"
+    },
+    "queries" : [ {
+      "amount" : "LAST_100",
+      "fromDate" : "ALL",
+      "toDate" : "ALL",
+      "colorQuery" : "#000000",
+      "fromProfiles" : [ {
+        "name" : "Jack-fitnes",
+        "dateTimeLatestResource" : 1680213600000
+      } ],
+      "labelForThisQuery" : "Results",
+      "visibilityQuery" : true,
+      "returnFields" : [ "Gewicht in kg", "Datum" ],
+      "queryParameters" : [ ]
+    } ]
   } ]
 } ]
