@@ -282,7 +282,7 @@
       "totalResults" : 100,
       "amountOfQueries" : 1,
       "queryResults" : [ {
-        "id" : "d9ee4820-f160-436e-9e7d-6acebba3136e",
+        "id" : "09fa41c7-8103-4ac3-9ca0-ed5b898b1914",
         "labelForThisQuery" : "Results",
         "totalResults" : 100
       } ]
@@ -295,7 +295,7 @@
       "graphType" : "LINE_GRAPH"
     },
     "queries" : [ {
-      "amount" : "LAST_100",
+      "amount" : "100",
       "fromDate" : "ALL",
       "toDate" : "ALL",
       "colorQuery" : "#000000",
