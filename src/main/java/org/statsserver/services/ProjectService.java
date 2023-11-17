@@ -29,8 +29,9 @@ public class ProjectService {
                         new ArrayList<Profile>() {
                             {
 //                                add(new Profile("Jack-original", "D:\\Projects\\Prive\\Stats-Server\\examples\\profile-jsons"));
-                                add(new Profile("Jack-original", "F:\\\\Dropbox\\\\Profile-jsons"));
-                                add(new Profile("Jack-updated", "F:\\\\Dropbox\\\\Profile-jsons-new")); //todo: only created this folder with copied stats for testing purposes, remove when no longer needed
+                                //todo: for some odd reason, using "\\" instead of "\\\\" to seperate directories causes an error to be thrown in in relation the types (key Age is set as wholeNumber first, but eventual records turn out to be a decimalNumber, thus causing an error). Figure out why
+                                add(new Profile("Jack-original", "F:\\\\Dropbox\\\\Profile-jsons-tinder\\\\tinder-jack-original"));
+                                add(new Profile("Jack-updated", "F:\\\\Dropbox\\\\Profile-jsons-happn")); //todo: only created this folder with copied stats for testing purposes, remove when no longer needed
                             }
                         },
                         "No",

@@ -282,7 +282,7 @@
       "totalResults" : 100,
       "amountOfQueries" : 1,
       "queryResults" : [ {
-        "id" : "09fa41c7-8103-4ac3-9ca0-ed5b898b1914",
+        "id" : "fadd7fdd-28fe-4d9c-971c-25fcfc2f9d81",
         "labelForThisQuery" : "Results",
         "totalResults" : 100
       } ]
@@ -290,7 +290,7 @@
     "queryMetaData" : {
       "affectedProfileNames" : [ {
         "name" : "Jack-fitnes",
-        "dateTimeLatestResource" : 1680213600000
+        "dateTimeLatestResource" : 1699398000000
       } ],
       "graphType" : "LINE_GRAPH"
     },
@@ -301,7 +301,7 @@
       "colorQuery" : "#000000",
       "fromProfiles" : [ {
         "name" : "Jack-fitnes",
-        "dateTimeLatestResource" : 1680213600000
+        "dateTimeLatestResource" : 1699398000000
       } ],
       "labelForThisQuery" : "Results",
       "visibilityQuery" : true,

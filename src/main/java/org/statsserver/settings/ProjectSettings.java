@@ -13,6 +13,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ProjectSettings {
     //todo: This class should probably be refactored & moved into a seperate resource-like file (i.e. a .yaml, .xml or .json file in the resources folder)
@@ -58,17 +60,33 @@ public class ProjectSettings {
 //            System.out.println("NOW CHECKING FILE PATH NO: "+i+" PATH: "+currentProjectFilePath);
 
             if(Files.isDirectory(Path.of(currentProjectFilePath))){
+                if(this.hasDirectoryNoDataFiles(Path.of(currentProjectFilePath))){
+                    throw new RuntimeException("The directory: "+currentProjectFilePath+" set for project: "+projectSetting.getProjectName()+" contains no data files to get data from");
+                }
                 projectFilesPathExistsResults.add(true);
 //                System.out.println("FILE PATH IS VALID, TRUE BEING ADDED TO THE LIST");
             }else{
                 //todo: throw error
-                System.out.println("file directory provided does not exist or has insufficient right to read file path: "+currentProjectFilePath);
+                throw new RuntimeException("file directory provided does not exist or has insufficient right to read file path: "+currentProjectFilePath);
             }
         }
 
 //        System.out.println("NOW RETURNING RESULT: "+(projectFilesPathExistsResults.size() == projectSetting.projectFilesPaths.size()));
         return projectFilesPathExistsResults.size() == projectSetting.projectFilesPaths.size();
-    };
+    }
+
+    private boolean hasDirectoryNoDataFiles(Path directoryPath) {
+        try (Stream<Path> pathStream = Files.list(directoryPath)) {
+            Set<String> directoryContents = pathStream
+                    .filter(file -> !Files.isDirectory(file))
+                    .map(Path::getFileName)
+                    .map(Path::toString)
+                    .collect(Collectors.toSet());
+            return directoryContents.size() > 0 ? false : true;
+        }catch(IOException e){
+            throw new RuntimeException("Error getting directory, the path: "+ directoryPath.toString() +" is not a directory");
+        }
+    }
 
     private HashMap<String, FileInDirectory> getLatestFilePathsFromDirectories(ArrayList<Profile> profiles) {
         HashMap<String, FileInDirectory> latestFilesInDirectories = new HashMap<String, FileInDirectory>();

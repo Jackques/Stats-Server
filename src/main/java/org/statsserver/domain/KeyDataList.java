@@ -28,6 +28,8 @@ public class KeyDataList {
 
       if (!this.isValueSameKeyEqualDataType(
           keyName, ValueDataTypeService.getValueDataType(value))) {
+        //todo: for some odd reason, using "\\" instead of "\\\\" (in paths to directories) to seperate directories causes an error to be thrown in in relation the types (key Age is set as wholeNumber first, but eventual records turn out to be a decimalNumber, thus causing an error). Figure out why
+        // check file 'ProjectService' -> T-Helper
         throw new Exception(
             "Key: "
                 + keyName
