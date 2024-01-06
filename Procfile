@@ -1,0 +1,1 @@
+web: java -jar target/Stats-Server-1.0-SNAPSHOT.jar
