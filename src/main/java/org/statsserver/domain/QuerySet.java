@@ -43,7 +43,7 @@ public class QuerySet {
         System.out.println(queryMetaData);
         ArrayList<LinkedHashMap> affectedProfileNames = (ArrayList<LinkedHashMap>) queryMetaData.get("affectedProfileNames");
         ArrayList<Profile> profileList = affectedProfileNames.stream().map((affectedProfileName)->{
-            Profile profile = new Profile((String) affectedProfileName.get("name"), "");
+            Profile profile = new Profile((String) affectedProfileName.get("name"), "", "", true);
             profile.setDateTimeLatestResourceLong((Long) affectedProfileName.get("dateTimeLatestResource"));
             return profile;
         }).collect(Collectors.toCollection(ArrayList::new));

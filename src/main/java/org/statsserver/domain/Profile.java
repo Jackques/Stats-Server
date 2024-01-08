@@ -12,11 +12,16 @@ public class Profile {
     private String name;
     @JsonIgnore
     private String directoryPath;
+    @JsonIgnore
+    private String localDirectoryPath;
     private Date dateTimeLatestResource;
+    private Boolean useLocalDirectoryPath;
 
-    public Profile(String name, String directoryPath) {
+    public Profile(String name, String directoryPath, String localDirectoryPath, Boolean useLocalDirectoryPath) {
         this.name = name;
         this.directoryPath = directoryPath;
+        this.localDirectoryPath = "src/main/resources/data" + localDirectoryPath;
+        this.useLocalDirectoryPath = useLocalDirectoryPath;
     }
 
     public void setDateTimeLatestResourceLong(Long dateTimeLatestResource) {

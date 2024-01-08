@@ -30,8 +30,8 @@ public class ProjectService {
                             {
 //                                add(new Profile("Jack-original", "D:\\Projects\\Prive\\Stats-Server\\examples\\profile-jsons"));
                                 //todo: for some odd reason, using "\\" instead of "\\\\" to seperate directories causes an error to be thrown in in relation the types (key Age is set as wholeNumber first, but eventual records turn out to be a decimalNumber, thus causing an error). Figure out why
-                                add(new Profile("Jack-original", "F:\\\\Dropbox\\\\Profile-jsons-tinder\\\\tinder-jack-original"));
-                                add(new Profile("Jack-updated", "F:\\\\Dropbox\\\\Profile-jsons-happn")); //todo: only created this folder with copied stats for testing purposes, remove when no longer needed
+                                add(new Profile("Jack-original", "F:\\\\Dropbox\\\\Profile-jsons-tinder\\\\tinder-jack-original", "\\\\Profile-jsons-tinder\\\\tinder-jack-original", true));
+                                add(new Profile("Jack-updated", "F:\\\\Dropbox\\\\Profile-jsons-happn", "\\\\Profile-jsons-happn", true)); //todo: only created this folder with copied stats for testing purposes, remove when no longer needed
                             }
                         },
                         "No",
@@ -45,7 +45,7 @@ public class ProjectService {
                         new ArrayList<Profile>() {
                             {
 //                                add(new Profile("Jack-fitnes", "D:\\Projects\\Prive\\Stats-Server\\examples\\fitness-stats"));
-                                add(new Profile("Jack-fitnes", "F:\\Dropbox\\Sport\\Fitnis\\Fitnisstats")); //todo: when changing the name, don't forget to also change the same name in FileReader accordingly!
+                                add(new Profile("Jack-fitnes", "F:\\Dropbox\\Sport\\Fitnis\\Fitnisstats", "\\\\Fitnisstats", true)); //todo: when changing the name, don't forget to also change the same name in FileReader accordingly!
                             }
                         },
                         "No",

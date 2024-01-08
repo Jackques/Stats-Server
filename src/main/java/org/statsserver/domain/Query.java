@@ -119,7 +119,7 @@ public class Query {
                     } else {
                         ArrayList<LinkedHashMap> fromProfiles = (ArrayList<LinkedHashMap>) value;
                         this.fromProfiles = fromProfiles.stream().map((fromProfile) -> {
-                                Profile profile = new Profile((String) fromProfile.get("name"), "");
+                                Profile profile = new Profile((String) fromProfile.get("name"), "", "", true);
                                 profile.setDateTimeLatestResource(new Date((Long) fromProfile.get("dateTimeLatestResource")));
                                 return profile;
                         }).collect(Collectors.toCollection(ArrayList::new));

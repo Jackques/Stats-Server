@@ -27,6 +27,7 @@ public class ProjectSettings {
         }
 
         HashMap<String, FileInDirectory> latestFiles = this.getLatestFilePathsFromDirectories(projectSetting.projectFilesPaths);
+
         if(Objects.isNull(latestFiles) || latestFiles.size() == 0){
             //todo: throw error; could not retrieve latest file from directory path
             return false;
@@ -57,6 +58,11 @@ public class ProjectSettings {
         for (int i = 0; i < projectSetting.projectFilesPaths.size(); i++) {
             Profile currentProfile = projectSetting.projectFilesPaths.get(0);
             String currentProjectFilePath = currentProfile.getDirectoryPath();
+            if(currentProfile.getUseLocalDirectoryPath()){
+                System.out.println("Using local directory path for profile: %s".formatted(currentProfile.getName()));
+                currentProjectFilePath = currentProfile.getLocalDirectoryPath();
+            }
+
 //            System.out.println("NOW CHECKING FILE PATH NO: "+i+" PATH: "+currentProjectFilePath);
 
             if(Files.isDirectory(Path.of(currentProjectFilePath))){
@@ -92,7 +98,13 @@ public class ProjectSettings {
         HashMap<String, FileInDirectory> latestFilesInDirectories = new HashMap<String, FileInDirectory>();
 
         for (Profile profile : profiles) {
-            String directoryPath = profile.getDirectoryPath();
+//            String directoryPath = profile.getDirectoryPath();
+            String directoryPath = profile.getUseLocalDirectoryPath() ? profile.getLocalDirectoryPath() : profile.getDirectoryPath();
+
+            if(profile.getUseLocalDirectoryPath()){
+                System.out.println("Retrieving data from local directory for profile: %s".formatted(profile.getLocalDirectoryPath()));
+            }
+
             try {
                 Set<String> filesInDirectory = this.listFilesUsingDirectoryStream(directoryPath);
                 if (filesInDirectory.size() <= 0) {
