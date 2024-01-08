@@ -20,7 +20,7 @@ public class Profile {
     public Profile(String name, String directoryPath, String localDirectoryPath, Boolean useLocalDirectoryPath) {
         this.name = name;
         this.directoryPath = directoryPath;
-        this.localDirectoryPath = "src/main/resources/data" + localDirectoryPath;
+        this.localDirectoryPath = "src\\\\main\\\\resources\\\\data" + localDirectoryPath;
         this.useLocalDirectoryPath = useLocalDirectoryPath;
     }
 
