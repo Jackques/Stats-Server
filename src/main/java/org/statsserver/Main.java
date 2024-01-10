@@ -34,6 +34,9 @@ public class Main {
 
         System.out.println("Note: Main application class (in this case called Main) should always be at parentfolder of other java files (because Springs starts looking for Java annotations from this folder)");
 
+        String javaVersion = System.getProperty("java.version");
+        System.out.println("Java Version: " + javaVersion);
+
         SpringApplication.run(Main.class, args);
     }
 
