@@ -1,0 +1,23 @@
+ik wil een app die..
+* mij een grafiek laat zien van het huidige query
+	Grafiek (query-details) kan pie-chart zijn of..
+	Grafiek (query-details) kan lijn-grafiek zijn of..
+	Grafiek (query-details) kan table-schema zijn
+* nieuwe queries kan maken..
+	* (OUT-OF-SCOPE) nieuw project kan toevoegen (projectnaam (STRING), directoryPath (STRING), localDirectoryPath (STRING), useDirectoryPath (STRING))
+	* Create new query
+		* select from project (dropdown)
+		* select from (one or more) profiles
+		* select from keys from said project
+		* select desired value from key;
+			* string equals to
+			* string does not equal to
+			* number equals to
+			* etc.
+		
+		
+		CURRENT PROBLEM;
+			Heroku app cannot access the local files, PERHAPS because no rights to read, or because files are not found in that location as one stack overflow ansers suggests (so use another type of class extraction), 
+			1. upload different ways or error handling to pinpoint what exact problem is
+			2. can use try catch mechanism to figure out if classloader solution (stack overflow) would help.
+			3. also check if problem is file does not exist (because it exists in .jar), or because rights to access issue
