@@ -203,7 +203,16 @@ public class ProjectSettings {
     }
     private Set<String> listFilesUsingDirectoryStream(String dir) throws IOException {
         Set<String> fileList = new HashSet<>();
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(Paths.get(dir))) {
+        Path path1 = null;
+
+        try{
+            path1 = Paths.get(dir);
+        }catch(RuntimeException e){
+            System.out.println("Error when attempting to get the path of the directory");
+            throw e;
+        }
+
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(path1)) {
             for (Path path : stream) {
                 if (!Files.isDirectory(path)) {
                     fileList.add(path.getFileName()
@@ -211,7 +220,8 @@ public class ProjectSettings {
                 }
             }
         }catch(IOException e){
-            System.out.println("Error when attempting to use Files.newDirectoryStream for: "+Paths.get(dir));
+            System.out.println("Error when attempting to use Files.newDirectoryStream for: "+ path1);
+            throw e;
         }
         return fileList;
     }
