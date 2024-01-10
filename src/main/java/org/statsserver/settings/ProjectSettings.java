@@ -1,13 +1,19 @@
 package org.statsserver.settings;
 
 import lombok.Getter;
+import org.springframework.util.ResourceUtils;
+import org.springframework.util.StreamUtils;
 import org.statsserver.domain.FileInDirectory;
 import org.statsserver.domain.ProjectSetting;
 import org.statsserver.domain.Profile;
 import org.statsserver.services.FileReader;
 import org.statsserver.util.FormattedDateMatcher;
+import org.statsserver.util.OnHeroku;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,11 +28,20 @@ public class ProjectSettings {
     private final ArrayList<ProjectSetting> projectSettings = new ArrayList<ProjectSetting>();
     public ProjectSettings() {}
     public boolean addProject(ProjectSetting projectSetting){
-        if(!this.isFilePathsValid(projectSetting) || !this.isProjectNameValid(projectSetting)){
-            throw new RuntimeException("Projectsetting: "+projectSetting.getProjectName()+" is invalid. Please check your projectsettings");
+        if(!OnHeroku.isHeroku()){
+            if(!this.isFilePathsValid(projectSetting) || !this.isProjectNameValid(projectSetting)){
+                throw new RuntimeException("Projectsetting: "+projectSetting.getProjectName()+" is invalid. Please check your projectsettings");
+            }
         }
 
+        if(OnHeroku.isHeroku()){
+            System.out.println("On Heroku, so no need to check if file paths are valid");
+        }
+
+
         HashMap<String, FileInDirectory> latestFiles = this.getLatestFilePathsFromDirectories(projectSetting.projectFilesPaths);
+
+        //             boolean workOnHeroku = this.willThisWorkOnHeroku(currentProjectFilePath);
 
         if(Objects.isNull(latestFiles) || latestFiles.size() == 0){
             //todo: throw error; could not retrieve latest file from directory path
@@ -81,6 +96,53 @@ public class ProjectSettings {
         return projectFilesPathExistsResults.size() == projectSetting.projectFilesPaths.size();
     }
 
+    private boolean willThisWorkOnHeroku(String currentProjectFilePath) {
+        try{
+            byte[] array = new byte[100];
+
+            ClassLoader cl = this.getClass().getClassLoader();
+            InputStream inputStream = cl.getResourceAsStream(currentProjectFilePath);
+
+            inputStream.read(array);
+            System.out.println("START - Data read from the file: ");
+
+            String data = new String(array);
+            System.out.println(data);
+            System.out.println("END - Data read from the file: ");
+
+            return true;
+        } catch (IOException e) {
+//            throw new RuntimeException(e);
+            System.out.println("Reading file; Take 1 does not work");
+        } catch (RuntimeException e) {
+            System.out.println("Reading file; Take 1 does not work, RuntimeException");
+        }
+
+        try{
+            InputStream inputStream = ResourceUtils.getURL(currentProjectFilePath).openStream();
+            String wholeContentOfFile = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+
+            System.out.println("START - Data read from the file, take 2: ");
+            System.out.println(wholeContentOfFile);
+            System.out.println("END - Data read from the file, take 2: ");
+
+            inputStream.close();
+
+            return true;
+        }catch(RuntimeException e){
+            System.out.println("Reading file; Take 2 does not work, RuntimeException");
+        } catch (FileNotFoundException e) {
+//            throw new RuntimeException(e);
+            System.out.println("Reading file; Take 2 does not work, FileNotFoundException");
+        } catch (IOException e) {
+//            throw new RuntimeException(e);
+            System.out.println("Reading file; Take 2 does not work, IOException");
+        }
+
+
+        return false;
+    }
+
     private boolean hasDirectoryNoDataFiles(Path directoryPath) {
         try (Stream<Path> pathStream = Files.list(directoryPath)) {
             Set<String> directoryContents = pathStream
@@ -104,34 +166,38 @@ public class ProjectSettings {
             if(profile.getUseLocalDirectoryPath()){
                 System.out.println("Retrieving data from local directory for profile: %s".formatted(profile.getLocalDirectoryPath()));
             }
+            Set<String> filesInDirectory = Set.of();
 
             try {
-                Set<String> filesInDirectory = this.listFilesUsingDirectoryStream(directoryPath);
-                if (filesInDirectory.size() <= 0) {
-                    //todo: throw exception if no files are found in this path
-                    return null;
-                }
-
-                //todo: refactor sometime to only create SINGLE FileInDirectory classobject AFTER fileName is valid, got dateTimeStringFromFileName AND is sorted
-                List<FileInDirectory> filteredFilesInDirectory = filesInDirectory.stream()
-                        .filter(fileName -> !FormattedDateMatcher.getDateTimeStringFromFileName(fileName).equals(""))
-                        .map(fileName -> new FileInDirectory(fileName, directoryPath, profile, FormattedDateMatcher.getDateTimeStringFromFileName(fileName)))
-                        .filter(FileInDirectory::hasValidFileExtension)
-                        .sorted()
-                        .toList();
-
-                if (filteredFilesInDirectory.size() <= 0) {
-                    //todo: throw exception if no VALID files are found in this path
-                    return null;
-                }
-
-                System.out.println("This is the latest file path: " + filteredFilesInDirectory.get(0).fullFileName + " of a file for directory: " + profile.getDirectoryPath());
-
-                latestFilesInDirectories.put(directoryPath, filteredFilesInDirectory.get(0));
-
+                filesInDirectory = this.listFilesUsingDirectoryStream(directoryPath);
             } catch (IOException e) {
+                System.out.println("Error retrieving listFilesUsingDirectoryStream");
                 throw new RuntimeException(e);
             }
+
+            if (filesInDirectory.size() <= 0) {
+                //todo: throw exception if no files are found in this path
+                System.out.println("filesInDirectory is empty");
+                return null;
+            }
+
+            //todo: refactor sometime to only create SINGLE FileInDirectory classobject AFTER fileName is valid, got dateTimeStringFromFileName AND is sorted
+            List<FileInDirectory> filteredFilesInDirectory = filesInDirectory.stream()
+                    .filter(fileName -> !FormattedDateMatcher.getDateTimeStringFromFileName(fileName).equals(""))
+                    .map(fileName -> new FileInDirectory(fileName, directoryPath, profile, FormattedDateMatcher.getDateTimeStringFromFileName(fileName)))
+                    .filter(FileInDirectory::hasValidFileExtension)
+                    .sorted()
+                    .toList();
+
+            if (filteredFilesInDirectory.size() <= 0) {
+                //todo: throw exception if no VALID files are found in this path
+                System.out.println("FilteredFilesInDirectory is empty");
+                return null;
+            }
+
+            System.out.println("This is the latest file path: " + filteredFilesInDirectory.get(0).fullFileName + " of a file for directory: " + profile.getDirectoryPath());
+
+            latestFilesInDirectories.put(directoryPath, filteredFilesInDirectory.get(0));
         }
         return latestFilesInDirectories;
     }
@@ -144,6 +210,8 @@ public class ProjectSettings {
                             .toString());
                 }
             }
+        }catch(IOException e){
+            System.out.println("Error when attempting to use Files.newDirectoryStream for: "+Paths.get(dir));
         }
         return fileList;
     }
@@ -155,5 +223,4 @@ public class ProjectSettings {
         }
         return projectSettings;
     }
-
 }
