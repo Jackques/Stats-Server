@@ -212,15 +212,27 @@ public class ProjectSettings {
             throw e;
         }
 
-        try (DirectoryStream<Path> stream = Files.newDirectoryStream(path1)) {
+        DirectoryStream<Path> stream = null;
+        try{
+            stream = Files.newDirectoryStream(path1);
+        }catch(RuntimeException e){
+            System.out.println("Error when attempting to use Files.newDirectoryStream");
+            System.out.println(e.getMessage());
+            System.out.println("===");
+            throw e;
+        }
+
+        try {
             for (Path path : stream) {
                 if (!Files.isDirectory(path)) {
                     fileList.add(path.getFileName()
                             .toString());
                 }
             }
-        }catch(IOException e){
-            System.out.println("Error when attempting to use Files.newDirectoryStream for: "+ path1);
+        }catch(RuntimeException e){
+            System.out.println("Error when attempting to use Files.newDirectoryStream AND forloop over the stream for: "+ path1);
+            System.out.println(e.getMessage());
+            System.out.println("===");
             throw e;
         }
         return fileList;
