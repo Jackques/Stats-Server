@@ -42,15 +42,15 @@ public class ProjectService {
                                 add(
                                         new Profile(
                                                 "Jack-original",
-                                                "F:\\\\Dropbox\\\\Profile-jsons-tinder\\\\tinder-jack-original",
-                                            "BOOT-INF\\\\classes\\\\data\\\\Profile-jsons-tinder\\\\tinder-jack-original",
+                                                "F:\\\\Dropbox\\\\Profile-jsons-tinder\\\\tinder-jack-original\\\\Profile_JackNormalTinder_25-11-2023--18-33-15.json",
+                                            "\\\\BOOT-INF\\\\classes\\\\data\\\\Profile-jsons-tinder\\\\tinder-jack-original\\\\Profile_JackNormalTinder_25-11-2023--18-33-15.json",
                                                 useLocalDirectory)
                                 );
                                 add(
                                         new Profile(
                                                 "Jack-updated",
                                                 "F:\\\\Dropbox\\\\Profile-jsons-happn",
-                                                "BOOT-INF\\\\classes\\\\data\\\\Profile-jsons-happn",
+                                                "\\\\BOOT-INF\\\\classes\\\\data\\\\Profile-jsons-happn",
                                                 useLocalDirectory)
                                 ); //todo: only created this folder with copied stats for testing purposes, remove when no longer needed
                             }
@@ -70,7 +70,7 @@ public class ProjectService {
                                         new Profile(
                                                 "Jack-fitnes",
                                                 "F:\\Dropbox\\Sport\\Fitnis\\Fitnisstats",
-                                                "BOOT-INF\\\\classes\\\\data\\\\Fitnisstats",
+                                                "\\\\BOOT-INF\\\\classes\\\\data\\\\Fitnisstats",
                                                 useLocalDirectory)
                                 ); //todo: when changing the name, don't forget to also change the same name in FileReader accordingly!
                             }
